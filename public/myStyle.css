@@ -12934,4 +12934,9 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .hero-body {
   padding: 10px;
 }
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
 /*# sourceMappingURL=myStyle.css.map */
