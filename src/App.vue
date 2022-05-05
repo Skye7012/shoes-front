@@ -144,8 +144,8 @@
             <div class="tile is-child box">
             
               <div class="columns is-multiline">
-                <div class="column is-one-third">
-                  
+                
+                <div class="column is-one-third" v-for="post in posts">
                   <div class="card">
                     <div class="card-image">
                       <figure class="image is-3by4">
@@ -154,10 +154,7 @@
                     </div>
                     <div class="card-content">
                       <p class="title">
-                        “There are two ”
-                      </p>
-                      <p class="subtitle">
-                        Jeff Atwood
+                        id = {{post.id}}
                       </p>
                     </div>
                     <footer class="card-footer">
@@ -168,136 +165,10 @@
                         </span>
                       </a>
                     </footer>
-                    </div>
                   </div>
-
-                <div class="column is-one-third">
-                  
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-3by4">
-                        <img src="1.webp" alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <p class="title">
-                        “There are two ”
-                      </p>
-                      <p class="subtitle">
-                        Jeff Atwood
-                      </p>
-                    </div>
-                    <footer class="card-footer">
-                      <p class="card-footer-item">
-                        <span>
-                          Add
-                        </span>
-                      </p>
-                      <p class="card-footer-item">
-                        <span>
-                          Buy
-                        </span>
-                      </p>
-                    </footer>
-                  </div>
-
                 </div>
 
-                <div class="column is-one-third">
-                 
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-3by4">
-                        <img src="1.webp" alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <p class="title">
-                        “There are two ”
-                      </p>
-                      <p class="subtitle">
-                        Jeff Atwood
-                      </p>
-                    </div>
-                    <footer class="card-footer">
-                      <p class="card-footer-item">
-                        <span>
-                          Add
-                        </span>
-                      </p>
-                      <p class="card-footer-item">
-                        <span>
-                          Buy
-                        </span>
-                      </p>
-                    </footer>
-                  </div>
-
-                </div>
-
-                <div class="column is-one-third">
-                  
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-3by4">
-                        <img src="1.webp" alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <p class="title">
-                        “There are two ”
-                      </p>
-                      <p class="subtitle">
-                        Jeff Atwood
-                      </p>
-                    </div>
-                    <footer class="card-footer">
-                      <p class="card-footer-item">
-                        <span>
-                          Add
-                        </span>
-                      </p>
-                      <p class="card-footer-item">
-                        <span>
-                          Buy
-                        </span>
-                      </p>
-                    </footer>
-                  </div>
-
-                </div>
-
-                <div class="column is-one-third">
-                  
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-3by4">
-                        <img src="1.webp" alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="card-content">
-                      <p class="title">
-                        “There are two ”
-                      </p>
-                      <p class="subtitle">
-                        Jeff Atwood
-                      </p>
-                    </div>
-                    <footer class="card-footer">
-                      <p class="card-footer-item">
-                        <span>
-                          Add
-                        </span>
-                      </p>
-                      <p class="card-footer-item">
-                        <span>
-                          Buy
-                        </span>
-                      </p>
-                    </footer>
-                  </div>
-
-                </div>
+                
               </div>
             
             </div>
@@ -324,7 +195,15 @@
 
 <script>
   export default {
-    
+    data() {
+      return {
+        posts: [
+          {id: 1},
+          {id: 2},
+          {id: 3},
+        ]
+      }
+    }
   }
 </script>
 
