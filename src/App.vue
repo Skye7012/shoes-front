@@ -1,56 +1,57 @@
 <template>
   <section class="hero is-fullheight">
     <div class="hero-head">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a class="navbar-item">
-              <p class="title is-2 has-text-info">Shoes</p>
-            </a>
-          </div>
-          <div id="navbarMenuHeroB" class="navbar-menu">
-            <a class="navbar-item">
-              <div class="field has-addons">
-                <p class="control has-icons-left">
-                  <input class="input" type="text" placeholder="Найти">
-                  <span class="icon is-left">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                  </span>
-                </p>
-                <p class="control">
-                  <button class="button is-info">
-                    Найти
-                  </button>
-                </p>
-              </div>
-            </a>
-            <div class="navbar-end">
-              <span class="navbar-item">
-                <a class="button is-inverted">
-                  <span class="icon">
-                    <i class="icons fa-solid fa-user"></i>
-                  </span>
-                  <span>Войти</span>
-                </a>
-              </span>
-              <span class="navbar-item">
-                <a class="button is-inverted">
-                  <span class="icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                  <span>Корзина</span>
-                </a>
-              </span>
-            </div>
-          </div>
+
+  <nav class="level" style="margin: 0 5%">
+    <div class="level-left">
+      <div class="level-item">
+        <a class="navbar-item">
+          <p class="title is-2 has-text-info">Shoes</p>
+        </a>
+      </div>
+       <div class="level-item">
+        <div class="field has-addons">
+          <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="Найти" style="width: 40vw;">
+            <span class="icon is-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+          </p>
+          <p class="control">
+            <button class="button is-info">
+              Найти
+            </button>
+          </p>
         </div>
-      </nav>
+      </div>
+    </div>
+
+    <div class="level-right">
+      <div class="level-item">
+        <a class="button is-inverted">
+          <span class="icon">
+            <i class="icons fa-solid fa-user"></i>
+          </span>
+          <span>Войти</span>
+        </a>
+      </div>
+      <div class="level-item">
+        <a class="button is-inverted">
+          <span class="icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </span>
+          <span>Корзина</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
     </div>
 
     <div class="hero-body">
       <div class="tile is-ancestor">
         <div class="tile is-2 is-parent">
-          <div class="tile is-child box">
+          <div class="tile is-child box myMenu">
             <aside class="menu">
               <p class="menu-label">
                 Брэнды
@@ -112,34 +113,13 @@
               <div class="level">
                 <div class="level-left">
                   <div class="level-item">
-                    <div class="dropdown">
-                      <div class="dropdown-trigger">
-                        <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu">
-                          <span>Популярные</span>
-                          <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                          </span>
-                        </button>
-                      </div>
-                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                        <div class="dropdown-content">
-                          <a href="#" class="dropdown-item">
-                            Популярные
-                          </a>
-                          <hr class="dropdown-divider">
-                          <a class="dropdown-item">
-                            Сначала дешевые
-                          </a>
-                          <hr class="dropdown-divider">
-                          <a href="#" class="dropdown-item">
-                            Сначала дорогие
-                          </a>
-                          <hr class="dropdown-divider">
-                          <a href="#" class="dropdown-item">
-                            По размеру скидки
-                          </a>
-                        </div>
-                      </div>
+                    <div class="select is-small">
+                      <select>
+                        <option>Популярные</option>
+                        <option>Сначала дешевые</option>
+                        <option>Сначала дорогие</option>
+                        <option>По размеру скидки</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -349,5 +329,13 @@
 </script>
 
 <style lang="scss" scoped>
+
+// .hero-body {
+//   padding: 10px;
+// }
+
+// .myMenu {
+//   min-width: 200px;
+// }
 
 </style>
