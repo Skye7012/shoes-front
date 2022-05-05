@@ -3,8 +3,8 @@
 		<a class="nav-item">
           <span class="title is-2 has-text-info">Shoes</span>
         </a>
-        <div class="nav-item search field has-addons">
-          <div class="control has-icons-left">
+        <div class="nav-item search field has-addons"> 
+          <div class="control w100 has-icons-left">
             <input class="input" type="text" placeholder="Найти" style="width: 40vw;">
             <span class="icon is-left">
               <i class="fas fa-search" aria-hidden="true"></i>
@@ -42,11 +42,10 @@ export default {
 <style scoped lang="scss">
 
 .nav {
-	box-sizing: border-box;
 	width: 100%;
 	padding: 0 5vw;
-	display: inline-flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
 	&-item {
 		margin: auto 10px;
 
@@ -57,8 +56,12 @@ export default {
 	}
 }
 
-.search {
-	
+.input {
+	width: 100% !important;
+}
+
+.w100 {
+	width: 100%;
 }
 
 .title {
