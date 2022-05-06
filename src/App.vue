@@ -1,6 +1,7 @@
 <template>
-  <section class="hero is-fullheight">
     <Header></Header>
+    <m-button></m-button>
+    <!-- <Header></Header>
     <Catalog></Catalog>
     <footer class="footer">
       <nav class="level">
@@ -13,18 +14,18 @@
             г. Москва ул. Пушкина д. Колотушкина
           </p>
       </nav>
-    </footer>
-  </section>
+    </footer> -->
 </template>
 
 <script>
-import Header from "@/components/Header.vue"
-import Catalog from "@/components/Catalog.vue"
-  export default {
+import Catalog from "@/components/Catalog.vue";
+import Header from "@/components/Header.vue";
+
+export default {
     components: {
-      Header,
-      Catalog
-    },
+    Catalog,
+    Header
+},
     data() {
       return {
         posts: [

@@ -1,34 +1,24 @@
 <template>
 	<div class="nav">
 		<a class="nav-item">
-          <span class="title is-2 has-text-info">Shoes</span>
+          <span class="title">Shoes</span>
         </a>
-        <div class="nav-item search field has-addons"> 
-          <div class="control w100 has-icons-left">
-            <input class="input" type="text" placeholder="Найти" style="width: 40vw;">
-            <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div class="control">
-            <button class="button is-info">
-              Найти
-            </button>
-          </div>
+        <div class="nav-item search"> 
+			<input class="input" type="text" placeholder="Найти">
         </div>
 		<div class="nav-item-end">
-			<a class="button is-inverted" style="margin-right: 10px">
-			<span class="icon">
+			<button class="btn">
+				<span class="icon">
 				<i class="icons fa-solid fa-user"></i>
-			</span>
-			<span>Войти</span>
-			</a>
-			<a class="button is-inverted">
-			<span class="icon">
-				<i class="fa-solid fa-cart-shopping"></i>
-			</span>
-			<span>Корзина</span>
-			</a>
+				</span>
+				<span>Войти</span>
+			</button>
+			<button class="btn end">
+				<span class="icon">
+				<i class="icons fa-solid fa-user"></i>
+				</span>
+				<span>Корзина</span>
+			</button>
       	</div>
 	</div>
 </template>
@@ -40,33 +30,56 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/my.scss';
+$text-size: 3em;
+$size: 3em;
 
 .nav {
 	width: 100%;
-	padding: 0 5vw;
+	//padding: 0 5vw;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
-		margin: auto 10px !important;
-
+		margin: auto 0;
+		padding: 0 10px;
 		&-end {
 			margin: auto 0;
+			padding: 0 10px;
 			margin-left: auto;
 		}
 	}
 }
 
 .input {
-	width: 100% !important;
-}
-
-.w100 {
 	width: 100%;
+	box-sizing: border-box;
+	border: 1.5px solid $light;
+	border-radius: 0.25rem;
+	height: 2.5rem;
 }
 
 .title {
-	word-break: normal;
+	font-size: 3rem;
+	font-weight: bold;
+	color: $info;
 }
 
+.btn {
+	background-color: white;
+	box-sizing: border-box;
+	border: 1.5px solid $light;
+	border-radius: 0.25rem;
+	height: 2.5rem;
+	span {
+		font-size: 1rem;
+		i {
+			padding-right: 5px;
+		}
+	}
+}
+
+.end {
+	margin-left: 10px;
+}
 
 </style>

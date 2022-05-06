@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="home">
     <Header msg="Welcome to Your Vue.js App"/>
   </div>
@@ -14,4 +14,4 @@ export default {
     Header
   }
 }
-</script>
+</script> -->
