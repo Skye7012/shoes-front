@@ -4,7 +4,6 @@
 		<div class="cards">
 			<div class="card">
 				<div class="img">
-					
 				</div>
 				<div class="description">
 					<span>Name</span>
@@ -74,7 +73,10 @@ import VertFilters from '@/components/VertFilters.vue'
 }
 
 .card {
-	display: inline-block;
+	// display: grid;
+	// grid-template-columns: auto 1fr;
+	//justify-content: space-between;
+	display: flex;
 	box-sizing: border-box;
 	border: 1.5px solid $light;
 	border-radius: 0.25rem;
@@ -87,6 +89,10 @@ import VertFilters from '@/components/VertFilters.vue'
 	height: 100%;
 	aspect-ratio: 5 / 3;
 	border-right: 1.5px solid $light;
+}
+
+.description {
+	flex:1;
 }
 
 </style>
