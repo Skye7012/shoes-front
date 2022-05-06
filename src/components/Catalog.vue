@@ -2,49 +2,7 @@
 	<div class="mcolumns">
 		<div class="mcolumn">
 			<div class="box">
-				<aside class="menu">
-					<span>
-						Брэнды
-					</span>
-					<ul class="menu-list">
-						<li>
-							<input type="checkbox">
-							Adidas
-						</li>
-						<li>
-							<input type="checkbox">
-							Nike
-						</li>
-					</ul>
-
-					<span>
-						Сезон
-					</span>
-					<ul class="menu-list">
-						<li>
-							<input type="checkbox">
-							Лето
-						</li>
-						<li>
-							<input type="checkbox">
-							Демисезон
-						</li>
-					</ul>
-
-					<span>
-						Назначение
-					</span>
-					<ul class="menu-list">
-						<li>
-							<input type="checkbox">
-							Повседневность
-						</li>
-						<li>
-							<input type="checkbox">
-							Баскетбол
-						</li>
-					</ul>
-				</aside>
+				<AsideFilters></AsideFilters>
 			</div>
 		</div>
 		<div class="mcolumn">
@@ -57,9 +15,12 @@
 
 <script>
 import Cards from '@/components/Cards.vue'
-	export default {
+import AsideFilters from '@/components/AsideFilters.vue'
+
+export default {
 		components: {
-			Cards
+			Cards,
+			AsideFilters
 		},
 	}
 </script>
@@ -68,16 +29,6 @@ import Cards from '@/components/Cards.vue'
 
 @import '@/assets/vars.scss';
 @import '@/assets/my.scss';
-
-//peren
-.menu {
-	ul {
-		padding-left: 10px;
-		li {
-				list-style-type: none;
-		}
-	}
-}
 
 .mcolumns {
 	width: 100%;
