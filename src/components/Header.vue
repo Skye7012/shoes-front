@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/css/myStyle.scss';
 
 .nav {
 	width: 100%;
@@ -47,7 +48,7 @@ export default {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
-		margin: auto 10px;
+		margin: auto 10px !important;
 
 		&-end {
 			margin: auto 0;
@@ -67,5 +68,6 @@ export default {
 .title {
 	word-break: normal;
 }
+
 
 </style>

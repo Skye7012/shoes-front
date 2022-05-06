@@ -1,12 +1,15 @@
 <template>
   <Header></Header>
+  <Catalog></Catalog>
 </template>
 
 <script>
 import Header from "@/components/Header.vue"
+import Catalog from "@/components/Catalog.vue"
   export default {
     components: {
-      Header
+      Header,
+      Catalog
     },
     data() {
       return {
