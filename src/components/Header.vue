@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/css/myStyle.scss';
+//@import '@/css/myStyle.scss';
 
 .nav {
 	width: 100%;

@@ -26,5 +26,4 @@ import Catalog from "@/components/Catalog.vue"
 <style lang="scss" scoped>
 
 
-
 </style>
