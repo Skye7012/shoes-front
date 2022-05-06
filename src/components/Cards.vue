@@ -1,20 +1,6 @@
 <template>
 	<div class="mrows">
-		<div class="mrow filter">
-			<select class="select">
-				<option>Популярные</option>
-				<option>Сначала дешевые</option>
-				<option>Сначала дорогие</option>
-				<option>По размеру скидки</option>
-			</select>
-			<div class="pagination-container">
-				<button class="button is-small">Previous</button>
-				<button class="button is-small">1</button>
-				<button class="button is-small is-link">1</button>
-				<button class="button is-small">86</button>
-				<button class="button is-small">Next</button>
-			</div>
-		</div>
+		<VertFilters class="mrow"></VertFilters>
 		<div class="mrow cards">
 			<p>asd </p>
 			<p>asd </p>
@@ -37,8 +23,11 @@
 </template>
 
 <script>
+import VertFilters from '@/components/VertFilters.vue'
 	export default {
-		
+		components: {
+			VertFilters
+		},
 	}
 </script>
 
