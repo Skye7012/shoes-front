@@ -26,11 +26,11 @@
 			<div class="columns is-multiline">
 				<div class="column is-one-third">
 				<div class="card">
-					<div class="card-image">
+					<!-- <div class="card-image">
 					<figure class="image is-3by4">
 						<img src="1.webp" alt="Placeholder image">
 					</figure>
-					</div>
+					</div> -->
 					<div class="card-content">
 					<p class="title">
 						id = 2
