@@ -33,15 +33,17 @@ export default {
 .mcolumns {
 	width: 100%;
 	margin-top: 20px;
-	height: 500px;
+	height: 100%;
 	padding: 0 2vw;
 	display: grid;
 	grid-template-columns: 200px auto;
+	//grid-template-rows: 1fr;
 	column-gap: 10px;
+	//grid-auto-flow: column;
 }
 
 .mcolumn {
-	height: 90%;
+	//height: 90%;
 }
 
 .box {
