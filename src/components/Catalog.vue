@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div class="mcolumn">
-			<div class="box">
+			<div class="box mbox">
 				<Cards></Cards>
 			</div>
 		</div>
@@ -79,21 +79,12 @@ import Cards from '@/components/Cards.vue'
 //@import '@/css/bulma/sass/elements/box.scss';
 
 .mcolumns {
-	//width: 100%;
 	margin-top: 20px;
 	height: 500px;
 	padding: 0 2vw;
 	display: grid;
 	grid-template-columns: 200px auto;
 	column-gap: 10px;
-	// &-item {
-	// 	margin: auto 10px !important;
-
-	// 	&-end {
-	// 		margin: auto 0;
-	// 		margin-left: auto;
-	// 	}
-	// }
 }
 
 .mcolumn {
@@ -102,6 +93,10 @@ import Cards from '@/components/Cards.vue'
 
 .box {
 	height: 100%;
+}
+
+.mbox {
+	padding-top: 0.25rem;
 }
 
 </style>
