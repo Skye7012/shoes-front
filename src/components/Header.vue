@@ -8,13 +8,13 @@
 			<button class="find">Найти</button>
         </div>
 		<div class="nav-item-end">
-			<button class="btn">
+			<button class="button">
 				<span class="icon">
 				<i class="icons fa-solid fa-user"></i>
 				</span>
 				<span>Войти</span>
 			</button>
-			<button class="btn end">
+			<button class="button end">
 				<span class="icon">
 				<i class="icons fa-solid fa-user"></i>
 				</span>
@@ -70,7 +70,7 @@ $size: 3em;
 
 .find {
 	position: absolute;
-	@extend .btn;
+	@extend .button;
 	background-color: $info; 
 	color: white;
 	right: 0;
@@ -83,7 +83,7 @@ $size: 3em;
 	margin-left: 10px;
 }
 
-.btn {
+.button {
 	span {
 		font-size: 1rem;
 		i {
