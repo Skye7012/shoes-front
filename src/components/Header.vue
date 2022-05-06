@@ -5,6 +5,7 @@
         </a>
         <div class="nav-item search"> 
 			<input class="input" type="text" placeholder="Найти">
+			<button class="find">Найти</button>
         </div>
 		<div class="nav-item-end">
 			<button class="btn">
@@ -50,6 +51,10 @@ $size: 3em;
 	}
 }
 
+.search {
+	position: relative;
+}
+
 .input {
 	width: 100%;
 	box-sizing: border-box;
@@ -76,6 +81,14 @@ $size: 3em;
 			padding-right: 5px;
 		}
 	}
+}
+
+.find {
+	position: absolute;
+	@extend .btn;
+	background-color: $info; 
+	color: white;
+	right: 0;
 }
 
 .end {
