@@ -37,7 +37,6 @@ $size: 3em;
 
 .nav {
 	width: 100%;
-	//padding: 0 5vw;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
@@ -89,6 +88,9 @@ $size: 3em;
 	background-color: $info; 
 	color: white;
 	right: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-left-width: 0;
 }
 
 .end {
