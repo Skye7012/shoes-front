@@ -1,23 +1,16 @@
 <template>
 	<div class="mrows">
-		<VertFilters class="mrow"></VertFilters>
-		<div class="mrow cards">
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<p>asd </p>
-			<!-- <div class="mbox"></div>
-			<div class="mbox"></div>
-			<div class="mbox"></div>
-			<div class="mbox"></div>
-			<div class="mbox"></div> -->
-
-				
+		<VertFilters></VertFilters>
+		<div class="cards">
+			<div class="card">
+				<div class="img">
+					
+				</div>
+				<div class="description">
+					<span>Name</span>
+					<span>Desctiption</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -44,41 +37,56 @@ import VertFilters from '@/components/VertFilters.vue'
 	column-gap: 10px;
 }
 
-.filter {
+// .filter {
+// 	display: grid;
+// 	grid-template-columns: min-content auto;
+// 	align-items: center;
+// }
+
+// .button {
+// 	margin: auto 5px;
+// 	min-width: 2.5rem;
+// }
+
+// .select {
+// 	box-sizing: border-box;
+// 	border: 1.5px solid $light;
+// 	border-radius: 0.25rem;
+// 	height: 2.5rem;
+// }
+
+// .pagination-container {
+// 	display: flex;
+// 	justify-content: space-around;
+// }
+
+
+.cards {
+	overflow: hidden;
+	margin-top: 10px;
+	//height: 500px;
 	display: grid;
-	grid-template-columns: min-content auto;
-	align-items: center;
+	grid-template-rows: 120px;
+	row-gap: 10px;
+	// display: flex;
+	// flex-direction: column;
+	// row-gap: 10px;
 }
 
-.button {
-	margin: auto 5px;
-	min-width: 2.5rem;
-}
-
-.select {
+.card {
+	display: inline-block;
 	box-sizing: border-box;
 	border: 1.5px solid $light;
 	border-radius: 0.25rem;
-	height: 2.5rem;
 }
 
-.pagination-container {
-	display: flex;
-	justify-content: space-around;
-}
-
-.cards {
-	margin-top: 10px;
-	height: 500px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	//column-gap: 10px;
-}
-
-.mbox {
-	width: 200px;
-	height: 200px;
-	background-color: red;
+.img {
+	background-image: url('@/assets/img/123.jpg');
+	background-position: center center;
+	background-size: cover;	
+	height: 100%;
+	aspect-ratio: 5 / 3;
+	border-right: 1.5px solid $light;
 }
 
 </style>

@@ -41,6 +41,10 @@
 				Баскетбол
 			</li>
 		</ul>
+
+		<p>asd</p>
+		<p>asd</p>
+		<p>asd</p>
 	</aside>
 </template>
 
