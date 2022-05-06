@@ -22,7 +22,15 @@
 			</div>
 		</div>
 		<div class="mrow cards">
-			
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
+			<p>asd </p>
 			<!-- <div class="mbox"></div>
 			<div class="mbox"></div>
 			<div class="mbox"></div>
@@ -60,10 +68,11 @@
 }
 
 .cards {
+	margin-top: 10px;
 	height: 500px;
 	display: grid;
-	grid-template-rows: 33% 33% 33%;
-	column-gap: 10px;
+	grid-template-columns: 1fr 1fr;
+	//column-gap: 10px;
 }
 
 .mbox {

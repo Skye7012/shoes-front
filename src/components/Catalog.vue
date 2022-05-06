@@ -60,9 +60,6 @@
 		<div class="mcolumn">
 			<div class="box mbox">
 				<Cards></Cards>
-				<p>asd </p>
-				<p>asd </p>
-				<p>asd </p>
 			</div>
 		</div>
 	</div>
