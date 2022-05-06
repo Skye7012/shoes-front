@@ -6,8 +6,17 @@
 				<div class="img">
 				</div>
 				<div class="description">
-					<span>Name</span>
-					<span>Desctiption</span>
+					<div class="title">
+						<span>
+							Мужские беговые кроссовки UNDER ARMOUR 3023639-104 VICTORY Мужские беговые кроссовки UNDER ARMOUR 3023639-104 VICTORY
+						</span>
+					</div>
+					<div class="price">
+						7199 ₽
+					</div>
+					<div class="buy">
+						<button class="button link">Купить</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -107,6 +116,35 @@ import VertFilters from '@/components/VertFilters.vue'
 
 .description {
 	flex:1;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.title {
+	flex:1;
+	margin: 0.2rem 0.5rem 0 0.5rem;
+	// overflow: hidden;
+	// word-wrap: break-word
+	overflow: hidden;
+	span {
+		display: -webkit-box;
+		//max-width: 200px;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		// text-overflow: ellipsis;
+	}
+}
+
+.price {
+	color: $danger;
+}
+
+.link {
+	background-color: $info;
+	color: white;
 }
 
 </style>
