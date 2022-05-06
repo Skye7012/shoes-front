@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/my.scss';
+@import '@/assets/My/button.scss';
 $text-size: 3em;
 $size: 3em;
 
@@ -68,20 +68,6 @@ $size: 3em;
 	color: $info;
 }
 
-.btn {
-	background-color: white;
-	box-sizing: border-box;
-	border: 1.5px solid $light;
-	border-radius: 0.25rem;
-	height: 2.5rem;
-	span {
-		font-size: 1rem;
-		i {
-			padding-right: 5px;
-		}
-	}
-}
-
 .find {
 	position: absolute;
 	@extend .btn;
@@ -95,6 +81,15 @@ $size: 3em;
 
 .end {
 	margin-left: 10px;
+}
+
+.btn {
+	span {
+		font-size: 1rem;
+		i {
+			padding-right: 5px;
+		}
+	}
 }
 
 </style>

@@ -1,6 +1,5 @@
 <template>
     <Header></Header>
-    <m-button></m-button>
     <!-- <Header></Header>
     <Catalog></Catalog>
     <footer class="footer">
