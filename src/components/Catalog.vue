@@ -3,58 +3,48 @@
 		<div class="mcolumn">
 			<div class="box">
 				<aside class="menu">
-			  <p class="menu-label">
-				Брэнды
-			  </p>
-			  <ul class="menu-list">
-				<li>
-				  <label class="checkbox">
-					<input type="checkbox">
-					Adidas
-				  </label>
-				</li>
-				<li>
-				  <label class="checkbox">
-					<input type="checkbox">
-					Nike
-				  </label>
-				</li>
-			  </ul>
-			  <p class="menu-label">
-				Сезон
-			  </p>
-			  <ul class="menu-list">
-				<li>
-				  <label class="checkbox">
-					<input type="checkbox">
-					Лето
-				  </label>
-				</li>
-				<li>
-				  <label class="checkbox">
-					<input type="checkbox">
-					Демисезон
-				  </label>
-				</li>
-			  </ul>
-			  <p class="menu-label">
-				Назначение
-			  </p>
-			  <ul class="menu-list">
-				<li>
-				  <div class="checkbox">
-					<input type="checkbox">
-					Повседневность
-					</div>
-				</li>
-				<li>
-				  <label class="checkbox">
-					<input type="checkbox">
-					Баскетбол
-				  </label>
-				</li>
-			  </ul>
-			</aside>
+					<span>
+						Брэнды
+					</span>
+					<ul class="menu-list">
+						<li>
+							<input type="checkbox">
+							Adidas
+						</li>
+						<li>
+							<input type="checkbox">
+							Nike
+						</li>
+					</ul>
+
+					<span>
+						Сезон
+					</span>
+					<ul class="menu-list">
+						<li>
+							<input type="checkbox">
+							Лето
+						</li>
+						<li>
+							<input type="checkbox">
+							Демисезон
+						</li>
+					</ul>
+
+					<span>
+						Назначение
+					</span>
+					<ul class="menu-list">
+						<li>
+							<input type="checkbox">
+							Повседневность
+						</li>
+						<li>
+							<input type="checkbox">
+							Баскетбол
+						</li>
+					</ul>
+				</aside>
 			</div>
 		</div>
 		<div class="mcolumn">
@@ -76,7 +66,18 @@ import Cards from '@/components/Cards.vue'
 
 <style lang="scss" scoped>
 
-//@import '@/css/bulma/sass/elements/box.scss';
+@import '@/assets/vars.scss';
+@import '@/assets/my.scss';
+
+//peren
+.menu {
+	ul {
+		padding-left: 10px;
+		li {
+				list-style-type: none;
+		}
+	}
+}
 
 .mcolumns {
 	width: 100%;

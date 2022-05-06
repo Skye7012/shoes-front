@@ -1,8 +1,7 @@
 <template>
     <Header></Header>
-    <!-- <Header></Header>
     <Catalog></Catalog>
-    <footer class="footer">
+    <!-- <footer class="footer">
       <nav class="level">
           <p class="level-item title is-2 has-text-info">Shoes</p>
           <p class="level-item has-text-centered">
