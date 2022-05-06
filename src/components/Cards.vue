@@ -76,11 +76,25 @@ import VertFilters from '@/components/VertFilters.vue'
 	// display: grid;
 	// grid-template-columns: auto 1fr;
 	//justify-content: space-between;
+	// position: relative;
 	display: flex;
 	box-sizing: border-box;
-	border: 1.5px solid $light;
+	box-shadow: 1px 1px 4px $light;
+	//border: 1.5px solid $light;
 	border-radius: 0.25rem;
+	margin: 4px;
 }
+
+// .card::after {
+// 	content: '';
+//     top:0; left:0; right:0; bottom:0;
+//     position: absolute;
+//     -webkit-box-shadow: inset 0px 0px 10px 7px #000000;
+//     -moz-box-shadow: inset 0px 0px 10px 7px #000000;
+//     -ms-box-shadow: inset 0px 0px 10px 7px #000000;
+//     -o-box-shadow: inset 0px 0px 10px 7px #000000;
+//     box-shadow: inset 0px 0px 10px 7px #000000;
+// }
 
 .img {
 	background-image: url('@/assets/img/123.jpg');
