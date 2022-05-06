@@ -40,8 +40,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/bulma/sass/elements/title.sass';
-@import '@/assets/bulma/sass/form/_all.sass';
 
 .nav {
 	width: 100%;

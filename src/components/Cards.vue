@@ -21,34 +21,15 @@
 			</div>
 			</div>
 		</div>
-		<div class="mrow">
+		<div class="mrow cards">
 			
-			<div class="columns is-multiline">
-				<div class="column is-one-third">
-				<div class="card">
-					<!-- <div class="card-image">
-					<figure class="image is-3by4">
-						<img src="1.webp" alt="Placeholder image">
-					</figure>
-					</div> -->
-					<div class="card-content">
-					<p class="title">
-						id = 2
-					</p>
-					</div>
-					<footer class="card-footer">
-					<a class="card-footer-item has-background-link has-text-white">
-						<span>
-						<i class="fa-solid fa-cart-shopping"></i>
-						Купить
-						</span>
-					</a>
-					</footer>
-				</div>
-              </div>
-            
-            </div>
+			<!-- <div class="mbox"></div>
+			<div class="mbox"></div>
+			<div class="mbox"></div>
+			<div class="mbox"></div>
+			<div class="mbox"></div> -->
 
+				
 		</div>
 	</div>
 </template>
@@ -78,9 +59,17 @@
 	margin: auto 5px !important;
 }
 
-.image {
-	// width: 100px;
-	// height: 100px;
+.cards {
+	height: 500px;
+	display: grid;
+	grid-template-rows: 33% 33% 33%;
+	column-gap: 10px;
+}
+
+.mbox {
+	width: 200px;
+	height: 200px;
+	background-color: red;
 }
 
 </style>

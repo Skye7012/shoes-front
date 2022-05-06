@@ -60,6 +60,9 @@
 		<div class="mcolumn">
 			<div class="box mbox">
 				<Cards></Cards>
+				<p>asd </p>
+				<p>asd </p>
+				<p>asd </p>
 			</div>
 		</div>
 	</div>
@@ -79,6 +82,7 @@ import Cards from '@/components/Cards.vue'
 //@import '@/css/bulma/sass/elements/box.scss';
 
 .mcolumns {
+	width: 100%;
 	margin-top: 20px;
 	height: 500px;
 	padding: 0 2vw;
@@ -88,7 +92,7 @@ import Cards from '@/components/Cards.vue'
 }
 
 .mcolumn {
-	height: 100%;
+	height: 90%;
 }
 
 .box {
