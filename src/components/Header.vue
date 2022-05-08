@@ -32,6 +32,7 @@ export default {
 
 <style scoped lang="scss">
 @import '@/assets/My/button.scss';
+
 $text-size: 3em;
 $size: 3em;
 
