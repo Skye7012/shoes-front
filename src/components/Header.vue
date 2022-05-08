@@ -16,7 +16,7 @@
 			</button>
 			<button class="button end">
 				<span class="icon">
-				<i class="icons fa-solid fa-user"></i>
+				<i class="fa-solid fa-cart-shopping"></i>
 				</span>
 				<span>Корзина</span>
 			</button>
