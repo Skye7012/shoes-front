@@ -1,6 +1,15 @@
 <template>
 	<aside class="menu">
-		<span>
+		<span class="title">
+			<strong>Сортировка</strong>
+		</span>
+		<select class="select">
+				<option>Популярные</option>
+				<option>Сначала дешевые</option>
+				<option>Сначала дорогие</option>
+				<option>По размеру скидки</option>
+			</select>
+		<span class="title">
 			Брэнды
 		</span>
 		<ul class="menu-list">
@@ -41,10 +50,6 @@
 				Баскетбол
 			</li>
 		</ul>
-
-		<p>asd</p>
-		<p>asd</p>
-		<p>asd</p>
 	</aside>
 </template>
 
@@ -67,6 +72,14 @@
 				list-style-type: none;
 		}
 	}
+}
+
+.select {
+	box-sizing: border-box;
+	border: 1.5px solid $light;
+	border-radius: 0.25rem;
+	height: 2.5rem;
+	margin: 10px auto ;
 }
 
 </style>

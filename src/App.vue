@@ -1,5 +1,5 @@
 <template>
-    <Header></Header>
+    <Header class="header"></Header>
     <Catalog></Catalog>
     <!-- <footer class="footer">
       <nav class="level">
@@ -40,6 +40,10 @@ export default {
 
 .footer {
   margin-top: 20px;
+}
+
+.header {
+  padding: 0 2vw;
 }
 
 </style>

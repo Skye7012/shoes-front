@@ -1,6 +1,6 @@
 <template>
 	<div class="nav">
-		<a class="nav-item">
+		<a class="nav-item logo">
           <span class="title">Shoes</span>
         </a>
         <div class="nav-item search"> 
@@ -36,7 +36,6 @@ $text-size: 3em;
 $size: 3em;
 
 .nav {
-	width: 100%;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
@@ -44,7 +43,7 @@ $size: 3em;
 		padding: 0 10px;
 		&-end {
 			margin: auto 0;
-			padding: 0 10px;
+			padding-left: 10px;
 			margin-left: auto;
 		}
 	}
@@ -90,6 +89,10 @@ $size: 3em;
 			padding-right: 5px;
 		}
 	}
+}
+
+.logo {
+	padding-left: 0;
 }
 
 </style>
