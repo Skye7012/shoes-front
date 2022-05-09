@@ -58,6 +58,7 @@
 	flex:1;
 	margin: 0.2rem 0.5rem 0 0.5rem;
 	overflow: hidden;
+	text-align: center;
 	span {
 		display: -webkit-box;
 		-webkit-line-clamp: 2;

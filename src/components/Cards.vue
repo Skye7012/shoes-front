@@ -27,18 +27,16 @@ import Card from '@/components/Card.vue'
 @import '@/assets/my.scss';
 
 .mrows {
-	height: 500px;
 	display: grid;
 	grid-template-rows: 50px auto;
 	column-gap: 10px;
 }
 
 .cards {
-	// overflow-y: scroll;
 	overflow-y: hidden;
 	margin-top: 10px;
 	display: grid;
-	grid-template-rows: 120px;
+	grid-auto-rows: 120px;
 	row-gap: 10px;
 }
 
