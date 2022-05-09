@@ -1,11 +1,11 @@
 <template>
 	<div class="card">
-		<div class="img">
+		<div class="img" v-bind:style="{ 'background-image': `url('${shoe.url}')`}">
 		</div>
 		<div class="description">
 			<div class="title">
 				<span>
-					Мужские беговые кроссовки UNDER ARMOUR 3023639-104 VICTORY Мужские беговые кроссовки UNDER ARMOUR 3023639-104 VICTORY
+					{{shoe.title}}
 				</span>
 			</div>
 			<div class="price">
@@ -20,7 +20,22 @@
 
 <script>
 	export default {
-		
+		props: {
+			shoe: {
+				title: {
+				type: String,
+				//required: true,
+				},
+				url: {
+				type: String,
+				//required: true,
+			}
+			// shoes: {
+			// 	type: Array,
+			// 	required: true,
+			// }
+			}
+		}
 	}
 </script>
 
@@ -38,7 +53,7 @@
 }
 
 .img {
-	background-image: url('@/assets/img/123.jpg');
+	//background-image: url('@/assets/img/123.jpg');
 	background-position: center center;
 	background-size: cover;	
 	height: 100%;
