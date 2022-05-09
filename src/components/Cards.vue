@@ -1,6 +1,9 @@
 <template>
 	<div class="mrows">
-		<VertFilters></VertFilters>
+		<VertFilters 
+		class="vert"
+		v-bind:totalCount="totalCount"
+		/>
 		<div class="cards" v-for="shoe in shoes">
 			<Card v-bind:shoe="shoe"></Card>
 		</div>
@@ -19,12 +22,9 @@ import Card from '@/components/Card.vue'
 		},
 		data() {
 			return {
-				shoes: [
-					{
-						title: 123,
-						url: 1,
-					}
-				],
+				totalCount: 0,
+				shoes: [],
+				limit: 4,
 			}
 		},
 		methods: {
@@ -32,10 +32,11 @@ import Card from '@/components/Card.vue'
 				try {
 					const response = await axios.get('https://jsonplaceholder.typicode.com/photos', {
 						params: {
-							_page: 1,
-							_limit: 4,
+							_page: this.page,
+							_limit: this.limit,
 						}
 					});
+					this.totalCount = response.headers['x-total-count'] / this.limit;
 					this.shoes = response.data;
 				}
 				catch (e) {
@@ -45,6 +46,11 @@ import Card from '@/components/Card.vue'
 		},
 		mounted() {
 			this.fetchShoes();
+		},
+		computed: {
+			page() {
+				return this.$store.state.page;
+			}
 		}
 	}
 </script>
@@ -68,6 +74,8 @@ import Card from '@/components/Card.vue'
 	row-gap: 10px;
 }
 
-
+.vert {
+	margin: auto 4px;
+}
 
 </style>
