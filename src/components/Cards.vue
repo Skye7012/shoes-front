@@ -30,14 +30,15 @@ import Card from '@/components/Card.vue'
 		methods: {
 			async fetchShoes() {
 				try {
-					const response = await axios.get('https://jsonplaceholder.typicode.com/photos', {
+					debugger;
+					const response = await axios.get('https://localhost:7163/Shoes', {
 						params: {
-							_page: this.page,
-							_limit: this.limit,
+							Page: this.page,
+							Limit: this.limit,
 						}
 					});
-					this.totalCount = response.headers['x-total-count'] / this.limit;
-					this.shoes = response.data;
+					this.totalCount = response.data.totalCount / this.limit;
+					this.shoes = response.data.items;
 				}
 				catch (e) {
 					alert(e)

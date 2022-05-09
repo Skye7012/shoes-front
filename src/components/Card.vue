@@ -1,15 +1,18 @@
 <template>
 	<div class="card">
-		<div class="img" v-bind:style="{ 'background-image': `url('${shoe.url}')`}">
+		<!-- <div class="img" v-bind:style="{ 'background-image': `url('/img/shoes/${shoe.image}');`}"> -->
+		<div class="img" v-bind:style="{ 'background-image': `url('${require(`@/assets/img/shoes/${shoe.image}`)}')`}">
+		<!-- <div class="img" v-bind:style="{ 'background-image': `url(/123.jpg)`}"> -->
+		<!-- <div class="img" v-bind:style="{ 'background-image': `url(/123.jpg)`}"> -->
 		</div>
 		<div class="description">
 			<div class="title">
 				<span>
-					{{shoe.title}}
+					{{shoe.name}}
 				</span>
 			</div>
 			<div class="price">
-				7199 ₽
+				{{shoe.price}} ₽
 			</div>
 			<div class="buy">
 				<button class="button link">Купить</button>
