@@ -4,8 +4,16 @@
           <span class="title">Shoes</span>
         </a>
         <div class="nav-item search"> 
-			<input class="input" type="text" placeholder="Найти">
-			<button class="find">Найти</button>
+
+			<input 
+			v-model="searchQuery"
+			class="input" 
+			type="text" 
+			placeholder="Найти">
+
+			<button 
+			@click="search"
+			class="find">Найти</button>
         </div>
 		<div class="nav-item-end">
 			<button class="button">
@@ -25,8 +33,25 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex'
 export default {
-
+	data() {
+		return {
+			searchQuery: null,
+		}
+	},
+	methods: {
+		...mapMutations([
+			'updateSearchQuery'
+		]),
+		...mapActions([
+			'fetchShoes'
+		]),
+		search() {
+			this.updateSearchQuery(this.searchQuery);
+			this.fetchShoes();
+		}
+	}
 }
 </script>
 

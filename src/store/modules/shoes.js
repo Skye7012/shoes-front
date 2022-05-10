@@ -6,7 +6,8 @@ export default {
 		page: 1,
 		totalCount: 0,
 		limit: 4,
-		sortOption: {OrderBy: 'Name'}
+		sortOption: {OrderBy: 'Name'},
+		searchQuery: null,
 	},
 	actions: {
 		async fetchShoes({commit, state}) {
@@ -16,6 +17,7 @@ export default {
 						Page: state.page,
 						Limit: state.limit,
 						...state.sortOption,
+						...state.searchQuery,
 					}
 				});
 				const totalCount = Math.ceil(response.data.totalCount / state.limit);
@@ -40,14 +42,12 @@ export default {
 	  },
 	  updateSortOption(state, sortOption) {
 		state.sortOption = sortOption;
-	  }
+	  },
+	  updateSearchQuery(state, searchQuery) {
+		state.searchQuery = {SearchQuery: searchQuery};
+	  },
 	},
 	getters: {
-	  validPosts(state) {
-		return state.posts.filter(p => {
-		  return p.title && p.body
-		})
-	  },
 	  allShoes(state) {
 		return state.shoes
 	  },
