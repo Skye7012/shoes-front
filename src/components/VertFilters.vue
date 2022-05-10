@@ -53,12 +53,16 @@ export default {
 		]),
 		...mapActions(["fetchShoes"]),
 		changePage(page) {
-			this.updatePage(page);
-			this.fetchShoes();
+			if(page > 0 && page <= this.totalCount)
+			{
+				this.nowPage = page;
+				this.updatePage(page);
+				this.fetchShoes();
+			}
 		},
 		decrementPage() {
-			if (this.nowPage <= 0)
-				this.nowPage == 0;
+			if (this.nowPage <= 1)
+				this.nowPage == 1;
 			else
 				this.nowPage--;
 			this.activePag = 2;
