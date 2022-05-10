@@ -1,15 +1,21 @@
 <template>
 	<div class="filter">
-			<select class="select">
-				<option>Популярные</option>
-				<option>Сначала дешевые</option>
-				<option>Сначала дорогие</option>
-				<option>По размеру скидки</option>
+			<select
+			@change="changeFilter"
+			class="select">
+
+				<option 
+				v-for="sortOption in sortOptions" 
+				:key="sortOption.value"
+				:value="sortOption.value">
+					{{sortOption.title}}
+				</option>
+
 			</select>
 			<div class="pagination-container">
 				<button 
 				@click="this.decrementPage"
-				class="button">Previous</button>
+				class="button">Пред</button>
 
 				<button 
 				@click="changePage(1)" 
@@ -29,7 +35,7 @@
 
 				<button 
 				@click="incrementPage"
-				class="button">Next</button>
+				class="button">След</button>
 			</div>
 		</div>
 </template>
@@ -42,6 +48,14 @@ export default {
 		return {
 			nowPage: 1,
 			activePag: 2,
+			sortOptions: [
+				// {title: 'По названию', value: {OrderBy: 'Name'}},
+				// {title: 'Сначала дешевые', value: {OrderBy: 'Price'}},
+				// {title: 'Сначала дорогие', value: {OrderBy: 'Name', IsAscending: false}}
+				{title: 'По названию', value: 'Name'},
+				{title: 'Сначала дешевые', value: 'Cheaper'},
+				{title: 'Сначала дорогие', value: 'Expensive'}
+			]
 		}
 	},
 	props: {
@@ -49,7 +63,8 @@ export default {
 	},
 	methods: {
 		...mapMutations([
-			'updatePage'
+			'updatePage',
+			'updateSortOption'
 		]),
 		...mapActions(["fetchShoes"]),
 		changePage(page) {
@@ -73,6 +88,23 @@ export default {
 			else
 				this.nowPage++;
 			this.activePag = 2;
+		},
+		changeFilter(event) {
+			let sortOption;
+			switch (event.target.value)
+			{
+				case 'Name':
+					sortOption = {OrderBy: 'Name'};
+					break;
+				case 'Cheaper':
+					sortOption = {OrderBy: 'Price'};
+					break;
+				case 'Expensive':
+					sortOption = {OrderBy: 'Price', IsAscending: false};
+					break;
+			}
+			this.updateSortOption(sortOption);
+			this.fetchShoes();
 		}
 	},
 	watch: {

@@ -6,6 +6,7 @@ export default {
 		page: 1,
 		totalCount: 0,
 		limit: 4,
+		sortOption: {OrderBy: 'Name'}
 	},
 	actions: {
 		async fetchShoes({commit, state}) {
@@ -14,6 +15,7 @@ export default {
 					params: {
 						Page: state.page,
 						Limit: state.limit,
+						...state.sortOption,
 					}
 				});
 				const totalCount = Math.ceil(response.data.totalCount / state.limit);
@@ -35,6 +37,9 @@ export default {
 	  },
 	  updatePage(state, page) {
 		state.page = page;
+	  },
+	  updateSortOption(state, sortOption) {
+		state.sortOption = sortOption;
 	  }
 	},
 	getters: {
