@@ -14,30 +14,28 @@
 		</ul>
 
 		<span>
-			Сезон
+			Назначение
 		</span>
 		<ul class="menu-list">
-			<li>
-				<input type="checkbox">
-				Лето
-			</li>
-			<li>
-				<input type="checkbox">
-				Демисезон
+			<li v-for="destination in allDestinations" :key="destination.id">
+				<input 
+				v-model="destinationFilters"
+				type="checkbox"
+				:value=destination.id>
+				{{destination.name}}
 			</li>
 		</ul>
 
 		<span>
-			Назначение
+			Сезон
 		</span>
 		<ul class="menu-list">
-			<li>
-				<input type="checkbox">
-				Повседневность
-			</li>
-			<li>
-				<input type="checkbox">
-				Баскетбол
+			<li v-for="season in allSeasons" :key="season.id">
+				<input 
+				v-model="seasonFilters"
+				type="checkbox"
+				:value=season.id>
+				{{season.name}}
 			</li>
 		</ul>
 	</aside>
@@ -48,33 +46,49 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
-				brandFilters: []
+				brandFilters: [],
+				destinationFilters: [],
+				seasonFilters: [],
 			}
 		},
 		computed: {
 			...mapGetters([
-				'allBrands'
+				'allBrands',
+				'allDestinations',
+				'allSeasons',
 			]),
 		},
 		methods: {
 			...mapActions([
 				'fetchBrands',
-				'fetchShoes'
+				'fetchShoes',
+				'fetchDestinations',
+				'fetchSeasons',
 			]),
 			...mapMutations([
-				'updateBrandFilters'
+				'updateBrandFilters',
+				'updateDestinationFilters',
+				'updateSeasonFilters',
 			])
 		},
 		mounted() {
 			this.fetchBrands();
+			this.fetchDestinations();
+			this.fetchSeasons();
 		},
 		watch: {
 			brandFilters() {
-				// if(this.brandFilters.length != 0) {
-					this.updateBrandFilters(this.brandFilters);
-					this.fetchShoes({brandFilters: this.brandFilters});
-				// }
-			}
+				this.updateBrandFilters(this.brandFilters);
+				this.fetchShoes({brandFilters: this.brandFilters});
+			},
+			destinationFilters() {
+				this.updateDestinationFilters(this.destinationFilters);
+				this.fetchShoes({destinationFilters: this.destinationFilters});
+			},
+			seasonFilters() {
+				this.updateSeasonFilters(this.seasonFilters);
+				this.fetchShoes({seasonFilters: this.seasonFilters});
+			},
 		}
 	}
 </script>

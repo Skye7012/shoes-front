@@ -1,0 +1,39 @@
+<template>
+	<footer class="footer">
+		<p class="title">Shoes</p>
+		<p>
+			Тел<br>
+			8 987 689 54 71</p>
+		<p>
+			Адрес<br>
+			г. Москва ул. Пушкина д. Колотушкина
+		</p>
+    </footer>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/vars.scss';
+
+.footer {
+	background-color: $white-bis;
+	min-height: 200px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	color: $grey-dark;
+}
+
+.title {
+	font-size: 3rem;
+	font-weight: bold;
+	color: $info;
+}
+
+</style>

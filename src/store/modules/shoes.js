@@ -11,7 +11,7 @@ export default {
 		searchQuery: null,
 	},
 	actions: {
-		async fetchShoes({commit, state}, filters = {brandFilters: []}) {
+		async fetchShoes({commit, state}, filters = {brandFilters: [], destinationFilters: [], seasonFilters: []}) {
 			try {
 				const response = await axios.get('https://localhost:7163/Shoes', {
 					params: {
@@ -19,7 +19,9 @@ export default {
 						Limit: state.limit,
 						...state.sortOption,
 						...state.searchQuery,
-						BrandFilters: filters.brandFilters
+						BrandFilters: filters.brandFilters,
+						DestinationFilters: filters.destinationFilters,
+						SeasonFilters: filters.seasonFilters,
 					},
 					paramsSerializer: params => {
 						return qs.stringify(params)

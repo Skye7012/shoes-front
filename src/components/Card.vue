@@ -5,8 +5,11 @@
 		<div class="description">
 			<div class="title">
 				<span>
-					{{shoe.name}}
+					{{shoe.name}}<br>
 				</span>
+			</div>
+			<div class="categories">
+				{{shoe.brand.name}} / {{shoe.destination.name}} / {{shoe.season.name}}
 			</div>
 			<div class="price">
 				{{shoe.price}} ₽

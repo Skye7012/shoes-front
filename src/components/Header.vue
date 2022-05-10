@@ -62,6 +62,7 @@ $text-size: 3em;
 $size: 3em;
 
 .nav {
+	min-width: 700px;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
@@ -85,6 +86,7 @@ $size: 3em;
 	border: 1.5px solid $light;
 	border-radius: 0.25rem;
 	height: 2.5rem;
+	text-indent: 1rem;
 }
 
 .title {

@@ -1,28 +1,19 @@
 <template>
     <Header class="header"></Header>
     <Catalog></Catalog>
-    <!-- <footer class="footer">
-      <nav class="level">
-          <p class="level-item title is-2 has-text-info">Shoes</p>
-          <p class="level-item has-text-centered">
-            Тел<br>
-            8 987 689 54 71</p>
-          <p class="level-item has-text-centered">
-            Адрес<br>
-            г. Москва ул. Пушкина д. Колотушкина
-          </p>
-      </nav>
-    </footer> -->
+    <Footer style="margin-top: 50px"></Footer>
 </template>
 
 <script>
 import Catalog from "@/components/Catalog.vue";
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
     components: {
     Catalog,
-    Header
+    Header,
+    Footer
     },
     data() {
       return {
@@ -37,10 +28,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.footer {
-  margin-top: 20px;
-}
 
 .header {
   padding: 0 2vw;
