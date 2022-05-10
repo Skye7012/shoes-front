@@ -43,8 +43,8 @@ export default {
 	  allShoes(state) {
 		return state.shoes
 	  },
-	  postsCount(state, getters) {
-		return getters.validPosts.length
+	  totalCount(state) {
+		return state.totalCount
 	  }
 	}
   }

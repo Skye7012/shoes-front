@@ -9,8 +9,7 @@
 			<div class="pagination-container">
 				<button class="button">Previous</button>
 				<button class="button link">1</button>
-				<button class="button">2</button>
-				<button class="button">3</button>
+				<input class="input" placeholder="num"/>
 				<button class="button">{{totalCount}}</button>
 				<button class="button">Next</button>
 			</div>
@@ -57,6 +56,13 @@
 .link {
 	background-color: $info;
 	color: white;
+}
+
+.input {
+	@extend .button; 
+	width: 4rem;
+	text-align: center;
+	cursor: auto;
 }
 
 </style>

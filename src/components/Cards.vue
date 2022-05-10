@@ -29,7 +29,8 @@ import {mapGetters, mapActions} from 'vuex'
 			'fetchShoes'
 		]),
 		computed: mapGetters([
-			'allShoes'
+			'allShoes',
+			'totalCount'
 		]),
 		mounted() {
 			this.fetchShoes();
