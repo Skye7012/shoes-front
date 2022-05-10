@@ -4,7 +4,7 @@
 		class="vert"
 		v-bind:totalCount="totalCount"
 		/>
-		<div class="cards" v-for="shoe in allShoes">
+		<div class="cards" v-for="shoe in allShoes" :key="shoe.id">
 			<Card v-bind:shoe="shoe"></Card>
 		</div>
 	</div>

@@ -33,6 +33,9 @@ export default {
 	  updateTotalCount(state, totalCount) {
 		state.totalCount = totalCount
 	  },
+	  updatePage(state, page) {
+		state.page = page;
+	  }
 	},
 	getters: {
 	  validPosts(state) {
