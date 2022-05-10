@@ -1,9 +1,6 @@
 <template>
 	<div class="card">
-		<!-- <div class="img" v-bind:style="{ 'background-image': `url('/img/shoes/${shoe.image}');`}"> -->
 		<div class="img" v-bind:style="{ 'background-image': `url('${require(`@/assets/img/shoes/${shoe.image}`)}')`}">
-		<!-- <div class="img" v-bind:style="{ 'background-image': `url(/123.jpg)`}"> -->
-		<!-- <div class="img" v-bind:style="{ 'background-image': `url(/123.jpg)`}"> -->
 		</div>
 		<div class="description">
 			<div class="title">
@@ -27,16 +24,10 @@
 			shoe: {
 				title: {
 				type: String,
-				//required: true,
 				},
 				url: {
 				type: String,
-				//required: true,
-			}
-			// shoes: {
-			// 	type: Array,
-			// 	required: true,
-			// }
+				}
 			}
 		}
 	}

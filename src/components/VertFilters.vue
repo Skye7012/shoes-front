@@ -49,9 +49,6 @@ export default {
 			nowPage: 1,
 			activePag: 2,
 			sortOptions: [
-				// {title: 'По названию', value: {OrderBy: 'Name'}},
-				// {title: 'Сначала дешевые', value: {OrderBy: 'Price'}},
-				// {title: 'Сначала дорогие', value: {OrderBy: 'Name', IsAscending: false}}
 				{title: 'По названию', value: 'Name'},
 				{title: 'Сначала дешевые', value: 'Cheaper'},
 				{title: 'Сначала дорогие', value: 'Expensive'}
