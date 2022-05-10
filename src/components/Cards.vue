@@ -4,17 +4,18 @@
 		class="vert"
 		v-bind:totalCount="totalCount"
 		/>
-		<div class="cards" v-for="shoe in shoes">
+		<div class="cards" v-for="shoe in allShoes">
 			<Card v-bind:shoe="shoe"></Card>
 		</div>
 	</div>
 </template>
 
 <script>
-import axios from 'axios'
-
 import VertFilters from '@/components/VertFilters.vue'
 import Card from '@/components/Card.vue'
+
+import {mapGetters, mapActions} from 'vuex'
+
 	export default {
 		components: {
 			VertFilters,
@@ -22,37 +23,17 @@ import Card from '@/components/Card.vue'
 		},
 		data() {
 			return {
-				totalCount: 0,
-				shoes: [],
-				limit: 4,
 			}
 		},
-		methods: {
-			async fetchShoes() {
-				try {
-					debugger;
-					const response = await axios.get('https://localhost:7163/Shoes', {
-						params: {
-							Page: this.page,
-							Limit: this.limit,
-						}
-					});
-					this.totalCount = response.data.totalCount / this.limit;
-					this.shoes = response.data.items;
-				}
-				catch (e) {
-					alert(e)
-				}
-			}
-		},
+		methods: mapActions([
+			'fetchShoes'
+		]),
+		computed: mapGetters([
+			'allShoes'
+		]),
 		mounted() {
 			this.fetchShoes();
 		},
-		computed: {
-			page() {
-				return this.$store.state.page;
-			}
-		}
 	}
 </script>
 

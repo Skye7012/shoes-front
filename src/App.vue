@@ -23,7 +23,7 @@ export default {
     components: {
     Catalog,
     Header
-},
+    },
     data() {
       return {
         posts: [
