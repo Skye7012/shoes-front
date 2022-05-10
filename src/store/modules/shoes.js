@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 export default {
 	state: {
@@ -10,7 +11,7 @@ export default {
 		searchQuery: null,
 	},
 	actions: {
-		async fetchShoes({commit, state}) {
+		async fetchShoes({commit, state}, filters = {brandFilters: []}) {
 			try {
 				const response = await axios.get('https://localhost:7163/Shoes', {
 					params: {
@@ -18,6 +19,10 @@ export default {
 						Limit: state.limit,
 						...state.sortOption,
 						...state.searchQuery,
+						BrandFilters: filters.brandFilters
+					},
+					paramsSerializer: params => {
+						return qs.stringify(params)
 					}
 				});
 				const totalCount = Math.ceil(response.data.totalCount / state.limit);

@@ -1,25 +1,15 @@
 <template>
 	<aside class="menu">
 		<span class="title">
-			<strong>Сортировка</strong>
-		</span>
-		<select class="select">
-				<option>Популярные</option>
-				<option>Сначала дешевые</option>
-				<option>Сначала дорогие</option>
-				<option>По размеру скидки</option>
-			</select>
-		<span class="title">
 			Брэнды
 		</span>
 		<ul class="menu-list">
-			<li>
-				<input type="checkbox">
-				Adidas
-			</li>
-			<li>
-				<input type="checkbox">
-				Nike
+			<li v-for="brand in allBrands" :key="brand.id">
+				<input 
+				v-model="brandFilters"
+				type="checkbox"
+				:value=brand.id>
+				{{brand.name}}
 			</li>
 		</ul>
 
@@ -54,8 +44,38 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 	export default {
-		
+		data() {
+			return {
+				brandFilters: []
+			}
+		},
+		computed: {
+			...mapGetters([
+				'allBrands'
+			]),
+		},
+		methods: {
+			...mapActions([
+				'fetchBrands',
+				'fetchShoes'
+			]),
+			...mapMutations([
+				'updateBrandFilters'
+			])
+		},
+		mounted() {
+			this.fetchBrands();
+		},
+		watch: {
+			brandFilters() {
+				// if(this.brandFilters.length != 0) {
+					this.updateBrandFilters(this.brandFilters);
+					this.fetchShoes({brandFilters: this.brandFilters});
+				// }
+			}
+		}
 	}
 </script>
 
