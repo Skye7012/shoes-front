@@ -21,6 +21,8 @@
 @import '@/assets/vars.scss';
 
 .footer {
+	margin-top: 50px;
+
 	background-color: $white-bis;
 	min-height: 200px;
 	display: flex;

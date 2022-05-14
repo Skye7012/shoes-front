@@ -1,6 +1,6 @@
 <template>
 	<div class="nav">
-		<a class="nav-item logo">
+		<a @click="$router.push('/')" class="nav-item logo">
           <span class="title">Shoes</span>
         </a>
         <div class="nav-item search"> 
@@ -15,7 +15,7 @@
 			@click="search"
 			class="find">Найти</button>
         </div>
-		<div class="nav-item-end">
+		<div @click="$router.push('/login')" class="nav-item-end">
 			<button class="button">
 				<span class="icon">
 				<i class="icons fa-solid fa-user"></i>
@@ -62,6 +62,8 @@ $text-size: 3em;
 $size: 3em;
 
 .nav {
+	padding: 0 2vw;
+
 	min-width: 700px;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
@@ -121,6 +123,7 @@ $size: 3em;
 
 .logo {
 	padding-left: 0;
+	cursor: pointer;
 }
 
 </style>
