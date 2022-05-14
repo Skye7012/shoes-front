@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 
 .page {
-  height: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

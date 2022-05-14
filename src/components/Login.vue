@@ -1,22 +1,42 @@
 <template>
 	<div class="login">
 		<input
+			v-model="login"
 			class="input"
+			style="margin-bottom: 10px"
 			placeholder="Логин"
 			type="text">
 		<input
+			v-model="password"
 			class="input"
-			style="margin-top:20px"
+			style="margin-bottom: 20px"
 			placeholder="Пароль"
-			type="text">
+			type="password">
+		<button 
+			@click="doLogin({login, password})"
+			class="button">
+			Войти
+		</button>
 	</div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
-export default {
-
+	export default {
+		data() {
+			return {
+				login: null,
+				password: null,
+			}
+		},
+		methods: {
+			...mapActions([
+				'doLogin'
+			])
+		}
 	}
+
 </script>
 
 <style lang="scss" scoped>
@@ -30,6 +50,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+
 }
 
 .input {

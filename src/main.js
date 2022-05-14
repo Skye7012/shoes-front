@@ -3,6 +3,7 @@ import App from '@/App'
 import router from '@/router'
 import store from '@/store'
 import components from '@/components/UI'
+import '@/axios'
 
 const app = createApp(App)
 
