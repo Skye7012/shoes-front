@@ -2,22 +2,11 @@ import axios from 'axios'
 
 export default {
 	state: {
-		login: null,
-		token: null,
+		isAuth: false,
 	},
 	actions: {
 		async doLogin({commit, state}, {login, password}) {
 			try {
-				debugger;
-				// var data = JSON.stringify({
-				// 	"login": login,
-				// 	"password": password,
-				// });
-				// const response = await axios.post('https://localhost:7163/Login', {
-				// 	Login: login,
-				// 	Password: password
-				// });
-
 				const response = await axios({
 					method: 'post',
 					url: 'User/login',
@@ -28,6 +17,7 @@ export default {
 				  });
 
 				localStorage.setItem('token', response.data)
+				state.isAuth = true;
 			}
 			catch (e) {
 				alert(e)
@@ -35,20 +25,14 @@ export default {
 	  },
 	},
 	mutations: {
-		updateLogin(state, login) {
-			state.login = login
+		updateIsAuth(state, isAuth) {
+			state.isAuth = isAuth
 		},
-		updateToken(state, token) {
-			state.token = token
-		}
 	},
 	getters: {
-	  getLogin(state) {
-		return state.login
-	  },
-	  brandToken(state){
-		return state.token
-	  }
+		getIsAuth(state) {
+			return state.isAuth
+		},
 	}
   }
   

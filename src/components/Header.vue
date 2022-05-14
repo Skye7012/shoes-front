@@ -20,7 +20,9 @@
 				<span class="icon">
 				<i class="icons fa-solid fa-user"></i>
 				</span>
-				<span>Войти</span>
+				<span>
+					{{this.getIsAuth ? 'Профиль' : 'Войти'}}
+				</span>
 			</button>
 			<button class="button end">
 				<span class="icon">
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
@@ -51,6 +53,11 @@ export default {
 			this.updateSearchQuery(this.searchQuery);
 			this.fetchShoes();
 		}
+	},
+	computed: {
+		...mapGetters([
+			'getIsAuth',
+		]),
 	}
 }
 </script>
