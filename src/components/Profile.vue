@@ -1,24 +1,17 @@
 <template>
-	<div class="login">
+	<div class="registration">
 		<input
 			v-model="login"
 			class="input"
 			style="margin-bottom: 10px"
-			placeholder="Логин"
-			type="text">
-		<input
-			v-model="password"
-			class="input"
-			style="margin-bottom: 20px"
-			placeholder="Пароль"
-			type="password">
+			type="text"
+			readonly
+			v-text="login">
 		<button 
-			@click="doLogin({login, password})"
+			@click="doLogout()"
 			class="button">
-			Войти
+			Выйти
 		</button>
-		<router-link to="/registration"
-			style="margin-top:5px; text-align: right;" >Регистация</router-link>
 	</div>
 </template>
 
@@ -28,13 +21,12 @@ import { mapActions } from 'vuex'
 	export default {
 		data() {
 			return {
-				login: null,
-				password: null,
+				login: 'logingnngngng',
 			}
 		},
 		methods: {
 			...mapActions([
-				'doLogin'
+				'doLogout'
 			])
 		}
 	}
@@ -46,7 +38,7 @@ import { mapActions } from 'vuex'
 @import '@/assets/vars.scss';
 @import '@/assets/my.scss';
 
-.login {
+.registration {
 	margin: auto auto;
 	
 	display: flex;
@@ -61,7 +53,7 @@ import { mapActions } from 'vuex'
 	border: 1.5px solid $light;
 	border-radius: 0.25rem;
 	height: 2.5rem;
-	text-indent: 1rem;
+	text-align: center;
 }
 
 </style>

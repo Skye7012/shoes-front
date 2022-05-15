@@ -15,8 +15,8 @@
 			@click="search"
 			class="find">Найти</button>
         </div>
-		<div @click="$router.push('/login')" class="nav-item-end">
-			<button class="button">
+		<div class="nav-item-end">
+			<button @click="$router.push('/profile')" class="button">
 				<span class="icon">
 				<i class="icons fa-solid fa-user"></i>
 				</span>

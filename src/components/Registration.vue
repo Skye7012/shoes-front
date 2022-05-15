@@ -1,5 +1,5 @@
 <template>
-	<div class="login">
+	<div class="registration">
 		<input
 			v-model="login"
 			class="input"
@@ -13,12 +13,10 @@
 			placeholder="Пароль"
 			type="password">
 		<button 
-			@click="doLogin({login, password})"
+			@click="doRegister({login, password})"
 			class="button">
-			Войти
+			Зарегестрироваться
 		</button>
-		<router-link to="/registration"
-			style="margin-top:5px; text-align: right;" >Регистация</router-link>
 	</div>
 </template>
 
@@ -34,7 +32,7 @@ import { mapActions } from 'vuex'
 		},
 		methods: {
 			...mapActions([
-				'doLogin'
+				'doRegister'
 			])
 		}
 	}
@@ -46,7 +44,7 @@ import { mapActions } from 'vuex'
 @import '@/assets/vars.scss';
 @import '@/assets/my.scss';
 
-.login {
+.registration {
 	margin: auto auto;
 	
 	display: flex;
