@@ -14,6 +14,12 @@
 			<div class="price">
 				{{shoe.price}} ₽
 			</div>
+			<div class="radio">
+				<input label="39" type="radio" :name="shoe.id" id="male"  value="male" checked>
+				<input label="40" type="radio" :name="shoe.id" id="female"  value="female">
+				<input label="41" type="radio" :name="shoe.id" id="other"  value="other"> 
+				<!-- name="gender" -->
+			</div>
 			<div class="buy">
 				<button
 				v-show="!inBasket"
@@ -116,6 +122,43 @@ export default {
 
 .price {
 	color: $danger;
+}
+
+.radio {
+	background: #e8e7e76d;
+	padding: 4px;
+	border-radius: 3px;
+	position: relative;
+}
+
+.radio input {
+	width: auto;
+	height: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 2px;
+	padding: 4px 8px;
+	background: #e8e7e76d;
+	color: #bdbdbdbd;
+	font-size: 0.8rem;
+	transition: all 100ms linear;
+}
+
+.radio input:checked {
+	background-color: $info;
+	color: #fff;
+	box-shadow: 0 1px 1px #0000002e;
+	text-shadow: 0 1px 0px #79485f7a;
+}
+
+.radio input:before {
+	content: attr(label);
+	display: inline-block;
+	text-align: center;
+	width: 100%;
 }
 
 </style>
