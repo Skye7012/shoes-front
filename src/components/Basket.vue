@@ -11,6 +11,10 @@
 			<button class="button link">Оформить</button>
 			<p>Товаров ({{getBasketTotalCount}})</p>
 			<p>Общая стоимость <span class="price">{{getBasketPrice}} ₽</span></p>
+
+			<button
+			@click="clearBasket"
+			class="button clear">Очистить корзину</button>
 		</div>
 	</div>
 </template>
@@ -18,16 +22,21 @@
 <script>
 import BasketItem from '@/components/BasketItem.vue'
 
-import {mapGetters, mapActions} from 'vuex'
+import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 
 	export default {
 		components: {
 			BasketItem,
 		},
-		methods: mapActions([
-			'fetchBasketItems',
+		methods: {
+			...mapActions([
+				'fetchBasketItems',
+			]),
+			...mapMutations([
+			'clearBasket',
 		]),
+		},
 		computed: mapGetters([
 			'getBasketItems',
 			'getBasketTotalCount',
@@ -55,6 +64,9 @@ import {mapGetters, mapActions} from 'vuex'
 }
 
 .summary {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	min-width: 200px;
 	margin-left: 50px;
 	height: 60vh;
@@ -86,6 +98,10 @@ import {mapGetters, mapActions} from 'vuex'
 .button {
 	margin: 2vh 0;
 	width: 90%;
+}
+
+.clear {
+	margin-top: auto;
 }
 
 </style>

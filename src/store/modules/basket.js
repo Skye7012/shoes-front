@@ -67,6 +67,12 @@ export default {
 			state.basketPrice -= state.basketItems.find(x => x.id == id).price;
 			state.basketItems = state.basketItems.filter(x => x.id != id);
 			state.basketTotalCount = state.basketItems.length;
+		},
+		clearBasket(state) {
+			state.basketPrice = 0;
+			state.basketItems = [];
+			state.basketTotalCount = 0;
+			localStorage.basket = [];
 		}
 	},
 	getters: {
