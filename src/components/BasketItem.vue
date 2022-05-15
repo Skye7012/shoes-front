@@ -14,13 +14,8 @@
 			<div class="price">
 				{{basketItem.price}} ₽
 			</div>
-			<div class="buy">
+			<div class="remove">
 				<button
-				v-show="!inBasket"
-				@click="onAddClick(basketItem.id)"
-				class="button link">Добавить в корзину</button>
-				<button
-				v-show="inBasket"
 				@click="onRemovelick(basketItem.id)"
 				class="button">Убрать из корзины</button>
 			</div>
@@ -29,7 +24,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
@@ -41,33 +36,21 @@ export default {
 			'addShoe',
 			'removeShoe',
 		]),
-		onAddClick(id) {
-			this.addShoe(id);
-			this.inBasket = true;
-		},
+		...mapMutations([
+			'removeBasketItem',
+		]),
 		onRemovelick(id) {
+			this.removeBasketItem(id);
 			this.removeShoe(id);
-			this.inBasket = false;
 		}
 	},
 	computed: {
 		...mapGetters([
-			'getInBasket',
 		]),
 	},
 	props: {
-		basketItem: {
-			title: {
-			type: String,
-			},
-			url: {
-			type: String,
-			}
-		}
+		basketItem: {}
 	},
-	mounted() {
-		this.inBasket = this.getInBasket(this.basketItem.id);
-	}
 }
 </script>
 

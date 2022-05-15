@@ -26,7 +26,7 @@ import {mapGetters, mapActions} from 'vuex'
 			}
 		},
 		methods: mapActions([
-			'fetchShoes'
+			'fetchShoes',
 		]),
 		computed: mapGetters([
 			'allShoes',

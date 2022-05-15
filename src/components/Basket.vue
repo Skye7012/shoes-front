@@ -1,40 +1,30 @@
 <template>
 	<div class="basket">
-		<BasketItems></BasketItems>
-		<!-- <input
-			v-model="login"
-			class="input"
-			style="margin-bottom: 10px"
-			type="text"
-			readonly
-			v-text="login">
-		<button 
-			@click="doLogout()"
-			class="button">
-			Выйти
-		</button> -->
+		<div class="basketItems" v-for="basketItem in getBasketItems" :key="basketItem.id">
+			<BasketItem v-bind:basketItem="basketItem"></BasketItem>
+		</div>
 	</div>
 </template>
 
 <script>
-import BasketItems from '@/components/BasketItems.vue'
+import BasketItem from '@/components/BasketItem.vue'
 
 import {mapGetters, mapActions} from 'vuex'
 
 
 	export default {
 		components: {
-			BasketItems,
+			BasketItem,
 		},
-		// methods: mapActions([
-		// 	'fetchBasketItems'
-		// ]),
-		// computed: mapGetters([
-		// 	'getBasketItems',
-		// ]),
-		// mounted() {
-		// 	await this.fetchBasketItems();
-		// }
+		methods: mapActions([
+			'fetchBasketItems',
+		]),
+		computed: mapGetters([
+			'getBasketItems',
+		]),
+		mounted() {
+			this.fetchBasketItems();
+		}
 	}
 
 </script>
@@ -51,6 +41,14 @@ import {mapGetters, mapActions} from 'vuex'
 	flex-direction: column;
 	justify-content: center;
 
+}
+
+.basketItems {
+	overflow-y: hidden;
+	margin-top: 10px;
+	display: grid;
+	grid-auto-rows: 120px;
+	row-gap: 10px;
 }
 
 .input {
