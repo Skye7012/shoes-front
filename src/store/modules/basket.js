@@ -4,6 +4,8 @@ import qs from 'qs'
 export default {
 	state: {
 		basketItems: [],
+		basketTotalCount: 0,
+		basketPrice: 0,
 	},
 	actions: {
 		addShoe({},id) {
@@ -39,7 +41,12 @@ export default {
 					}
 				});
 				const basketItems = response.data.items;
+				const basketTotalCount = response.data.totalCount;
+				const basketPrice = basketItems.map(x => x.price)
+					.reduce((a, b) => a + b, 0);
 				commit('updateBasketItems', basketItems);
+				commit('updateBasketTotalCount', basketTotalCount);
+				commit('updateBasketPrice', basketPrice);
 			}
 			catch (e) {
 				alert(e)
@@ -50,9 +57,16 @@ export default {
 		updateBasketItems(state, basketItems) {
 			state.basketItems = basketItems
 		},
+		updateBasketTotalCount(state, basketTotalCount) {
+			state.basketTotalCount = basketTotalCount
+		},
+		updateBasketPrice(state, basketPrice) {
+			state.basketPrice = basketPrice
+		},
 		removeBasketItem(state, id) {
+			state.basketPrice -= state.basketItems.find(x => x.id == id).price;
 			state.basketItems = state.basketItems.filter(x => x.id != id);
-
+			state.basketTotalCount = state.basketItems.length;
 		}
 	},
 	getters: {
@@ -66,6 +80,12 @@ export default {
 		},
 		getBasketItems(state) {
 			return state.basketItems;
+		},
+		getBasketTotalCount(state) {
+			return state.basketTotalCount
+		},
+		getBasketPrice(state) {
+			return state.basketPrice
 		}
 	}
 }

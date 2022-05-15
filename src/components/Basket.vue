@@ -9,8 +9,8 @@
 		</div>
 		<div class="summary box">
 			<button class="button link">Оформить</button>
-			<p>Товаров (3)</p>
-			<p>Общая стоимость <span class="price">1000 ₽</span></p>
+			<p>Товаров ({{getBasketTotalCount}})</p>
+			<p>Общая стоимость <span class="price">{{getBasketPrice}} ₽</span></p>
 		</div>
 	</div>
 </template>
@@ -30,6 +30,8 @@ import {mapGetters, mapActions} from 'vuex'
 		]),
 		computed: mapGetters([
 			'getBasketItems',
+			'getBasketTotalCount',
+			'getBasketPrice'
 		]),
 		mounted() {
 			this.fetchBasketItems();
@@ -65,6 +67,7 @@ import {mapGetters, mapActions} from 'vuex'
 	display: grid;
 	grid-auto-rows: 120px;
 	row-gap: 10px;
+	min-width: 450px;
 }
 
 .input {
