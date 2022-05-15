@@ -4,8 +4,9 @@
 		class="vert"
 		v-bind:totalCount="totalCount"
 		/>
-		<div class="cards" v-for="shoe in allShoes" :key="shoe.id">
-			<Card v-bind:shoe="shoe"></Card>
+		<div class="cards">
+			<Card v-for="shoe in allShoes" :key="shoe.id" 
+			v-bind:shoe="shoe"></Card>
 		</div>
 	</div>
 </template>
@@ -50,10 +51,10 @@ import {mapGetters, mapActions} from 'vuex'
 }
 
 .cards {
-	overflow-y: hidden;
 	margin-top: 10px;
 	display: grid;
-	grid-auto-rows: 120px;
+	grid-template-columns: repeat(2, 300px);
+	justify-content: center;
 	row-gap: 10px;
 }
 

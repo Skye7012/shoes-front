@@ -18,7 +18,6 @@
 				<input label="39" type="radio" :name="shoe.id" id="male"  value="male" checked>
 				<input label="40" type="radio" :name="shoe.id" id="female"  value="female">
 				<input label="41" type="radio" :name="shoe.id" id="other"  value="other"> 
-				<!-- name="gender" -->
 			</div>
 			<div class="buy">
 				<button
@@ -84,6 +83,7 @@ export default {
 
 .card {
 	display: flex;
+	flex-direction: column;
 	box-sizing: border-box;
 	box-shadow: 1px 1px 4px $light;
 	border-radius: 0.25rem;
@@ -96,7 +96,6 @@ export default {
 	background-size: cover;	
 	height: 100%;
 	aspect-ratio: 5 / 3;
-	border-right: 1.5px solid $light;
 }
 
 .description {
