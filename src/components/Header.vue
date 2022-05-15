@@ -24,7 +24,7 @@
 					{{this.getIsAuth ? 'Профиль' : 'Войти'}}
 				</span>
 			</button>
-			<button class="button end">
+			<button @click="$router.push('/basket')" class="button end">
 				<span class="icon">
 				<i class="fa-solid fa-cart-shopping"></i>
 				</span>

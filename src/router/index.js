@@ -3,6 +3,7 @@ import HomePage from '@/pages/HomePage.vue'
 import ProfilePage from '@/pages/ProfilePage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import RegistrationPage from '@/pages/RegistrationPage.vue'
+import BasketPage from '@/pages/BasketPage.vue'
 
 const routes = [
   {
@@ -14,6 +15,15 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: ProfilePage,
+    beforeEnter: (to, from) => {
+      if(!localStorage.token)
+        return {name: 'login'}
+    },
+  },
+  {
+    path: '/basket',
+    name: 'basket',
+    component: BasketPage,
     beforeEnter: (to, from) => {
       if(!localStorage.token)
         return {name: 'login'}

@@ -35,7 +35,7 @@ export default {
 			catch (e) {
 				alert(e)
 			}
-	  },
+		},
 	},
 	mutations: {
 	  updateShoes(state, shoes) {
