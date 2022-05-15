@@ -15,25 +15,60 @@
 				{{shoe.price}} ₽
 			</div>
 			<div class="buy">
-				<button class="button link">Купить</button>
+				<button
+				v-show="!inBasket"
+				@click="onAddClick(shoe.id)"
+				class="button link">Добавить в корзину</button>
+				<button
+				v-show="inBasket"
+				@click="onRemovelick(shoe.id)"
+				class="button">Убрать из корзины</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {
-		props: {
-			shoe: {
-				title: {
-				type: String,
-				},
-				url: {
-				type: String,
-				}
+import { mapActions, mapGetters } from 'vuex'
+export default {
+	data() {
+		return {
+			inBasket: false,
+		}
+	},
+	methods: {
+		...mapActions([
+			'addShoe',
+			'removeShoe',
+		]),
+		onAddClick(id) {
+			this.addShoe(id);
+			this.inBasket = true;
+		},
+		onRemovelick(id) {
+			this.removeShoe(id);
+			this.inBasket = false;
+		}
+	},
+	computed: {
+		...mapGetters([
+			'getInBasket',
+		]),
+	},
+	props: {
+		shoe: {
+			title: {
+			type: String,
+			},
+			url: {
+			type: String,
 			}
 		}
+	},
+	mounted() {
+		this.inBasket = this.getInBasket(this.shoe.id);
 	}
+}
 </script>
 
 <style lang="scss" scoped>

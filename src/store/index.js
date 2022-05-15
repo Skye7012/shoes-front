@@ -4,6 +4,7 @@ import brands from '@/store/modules/brands'
 import destinations from '@/store/modules/destinations'
 import seasons from '@/store/modules/seasons'
 import user from '@/store/modules/user'
+import basket from '@/store/modules/basket'
 
 export default createStore({
   modules: {
@@ -11,6 +12,7 @@ export default createStore({
     brands,
     destinations,
     seasons,
-    user
+    user,
+    basket
   }
 })

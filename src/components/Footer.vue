@@ -24,7 +24,7 @@
 	margin-top: 50px;
 
 	background-color: $white-bis;
-	min-height: 200px;
+	min-height: 20vh; //200px
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
