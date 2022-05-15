@@ -1,7 +1,16 @@
 <template>
 	<div class="basket">
-		<div class="basketItems" v-for="basketItem in getBasketItems" :key="basketItem.id">
-			<BasketItem v-bind:basketItem="basketItem"></BasketItem>
+		<div class="basketItems box">
+			<BasketItem 
+			v-for="basketItem in getBasketItems"
+			:key="basketItem.id"
+			v-bind:basketItem="basketItem">
+			</BasketItem>
+		</div>
+		<div class="summary box">
+			<button class="button link">Оформить</button>
+			<p>Товаров (3)</p>
+			<p>Общая стоимость <span class="price">1000 ₽</span></p>
 		</div>
 	</div>
 </template>
@@ -38,14 +47,23 @@ import {mapGetters, mapActions} from 'vuex'
 	margin: auto auto;
 	
 	display: flex;
-	flex-direction: column;
+	//flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+}
 
+.summary {
+	min-width: 200px;
+	margin-left: 50px;
+	height: 100%;
+	text-align: center;
 }
 
 .basketItems {
-	overflow-y: hidden;
-	margin-top: 10px;
+	overflow-y: scroll;
+	//margin-top: 10px;
+	height: 100%;
 	display: grid;
 	grid-auto-rows: 120px;
 	row-gap: 10px;
@@ -58,6 +76,15 @@ import {mapGetters, mapActions} from 'vuex'
 	border-radius: 0.25rem;
 	height: 2.5rem;
 	text-align: center;
+}
+
+.price {
+	color: $danger;
+}
+
+.button {
+	margin: 2vh 0;
+	width: 90%;
 }
 
 </style>

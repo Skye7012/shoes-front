@@ -62,7 +62,8 @@ export default {
 .basketItem {
 	display: flex;
 	box-sizing: border-box;
-	box-shadow: 1px 1px 4px $light;
+	//box-shadow: 1px 1px 4px $light;
+	border: 1px $light solid;
 	border-radius: 0.25rem;
 	margin: 4px;
 }
