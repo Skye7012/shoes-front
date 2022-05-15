@@ -44,6 +44,7 @@ import {mapGetters, mapActions} from 'vuex'
 @import '@/assets/my.scss';
 
 .basket {
+	position: relative;
 	margin: auto auto;
 	
 	display: flex;
@@ -55,15 +56,19 @@ import {mapGetters, mapActions} from 'vuex'
 
 .summary {
 	min-width: 200px;
-	margin-left: 50px;
+	margin-left: 600px;
 	height: 100%;
 	text-align: center;
 }
 
 .basketItems {
+	position: absolute;
 	overflow-y: scroll;
+	left: 0;
+    top: 0;
 	//margin-top: 10px;
 	height: 100%;
+	max-height: 100%;
 	display: grid;
 	grid-auto-rows: 120px;
 	row-gap: 10px;
