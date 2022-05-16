@@ -38,10 +38,16 @@
 				type="text">
 		</div>
 		<button 
+			@click="updateUser"
 			class="button">
 			Сохранить изменения
 		</button>
 		<button 
+			class="button link">
+			Заказы
+		</button>
+		<button 
+			@click="delProfile"
 			class="button del">
 			Удалить аккаунт
 		</button>
@@ -69,7 +75,31 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 			...mapActions([
 				'doLogout',
 				'fetchUser',
-			])
+				'putUser',
+				'deleteUser'
+			]),
+			updateUser() {
+				if(!this.name) {
+					alert('Имя обязательно');
+					return;
+				}
+
+				var user = {
+					login: this.login,
+					name: this.name,
+					fname: this.fname,
+					phone: this.phone,
+				}
+				this.putUser(user);
+			},
+			delProfile() {
+				if(confirm('Вы уверенты, что хотите удалить аккаунт?')) {
+					this.deleteUser();
+				}
+				else {
+					return;
+				}
+			}
 		},
 		computed: {
 			...mapGetters([
@@ -147,10 +177,10 @@ label {
 	border-color: $danger;
 }
 
-.exit {
-	justify-self: center;
-	grid-column: 1/3;
-	width: 50%;
-}
+// .exit {
+// 	justify-self: center;
+// 	grid-column: 1/3;
+// 	width: 50%;
+// }
 
 </style>

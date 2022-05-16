@@ -66,6 +66,46 @@ export default {
 				alert(e)
 			}
 		},
+		async putUser({commit, state}, user) {
+			try {
+				const response = await axios({
+					method: 'put',
+					url: 'User',
+					data: {
+						Name: user.name,
+						Fname: user.fname,
+						Phone: user.phone,
+					}
+				});
+
+				commit('updateUser', user);
+			}
+			catch (e) {
+				alert(e)
+			}
+		},
+		async deleteUser({commit, state}) {
+			try {
+				const response = await axios({
+					method: 'delete',
+					url: 'User',
+				});
+
+				this.isAuth= false;
+				this.login= null;
+				this.name= null;
+				this.fname= null;
+				this.phone= null;
+				this.user= null;
+				localStorage.removeItem('token');
+				localStorage.removeItem('basket');
+				
+				router.push('/');
+			}
+			catch (e) {
+				alert(e)
+			}
+		},
 	},
 	mutations: {
 		updateIsAuth(state, isAuth) {
