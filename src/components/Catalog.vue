@@ -48,6 +48,7 @@ export default {
 
 .box {
 	height: 100%;
+	padding-top: 0.25rem;
 }
 
 .mbox {

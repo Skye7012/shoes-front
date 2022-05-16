@@ -1,5 +1,10 @@
 <template>
 	<aside class="menu">
+		<button @click="dropFilters"
+		class="button">
+			Сбросить фильтры
+		</button>
+
 		<span class="title">
 			Брэнды
 		</span>
@@ -89,6 +94,12 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 			]),
 			callFetchShoes() {
 				this.fetchShoes({brandFilters: this.brandFilters, destinationFilters: this.destinationFilters, seasonFilters: this.seasonFilters, sizeFilters: this.sizeFilters});
+			},
+			dropFilters() {
+				this.brandFilters = [];
+				this.destinationFilters = [];
+				this.seasonFilters = [];
+				this.sizeFilters = [];
 			}
 		},
 		mounted() {
@@ -139,6 +150,11 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 	border-radius: 0.25rem;
 	height: 2.5rem;
 	margin: 10px auto ;
+}
+
+.button {
+	margin-top: 5px;
+	margin-bottom: 20px;
 }
 
 </style>
