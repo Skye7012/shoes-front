@@ -15,9 +15,11 @@
 				{{shoe.price}} ₽
 			</div>
 			<div class="radio">
-				<input label="39" type="radio" :name="shoe.id" id="male"  value="male" checked>
+				<input v-for="size in shoe.ruSizes" :key="size"
+				:label="size" type="radio" :name="shoe.id" :value="size">
+				<!-- <input label="39" type="radio" :name="shoe.id" id="male"  value="male" checked>
 				<input label="40" type="radio" :name="shoe.id" id="female"  value="female">
-				<input label="41" type="radio" :name="shoe.id" id="other"  value="other"> 
+				<input label="41" type="radio" :name="shoe.id" id="other"  value="other">  -->
 			</div>
 			<div class="buy">
 				<button

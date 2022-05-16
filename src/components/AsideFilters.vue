@@ -38,6 +38,19 @@
 				{{season.name}}
 			</li>
 		</ul>
+
+		<span>
+			Размеры
+		</span>
+		<ul class="menu-list">
+			<li v-for="size in allSizes" :key="size">
+				<input 
+				v-model="sizeFilters"
+				type="checkbox"
+				:value=size>
+				{{size}}
+			</li>
+		</ul>
 	</aside>
 </template>
 
@@ -49,6 +62,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 				brandFilters: [],
 				destinationFilters: [],
 				seasonFilters: [],
+				sizeFilters: [],
 			}
 		},
 		computed: {
@@ -56,6 +70,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 				'allBrands',
 				'allDestinations',
 				'allSeasons',
+				'allSizes',
 			]),
 		},
 		methods: {
@@ -64,30 +79,40 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 				'fetchShoes',
 				'fetchDestinations',
 				'fetchSeasons',
+				'fetchSizes',
 			]),
 			...mapMutations([
 				'updateBrandFilters',
 				'updateDestinationFilters',
 				'updateSeasonFilters',
-			])
+				'updateSizeFilters',
+			]),
+			callFetchShoes() {
+				this.fetchShoes({brandFilters: this.brandFilters, destinationFilters: this.destinationFilters, seasonFilters: this.seasonFilters, sizeFilters: this.sizeFilters});
+			}
 		},
 		mounted() {
 			this.fetchBrands();
 			this.fetchDestinations();
 			this.fetchSeasons();
+			this.fetchSizes();
 		},
 		watch: {
 			brandFilters() {
 				this.updateBrandFilters(this.brandFilters);
-				this.fetchShoes({brandFilters: this.brandFilters});
+				this.callFetchShoes();
 			},
 			destinationFilters() {
 				this.updateDestinationFilters(this.destinationFilters);
-				this.fetchShoes({destinationFilters: this.destinationFilters});
+				this.callFetchShoes();
 			},
 			seasonFilters() {
 				this.updateSeasonFilters(this.seasonFilters);
-				this.fetchShoes({seasonFilters: this.seasonFilters});
+				this.callFetchShoes();
+			},
+			sizeFilters() {
+				this.updateSizeFilters(this.sizeFilters);
+				this.callFetchShoes();
 			},
 		}
 	}

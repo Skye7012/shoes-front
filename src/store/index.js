@@ -5,6 +5,7 @@ import destinations from '@/store/modules/destinations'
 import seasons from '@/store/modules/seasons'
 import user from '@/store/modules/user'
 import basket from '@/store/modules/basket'
+import sizes from '@/store/modules/sizes'
 
 export default createStore({
   modules: {
@@ -13,6 +14,7 @@ export default createStore({
     destinations,
     seasons,
     user,
-    basket
+    basket,
+    sizes,
   }
 })
