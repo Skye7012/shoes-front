@@ -2,7 +2,6 @@
 	<div class="mrows">
 		<VertFilters 
 		class="vert"
-		v-bind:totalCount="totalCount"
 		/>
 		<div class="cards">
 			<Card v-for="shoe in allShoes" :key="shoe.id" 

@@ -29,19 +29,24 @@
 				placeholder="num"/>
 
 				<button 
-				@click="changePage(totalCount)" 
+				@click="changePage(totalPages)" 
 				:class="{'link': activePag === 3}"
-				class="button">{{totalCount}}</button>
+				class="button">{{totalPages}}</button>
 
 				<button 
 				@click="incrementPage"
 				class="button">След</button>
+
+				<button 
+				class="button count">
+					{{totalCount ? totalCount : 0}}
+				</button>
 			</div>
 		</div>
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
 	data() {
@@ -55,9 +60,6 @@ export default {
 			]
 		}
 	},
-	props: {
-		totalCount: Number
-	},
 	methods: {
 		...mapMutations([
 			'updatePage',
@@ -65,7 +67,7 @@ export default {
 		]),
 		...mapActions(["fetchShoes"]),
 		changePage(page) {
-			if(page > 0 && page <= this.totalCount)
+			if(page > 0 && page <= this.totalPages)
 			{
 				this.nowPage = page;
 				this.updatePage(page);
@@ -80,8 +82,8 @@ export default {
 			this.activePag = 2;
 		},
 		incrementPage() {
-			if (this.nowPage >= this.totalCount)
-				this.nowPage == this.totalCount;
+			if (this.nowPage >= this.totalPages)
+				this.nowPage == this.totalPages;
 			else
 				this.nowPage++;
 			this.activePag = 2;
@@ -108,6 +110,12 @@ export default {
 		nowPage() {
 			this.changePage(this.nowPage);
 		}
+	},
+	computed: {
+		...mapGetters([
+			'totalCount',
+			'totalPages'
+		]),
 	}
 }
 </script>
@@ -151,6 +159,12 @@ export default {
 	width: 4rem;
 	text-align: center;
 	cursor: auto;
+}
+
+.count {
+	border-color: $info;
+	border-radius: 2rem;
+	width: auto;
 }
 
 </style>

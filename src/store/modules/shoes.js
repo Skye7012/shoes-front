@@ -6,6 +6,7 @@ export default {
 		shoes: [],
 		page: 1,
 		totalCount: 0,
+		totalPages: 0,
 		limit: 4,
 		sortOption: {OrderBy: 'Name'},
 		searchQuery: null,
@@ -28,10 +29,12 @@ export default {
 						return qs.stringify(params)
 					}
 				});
-				const totalCount = Math.ceil(response.data.totalCount / state.limit);
+				const totalPages = Math.ceil(response.data.totalCount / state.limit);
+				const totalCount = response.data.totalCount;
 				const shoes = response.data.items;
 				commit('updateShoes', shoes);
 				commit('updateTotalCount', totalCount);
+				commit('updateTotalPages', totalPages);
 			}
 			catch (e) {
 				alert(e)
@@ -44,6 +47,9 @@ export default {
 	  },
 	  updateTotalCount(state, totalCount) {
 		state.totalCount = totalCount
+	  },
+	  updateTotalPages(state, totalPages) {
+		state.totalPages = totalPages
 	  },
 	  updatePage(state, page) {
 		state.page = page;
@@ -61,6 +67,9 @@ export default {
 	  },
 	  totalCount(state) {
 		return state.totalCount
+	  },
+	  totalPages(state) {
+		return state.totalPages
 	  }
 	}
   }

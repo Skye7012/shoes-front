@@ -8,7 +8,7 @@ export default {
 		basketPrice: 0,
 	},
 	actions: {
-		addShoe({},id) {
+		addShoe({commit},id) {
 			let basket = [];
 			if(localStorage.basket) {
 				basket = JSON.parse("[" + localStorage.basket + "]");
@@ -17,13 +17,15 @@ export default {
 				basket.push(id);
 			}
 			localStorage.setItem('basket', basket);
+			commit('updateBasketTotalCount', basket.length)
 		},
-		removeShoe({},id) {
+		removeShoe({commit},id) {
 			if(localStorage.basket)
 			{
 				let basket = JSON.parse("[" + localStorage.basket + "]");
 				basket = basket.filter(x => x != id)
 				localStorage.setItem('basket', basket);
+				commit('updateBasketTotalCount', basket.length)
 			}
 		},
 		async fetchBasketItems({commit, state}) {

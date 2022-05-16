@@ -28,7 +28,10 @@
 				<span class="icon">
 				<i class="fa-solid fa-cart-shopping"></i>
 				</span>
-				<span>Корзина</span>
+				<span>
+					Корзина
+					<span class="count">{{getBasketTotalCount ? `(${getBasketTotalCount})` : ''}}</span>
+				</span>
 			</button>
       	</div>
 	</div>
@@ -47,7 +50,8 @@ export default {
 			'updateSearchQuery'
 		]),
 		...mapActions([
-			'fetchShoes'
+			'fetchShoes',
+			'fetchBasketItems'
 		]),
 		search() {
 			this.updateSearchQuery(this.searchQuery);
@@ -57,7 +61,11 @@ export default {
 	computed: {
 		...mapGetters([
 			'getIsAuth',
+			'getBasketTotalCount'
 		]),
+	},
+	mounted() {
+		this.fetchBasketItems();
 	}
 }
 </script>
@@ -131,6 +139,10 @@ $size: 3em;
 .logo {
 	padding-left: 0;
 	cursor: pointer;
+}
+
+.count {
+	color: $info;
 }
 
 </style>
