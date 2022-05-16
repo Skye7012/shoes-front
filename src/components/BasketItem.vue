@@ -12,7 +12,7 @@
 				{{basketItem.brand.name}} / {{basketItem.destination.name}} / {{basketItem.season.name}}
 			</div>
 			<div class="price">
-				{{basketItem.price}} ₽
+				{{basketItem.price}} ₽  <span class="size">{{getSize(basketItem.id)}}RU</span>
 			</div>
 			<div class="remove">
 				<button
@@ -46,6 +46,7 @@ export default {
 	},
 	computed: {
 		...mapGetters([
+			'getSize'
 		]),
 	},
 	props: {
@@ -66,6 +67,7 @@ export default {
 	border: 1px $light solid;
 	border-radius: 0.25rem;
 	margin: 4px;
+	height: 120px;
 }
 
 .img {
@@ -83,6 +85,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	row-gap: 5px;
 }
 
 .title {
@@ -100,6 +103,16 @@ export default {
 
 .price {
 	color: $danger;
+}
+
+.size {
+	// color: white;
+	// background-color: $info;
+	color: initial;
+	background-color: whitesmoke;
+	background-size: 25px;
+	border-radius: 4px;
+	padding: 2px;
 }
 
 </style>
