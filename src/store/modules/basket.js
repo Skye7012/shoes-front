@@ -8,23 +8,25 @@ export default {
 		basketPrice: 0,
 	},
 	actions: {
-		addShoe({commit},id) {
+		addShoe({commit},{id, size}) {
 			let basket = [];
 			if(localStorage.basket) {
-				basket = JSON.parse("[" + localStorage.basket + "]");
+				basket = JSON.parse(localStorage.basket);
 			}
 			if (!basket.includes(id)) {
-				basket.push(id);
+				var shoe = {id, size};
+				// shoe = JSON.stringify(shoe);
+				basket.push(shoe);
 			}
-			localStorage.setItem('basket', basket);
+			localStorage.setItem('basket', JSON.stringify(basket));
 			commit('updateBasketTotalCount', basket.length)
 		},
 		removeShoe({commit},id) {
 			if(localStorage.basket)
 			{
-				let basket = JSON.parse("[" + localStorage.basket + "]");
-				basket = basket.filter(x => x != id)
-				localStorage.setItem('basket', basket);
+				let basket = JSON.parse(localStorage.basket);
+				basket = basket.filter(x => x.id != id)
+				localStorage.setItem('basket', JSON.stringify(basket));
 				commit('updateBasketTotalCount', basket.length)
 			}
 		},
@@ -32,7 +34,7 @@ export default {
 			try {
 				let ids = [];
 				if(localStorage.basket) {
-					ids = JSON.parse("[" + localStorage.basket + "]");
+					ids = JSON.parse(localStorage.basket).map(x => x.id);
 				}
 				const response = await axios.get('https://localhost:7163/Shoes/GetByIds', {
 					params: {
@@ -81,10 +83,14 @@ export default {
 		getInBasket: (state) => (id) => {
 			if(localStorage.basket)
 			{
-				var basket = JSON.parse("[" + localStorage.basket + "]");
-				return basket.includes(id);
+				var basket = JSON.parse(localStorage.basket);
+				return basket.map(x => x.id).includes(id);
 			}
 			return false;
+		},
+		getSize: (state) => (id) => {
+			var basket = JSON.parse(localStorage.basket);
+			return basket.find(x => x.id == id).size;
 		},
 		getBasketItems(state) {
 			return state.basketItems;

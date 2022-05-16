@@ -16,6 +16,8 @@
 			</div>
 			<div class="radio">
 				<input v-for="size in shoe.ruSizes" :key="size"
+				v-model="choosenSize"
+				:disabled="isRadioDisabled"
 				:label="size" type="radio" :name="shoe.id" :value="size">
 				<!-- <input label="39" type="radio" :name="shoe.id" id="male"  value="male" checked>
 				<input label="40" type="radio" :name="shoe.id" id="female"  value="female">
@@ -25,6 +27,8 @@
 				<button
 				v-show="!inBasket"
 				@click="onAddClick(shoe.id)"
+				v-bind:class="{ disabled: isDisabled }"
+				:disabled="isDisabled"
 				class="button link">Добавить в корзину</button>
 				<button
 				v-show="inBasket"
@@ -41,6 +45,9 @@ export default {
 	data() {
 		return {
 			inBasket: false,
+			isDisabled: true,
+			isRadioDisabled: false,
+			choosenSize: null,
 		}
 	},
 	methods: {
@@ -49,17 +56,22 @@ export default {
 			'removeShoe',
 		]),
 		onAddClick(id) {
-			this.addShoe(id);
+			this.addShoe({id: id, size: this.choosenSize});
 			this.inBasket = true;
+			this.isRadioDisabled = true;
 		},
 		onRemovelick(id) {
 			this.removeShoe(id);
 			this.inBasket = false;
+			this.choosenSize = null;
+			this.isRadioDisabled = false;
+			// this.isDisabled = true;
 		}
 	},
 	computed: {
 		...mapGetters([
 			'getInBasket',
+			'getSize'
 		]),
 	},
 	props: {
@@ -74,6 +86,18 @@ export default {
 	},
 	mounted() {
 		this.inBasket = this.getInBasket(this.shoe.id);
+		if(this.inBasket) {
+			this.choosenSize = this.getSize(this.shoe.id);
+			// this.isDisabled = false;
+		}
+	},
+	watch: {
+		choosenSize() {
+			if(this.choosenSize)
+				this.isDisabled = false;
+			else
+				this.isDisabled = true;
+		}
 	}
 }
 </script>
@@ -160,6 +184,10 @@ export default {
 	display: inline-block;
 	text-align: center;
 	width: 100%;
+}
+
+.disabled {
+	background-color: #bdbdbdbd;
 }
 
 </style>
