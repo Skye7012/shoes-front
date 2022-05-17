@@ -1,8 +1,17 @@
 <template>
 	<div class="order box">
-		<span>Дата</span>
-		<span>Сумма Кол-во</span>
-		<span>Адрес</span>
+		<div class="textBlock">
+			<span>Дата:</span>
+			<span>{{getDate()}}</span>
+		</div>
+		<div class="textBlock">
+			<span>Сумма: {{order.sum}} ₽</span>
+			<span>Количество: {{order.count}}</span>
+		</div>
+		<div class="textBlock">
+			<span>Адрес: </span>
+			<span>{{order.addres}}</span>
+		</div>
 
 		<OrderItem 
 		v-for="orderItem in orderItems"
@@ -28,7 +37,11 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 			}
 		},
 		methods: {
-
+			getDate() {
+				var m = this.order.orderDate;
+				m = new Date(Date.parse(m));
+				return m.getFullYear() +" / "+ (m.getMonth()+1) +" / "+ m.getDate();
+			}
 		},
 		props: {
 			order: {}
@@ -36,30 +49,6 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 		created() {
 			this.orderItems = this.order.orderItems;
 		},
-		// data() {
-		// 	return {
-		// 		orderItems: [],
-		// 	}
-		// },
-		// methods: {
-		// 	...mapActions([
-		// 		'fetchOrders',
-		// 	]),
-		// },
-		// computed: {
-		// 	...mapGetters([
-		// 		'getOrders',
-		// 		// 'getOrderItems'
-		// 	]),
-		// },
-		// async mounted() {
-		// 	this.fetchOrders();
-		// },
-		// watch: {
-		// 	getOrders() {
-		// 		this.orderItems = this.getOrders[0].orderItems;
-		// 	}
-		// }
 	}
 
 </script>
@@ -79,6 +68,12 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 .price {
 	color: $danger;
+}
+
+.textBlock {
+	display: flex;
+	justify-content: space-between;
+	margin: 0.1rem 0.5rem;
 }
 
 </style>
