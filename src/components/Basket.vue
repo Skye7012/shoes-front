@@ -57,7 +57,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 			'clearBasket',
 			]),
 			buy() {
-				if(!this.getIsAuth) {
+				if(!localStorage.token) {
 					this.$router.push('/login');
 					return;
 				}
@@ -77,8 +77,6 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 				}
 
 				this.postOrder({order});
-
-				debugger;
 
 				this.clearBasket();
 				this.$router.push('/');

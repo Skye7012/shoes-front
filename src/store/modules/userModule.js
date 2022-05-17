@@ -22,7 +22,8 @@ export default {
 					}
 				});
 
-				localStorage.setItem('token', response.data)
+				localStorage.setItem('token', response.data);
+				axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 				state.isAuth = true;
 				router.push('/profile');
 			}
