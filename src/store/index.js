@@ -6,6 +6,7 @@ import seasons from '@/store/modules/seasons'
 import userModule from '@/store/modules/userModule'
 import basket from '@/store/modules/basket'
 import sizes from '@/store/modules/sizes'
+import order from '@/store/modules/order'
 
 export default createStore({
   modules: {
@@ -16,5 +17,6 @@ export default createStore({
     userModule,
     basket,
     sizes,
+    order,
   }
 })

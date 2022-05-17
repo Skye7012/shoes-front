@@ -43,6 +43,7 @@
 			Сохранить изменения
 		</button>
 		<button 
+			@click="$router.push('/orders')"
 			class="button link">
 			Заказы
 		</button>
