@@ -51,7 +51,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	justify-content: center;
-	column-gap: 30px;
+	gap: 2rem;
 	align-items: center;
 	margin-top: 50px;
 }
