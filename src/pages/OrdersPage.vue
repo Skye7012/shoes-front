@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
 
 .page {
-  //height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
