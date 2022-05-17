@@ -8,10 +8,24 @@
 			</BasketItem>
 		</div>
 		<div class="summary box">
-			<button class="button link">Оформить</button>
 			<p>Товаров ({{getBasketTotalCount}})</p>
 			<p>Общая стоимость <span class="price">{{getBasketPrice}} ₽</span></p>
 
+			<div class="buy">
+				<input
+					v-model="addres"
+					class="input"
+					v-bind:class="{ req: !addres, changed: addres != '' }"
+					placeholder="Адрес"
+					type="text">
+
+				<button 
+				@click="buy()"
+				v-bind:class="{ dis : !addres, link: addres != '' }"
+				:disabled="!addres"
+				class="button">Оформить</button>
+			</div>
+			
 			<button
 			@click="clearBasket"
 			class="button clear">Очистить корзину</button>
@@ -29,18 +43,48 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 		components: {
 			BasketItem,
 		},
+		data() {
+			return {
+				addres: '',
+			}
+		},
 		methods: {
 			...mapActions([
 				'fetchBasketItems',
+				'postOrder'
 			]),
 			...mapMutations([
 			'clearBasket',
-		]),
+			]),
+			buy() {
+				debugger;
+				if (this.getBasketItems.length < 1) {
+					alert('Корзина пуста');
+					return;
+				}
+
+				var orderItems = this.getBasketItems.map(x => (
+					{shoeId : x.id, ruSize : this.getSize(x.id)}
+				));
+				
+				var order = {
+					addres: this.addres,
+					orderItems: orderItems,
+				}
+
+				this.postOrder({order});
+
+				debugger;
+
+				this.clearBasket();
+				this.$router.push('/');
+			}
 		},
 		computed: mapGetters([
 			'getBasketItems',
 			'getBasketTotalCount',
-			'getBasketPrice'
+			'getBasketPrice',
+			'getSize'
 		]),
 		mounted() {
 			this.fetchBasketItems();
@@ -67,7 +111,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-width: 200px;
+	min-width: 250px;
 	margin-left: 50px;
 	height: 60vh;
 	text-align: center;
@@ -83,7 +127,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 }
 
 .input {
-	width: 100%;
+	width: 80%;
 	box-sizing: border-box;
 	border: 1.5px solid $light;
 	border-radius: 0.25rem;
@@ -97,11 +141,27 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 .button {
 	margin: 2vh 0;
-	width: 90%;
+	width: 80%;
 }
 
 .clear {
 	margin-top: auto;
+}
+
+.buy {
+	margin: 20px 0;
+}
+
+.changed {
+	border-color: $info;
+}
+
+.req {
+	border-color: $danger;
+}
+
+.dis {
+	background-color: $light;
 }
 
 </style>

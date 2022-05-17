@@ -77,6 +77,7 @@ export default {
 	height: 100%;
 	aspect-ratio: 5 / 3;
 	border-right: 1.5px solid $light;
+	border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .description {

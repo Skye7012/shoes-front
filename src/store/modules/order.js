@@ -21,6 +21,23 @@ export default {
 				alert(e)
 			}
 		},
+		async postOrder({commit, state}, {order}) {
+			try {
+				debugger;
+				const response = await axios({
+					method: 'post',
+					url: 'Orders',
+					data: {
+						Addres: order.addres,
+						OrderItems: order.orderItems,
+					}
+				});
+				alert("Заказ принят");
+			}
+			catch (e) {
+				alert(e)
+			}
+		},
 	},
 	mutations: {
 		updateOrders(state, orders) {
