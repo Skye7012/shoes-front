@@ -25,10 +25,6 @@ const routes = [
     path: '/basket',
     name: 'basket',
     component: BasketPage,
-    // beforeEnter: (to, from) => {
-    //   if(!localStorage.token)
-    //     return {name: 'login'}
-    // },
   },
   {
     path: '/login',

@@ -1,6 +1,6 @@
 <template>
     <Header></Header>
-    <Catalog></Catalog>
+    <Catalog class="main"></Catalog>
     <Footer></Footer>
 </template>
 
@@ -19,5 +19,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.main {
+  max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 </style>

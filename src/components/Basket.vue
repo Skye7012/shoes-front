@@ -57,7 +57,11 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 			'clearBasket',
 			]),
 			buy() {
-				debugger;
+				if(!this.getIsAuth) {
+					this.$router.push('/login');
+					return;
+				}
+
 				if (this.getBasketItems.length < 1) {
 					alert('Корзина пуста');
 					return;
@@ -84,7 +88,8 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 			'getBasketItems',
 			'getBasketTotalCount',
 			'getBasketPrice',
-			'getSize'
+			'getSize',
+			'getIsAuth'
 		]),
 		mounted() {
 			this.fetchBasketItems();

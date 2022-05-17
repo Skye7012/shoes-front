@@ -1,6 +1,8 @@
 <template>
     <div class="page">
-      <Header></Header>
+     <div class="header">
+        <Header></Header>
+      </div>
       <OrderList class="main"></OrderList>
       <Footer class="footer"></Footer>
     </div>

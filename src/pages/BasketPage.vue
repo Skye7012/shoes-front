@@ -1,6 +1,8 @@
 <template>
     <div class="page">
-      <Header></Header>
+      <div>
+        <Header></Header>
+      </div>
       <Basket class="basket"></Basket>
       <Footer class="footer"></Footer>
     </div>

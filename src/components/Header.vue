@@ -77,9 +77,12 @@ $text-size: 3em;
 $size: 3em;
 
 .nav {
+	box-sizing: border-box;
 	padding: 0 2vw;
 
 	min-width: 700px;
+	max-width: 1200px;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
