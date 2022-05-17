@@ -8,15 +8,11 @@
 					{{shoe.name}}<br>
 				</span>
 			</div>
-			<!-- <div class="categories">
-				{{shoe.brand.name}} / {{shoe.destination.name}} / {{shoe.season.name}}
-			</div> -->
+			<div class="size">
+				<span class="size">{{orderItem.ruSize}}RU</span>
+			</div>
 			<div class="price">
 				{{shoe.price}} ₽  
-			</div>
-			<div class="remove">
-				<button
-				class="button">Убрать из корзины</button>
 			</div>
 		</div>
 	</div>
@@ -35,11 +31,7 @@ export default {
 	props: {
 		orderItem: {}
 	},
-	mounted() {
-		debugger;
-	},
 	created() {
-		debugger;
 		this.shoe = this.orderItem.shoe;
 	},
 }
@@ -57,7 +49,7 @@ export default {
 	border: 1px $light solid;
 	border-radius: 0.25rem;
 	margin: 4px;
-	height: 120px;
+	height: 80px;
 }
 
 .img {
@@ -67,6 +59,7 @@ export default {
 	height: 100%;
 	aspect-ratio: 5 / 3;
 	border-right: 1.5px solid $light;
+	border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .description {
@@ -74,12 +67,12 @@ export default {
 
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	row-gap: 5px;
 }
 
 .title {
-	flex:1;
 	margin: 0.2rem 0.5rem 0 0.5rem;
 	overflow: hidden;
 	text-align: center;
@@ -96,8 +89,6 @@ export default {
 }
 
 .size {
-	// color: white;
-	// background-color: $info;
 	color: initial;
 	background-color: whitesmoke;
 	background-size: 25px;

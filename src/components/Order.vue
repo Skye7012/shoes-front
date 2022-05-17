@@ -1,6 +1,10 @@
 <template>
-	<div class="order">
+	<div class="orders">
 		<div class="orderItems box">
+			<span>Дата</span>
+			<span>Сумма Кол-во</span>
+			<span>Адрес</span>
+
 			<OrderItem 
 			v-for="orderItem in orderItems"
 			:key="orderItem.id"
@@ -62,7 +66,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 @import '@/assets/vars.scss';
 @import '@/assets/my.scss';
 
-.order {
+.orders {
 	margin: auto auto;
 	
 	display: flex;
@@ -85,9 +89,8 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 	overflow-y: auto;
 	height: 60vh;
 	display: grid;
-	grid-auto-rows: 120px;
-	row-gap: 10px;
-	min-width: 450px;
+	grid-auto-rows: min-content;
+	min-width: 350px;
 }
 
 .input {
