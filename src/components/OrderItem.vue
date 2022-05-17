@@ -8,11 +8,8 @@
 					{{shoe.name}}<br>
 				</span>
 			</div>
-			<div class="size">
-				<span class="size">{{orderItem.ruSize}}RU</span>
-			</div>
 			<div class="price">
-				{{shoe.price}} ₽  
+				{{shoe.price}} ₽ &nbsp; <span class="size">{{orderItem.ruSize}}RU</span>
 			</div>
 		</div>
 	</div>
@@ -70,6 +67,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	row-gap: 5px;
+	
 }
 
 .title {

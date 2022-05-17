@@ -1,20 +1,20 @@
 <template>
     <div class="page">
       <Header></Header>
-      <Order class="order"></Order>
+      <OrderList class="main"></OrderList>
       <Footer class="footer"></Footer>
     </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
-import Order from "@/components/Order.vue";
+import OrderList from "@/components/OrderList.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
     components: {
     Header,
-    Order,
+    OrderList,
     Footer
     }
   }
@@ -29,7 +29,7 @@ export default {
   flex-direction: column;
 }
 
-.order {
+.main {
   height: 100%;
 }
 

@@ -1,25 +1,14 @@
 <template>
-	<div class="orders">
-		<div class="orderItems box">
-			<span>Дата</span>
-			<span>Сумма Кол-во</span>
-			<span>Адрес</span>
+	<div class="order box">
+		<span>Дата</span>
+		<span>Сумма Кол-во</span>
+		<span>Адрес</span>
 
-			<OrderItem 
-			v-for="orderItem in orderItems"
-			:key="orderItem.id"
-			v-bind:orderItem="orderItem">
-			</OrderItem>
-		</div>
-		<!-- <div class="summary box">
-			<button class="button link">Оформить</button>
-			<p>Товаров ({{getOrderTotalCount}})</p>
-			<p>Общая стоимость <span class="price">{{getOrderPrice}} ₽</span></p>
-
-			<button
-			@click="clearOrder"
-			class="button clear">Очистить корзину</button>
-		</div> -->
+		<OrderItem 
+		v-for="orderItem in orderItems"
+		:key="orderItem.id"
+		v-bind:orderItem="orderItem">
+		</OrderItem>
 	</div>
 </template>
 
@@ -39,24 +28,38 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 			}
 		},
 		methods: {
-			...mapActions([
-				'fetchOrders',
-			]),
+
 		},
-		computed: {
-			...mapGetters([
-				'getOrders',
-				// 'getOrderItems'
-			]),
+		props: {
+			order: {}
 		},
-		async mounted() {
-			this.fetchOrders();
+		created() {
+			this.orderItems = this.order.orderItems;
 		},
-		watch: {
-			getOrders() {
-				this.orderItems = this.getOrders[0].orderItems;
-			}
-		}
+		// data() {
+		// 	return {
+		// 		orderItems: [],
+		// 	}
+		// },
+		// methods: {
+		// 	...mapActions([
+		// 		'fetchOrders',
+		// 	]),
+		// },
+		// computed: {
+		// 	...mapGetters([
+		// 		'getOrders',
+		// 		// 'getOrderItems'
+		// 	]),
+		// },
+		// async mounted() {
+		// 	this.fetchOrders();
+		// },
+		// watch: {
+		// 	getOrders() {
+		// 		this.orderItems = this.getOrders[0].orderItems;
+		// 	}
+		// }
 	}
 
 </script>
@@ -66,53 +69,16 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 @import '@/assets/vars.scss';
 @import '@/assets/my.scss';
 
-.orders {
-	margin: auto auto;
-	
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 50px;
-}
-
-.summary {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	min-width: 200px;
-	margin-left: 50px;
-	height: 60vh;
-	text-align: center;
-}
-
-.orderItems {
+.order {
 	overflow-y: auto;
 	height: 60vh;
 	display: grid;
 	grid-auto-rows: min-content;
-	min-width: 350px;
-}
-
-.input {
-	width: 100%;
-	box-sizing: border-box;
-	border: 1.5px solid $light;
-	border-radius: 0.25rem;
-	height: 2.5rem;
-	text-align: center;
+	max-width: 350px;
 }
 
 .price {
 	color: $danger;
-}
-
-.button {
-	margin: 2vh 0;
-	width: 90%;
-}
-
-.clear {
-	margin-top: auto;
 }
 
 </style>
