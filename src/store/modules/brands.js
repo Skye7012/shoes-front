@@ -9,7 +9,7 @@ export default {
 	actions: {
 		async fetchBrands({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Brands');
+				const response = await axios.get('http://localhost:8080/Brands');
 
 				const brandsTotalCount = response.data.totalCount;
 				const brands = response.data.items;
