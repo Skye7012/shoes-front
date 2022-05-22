@@ -9,7 +9,7 @@ export default {
 	actions: {
 		async fetchSeasons({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Seasons');
+				const response = await axios.get('http://localhost:8080/Seasons');
 
 				const seasonsTotalCount = response.data.totalCount;
 				const seasons = response.data.items;

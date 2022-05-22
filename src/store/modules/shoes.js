@@ -14,7 +14,7 @@ export default {
 	actions: {
 		async fetchShoes({commit, state}, filters = {brandFilters: [], destinationFilters: [], seasonFilters: [], sizeFilters: []}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Shoes', {
+				const response = await axios.get('http://localhost:8080/Shoes', {
 					params: {
 						Page: state.page,
 						Limit: state.limit,
