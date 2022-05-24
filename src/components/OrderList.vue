@@ -18,11 +18,6 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 		components: {
 			Order,
 		},
-		// data() {
-		// 	return {
-		// 		orders: [],
-		// 	}
-		// },
 		methods: {
 			...mapActions([
 				'fetchOrders',

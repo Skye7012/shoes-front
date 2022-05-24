@@ -54,9 +54,6 @@ export default {
 		getOrders(state) {
 			return state.orders;
 		},
-		// getOrderItems(state) {
-			
-		// },
 		getOrderTotalCount(state) {
 			return state.orderTotalCount
 		},

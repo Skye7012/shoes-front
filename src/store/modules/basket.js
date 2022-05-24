@@ -15,7 +15,6 @@ export default {
 			}
 			if (!basket.includes(id)) {
 				var shoe = {id, size};
-				// shoe = JSON.stringify(shoe);
 				basket.push(shoe);
 			}
 			localStorage.setItem('basket', JSON.stringify(basket));

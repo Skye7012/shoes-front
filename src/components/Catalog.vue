@@ -37,13 +37,7 @@ export default {
 	padding: 0 2vw;
 	display: grid;
 	grid-template-columns: 200px auto;
-	//grid-template-rows: 1fr;
 	column-gap: 10px;
-	//grid-auto-flow: column;
-}
-
-.mcolumn {
-	//height: 90%;
 }
 
 .box {

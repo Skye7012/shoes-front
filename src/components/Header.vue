@@ -83,6 +83,7 @@ $size: 3em;
 	min-width: 700px;
 	max-width: 1200px;
 	margin: 0 auto;
+	margin-top: 20px;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	&-item {
