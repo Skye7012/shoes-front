@@ -112,7 +112,6 @@ export default {
 }
 
 .img {
-	//background-image: url('@/assets/img/123.jpg');
 	background-position: center center;
 	background-size: cover;	
 	height: 100%;

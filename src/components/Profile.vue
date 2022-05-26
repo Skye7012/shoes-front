@@ -13,7 +13,7 @@
 		<div>
 			<label>Имя</label>
 			<input
-				v-model="name"
+				v-model="name"	
 				class="input"
 				v-bind:class="{ req: !name, changed: name != getUser?.name }"
 				placeholder="Имя"
@@ -94,7 +94,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 				this.putUser(user);
 			},
 			delProfile() {
-				if(confirm('Вы уверенты, что хотите удалить аккаунт?')) {
+				if(confirm('Вы уверены, что хотите удалить аккаунт?')) {
 					this.deleteUser();
 				}
 				else {
