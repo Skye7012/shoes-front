@@ -79,6 +79,15 @@ export default {
 		}
 	},
 	getters: {
+		getBasketItems(state) {
+			return state.basketItems;
+		},
+		getBasketTotalCount(state) {
+			return state.basketTotalCount
+		},
+		getBasketPrice(state) {
+			return state.basketPrice
+		},
 		getInBasket: (state) => (id) => {
 			if(localStorage.basket)
 			{
@@ -91,15 +100,6 @@ export default {
 			var basket = JSON.parse(localStorage.basket);
 			return basket.find(x => x.id == id).size;
 		},
-		getBasketItems(state) {
-			return state.basketItems;
-		},
-		getBasketTotalCount(state) {
-			return state.basketTotalCount
-		},
-		getBasketPrice(state) {
-			return state.basketPrice
-		}
 	}
 }
 
