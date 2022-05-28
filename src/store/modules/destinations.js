@@ -9,7 +9,7 @@ export default {
 	actions: {
 		async fetchDestinations({commit, state}) {
 			try {
-				const response = await axios.get('http://localhost:8080/Destinations');
+				const response = await axios.get('http://localhost:8888/destinations');
 
 				const destinationsTotalCount = response.data.totalCount;
 				const destinations = response.data.items;

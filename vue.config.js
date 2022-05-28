@@ -1,5 +1,5 @@
-module.exports = {
-  devServer: {
-    proxy: 'http://shoes-backend-php/',
-  }
-}
+// module.exports = {
+//   devServer: {
+//     proxy: 'http://shoes-backend-php/',
+//   }
+// }
