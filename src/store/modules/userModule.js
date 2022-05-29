@@ -71,11 +71,11 @@ export default {
 			try {
 				const response = await axios({
 					method: 'put',
-					url: 'User',
+					url: 'users',
 					data: {
-						Name: user.name,
-						Fname: user.fname,
-						Phone: user.phone,
+						name: user.name,
+						fname: user.fname,
+						phone: user.phone,
 					}
 				});
 
