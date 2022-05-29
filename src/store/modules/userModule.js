@@ -89,7 +89,7 @@ export default {
 			try {
 				const response = await axios({
 					method: 'delete',
-					url: 'User',
+					url: 'users',
 				});
 
 				this.isAuth= false;
