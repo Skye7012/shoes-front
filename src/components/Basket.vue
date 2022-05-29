@@ -73,6 +73,8 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 				
 				var order = {
 					addres: this.addres,
+					orderSum: this.getBasketItems.map(x => x.price).reduce((x,y)=>x+y),
+					orderCount: this.getBasketItems.length,
 					orderItems: orderItems,
 				}
 

@@ -9,7 +9,7 @@ export default {
 	actions: {
 		async fetchOrders({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Orders');
+				const response = await axios.get('http://localhost:8888/orders');
 
 				const orders = response.data.items;
 				const orderTotalCount = response.data.totalCount;
@@ -23,13 +23,14 @@ export default {
 		},
 		async postOrder({commit, state}, {order}) {
 			try {
-				debugger;
 				const response = await axios({
 					method: 'post',
-					url: 'Orders',
+					url: 'orders',
 					data: {
-						Addres: order.addres,
-						OrderItems: order.orderItems,
+						addres: order.addres,
+						orderSum: order.orderSum,
+						orderCount: order.orderCount,
+						orderItems: order.orderItems,
 					}
 				});
 				alert("Заказ принят");
