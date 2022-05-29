@@ -14,7 +14,7 @@ export default {
 	actions: {
 		async fetchShoes({commit, state}, filters = {brandFilters: [], destinationFilters: [], seasonFilters: [], sizeFilters: []}) {
 			try {
-				const response = await axios.get('http://localhost:8080/Shoes', {
+				const response = await axios.get('http://localhost:8888/shoes', {
 					params: {
 						Page: state.page,
 						Limit: state.limit,
@@ -25,9 +25,6 @@ export default {
 						SeasonFilters: filters.seasonFilters,
 						SizeFilters: filters.sizeFilters,
 					},
-					paramsSerializer: params => {
-						return qs.stringify(params)
-					}
 				});
 				const totalPages = Math.ceil(response.data.totalCount / state.limit);
 				const totalCount = response.data.totalCount;
