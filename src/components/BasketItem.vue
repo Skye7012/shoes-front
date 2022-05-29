@@ -63,7 +63,6 @@ export default {
 .basketItem {
 	display: flex;
 	box-sizing: border-box;
-	//box-shadow: 1px 1px 4px $light;
 	border: 1px $light solid;
 	border-radius: 0.25rem;
 	margin: 4px;
@@ -71,7 +70,6 @@ export default {
 }
 
 .img {
-	//background-image: url('@/assets/img/123.jpg');
 	background-position: center center;
 	background-size: cover;	
 	height: 100%;
@@ -107,8 +105,6 @@ export default {
 }
 
 .size {
-	// color: white;
-	// background-color: $info;
 	color: initial;
 	background-color: whitesmoke;
 	background-size: 25px;

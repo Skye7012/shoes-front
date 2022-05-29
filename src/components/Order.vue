@@ -24,9 +24,6 @@
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 
-import {mapGetters, mapActions, mapMutations} from 'vuex'
-
-
 	export default {
 		components: {
 			OrderItem,

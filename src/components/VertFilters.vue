@@ -144,7 +144,6 @@ export default {
 }
 
 .pagination-container {
-	//padding-left: 5vw;
 	display: flex;
 	justify-content: flex-end;
 }

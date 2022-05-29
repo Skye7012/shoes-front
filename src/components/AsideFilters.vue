@@ -134,7 +134,6 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 @import '@/assets/vars.scss';
 @import '@/assets/my.scss';
 
-//peren
 .menu {
 	ul {
 		padding-left: 10px;

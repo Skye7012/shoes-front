@@ -19,9 +19,6 @@
 				v-model="choosenSize"
 				:disabled="isRadioDisabled"
 				:label="size" type="radio" :name="shoe.id" :value="size">
-				<!-- <input label="39" type="radio" :name="shoe.id" id="male"  value="male" checked>
-				<input label="40" type="radio" :name="shoe.id" id="female"  value="female">
-				<input label="41" type="radio" :name="shoe.id" id="other"  value="other">  -->
 			</div>
 			<div class="buy">
 				<button
@@ -65,7 +62,6 @@ export default {
 			this.inBasket = false;
 			this.choosenSize = null;
 			this.isRadioDisabled = false;
-			// this.isDisabled = true;
 		}
 	},
 	computed: {
@@ -88,7 +84,6 @@ export default {
 		this.inBasket = this.getInBasket(this.shoe.id);
 		if(this.inBasket) {
 			this.choosenSize = this.getSize(this.shoe.id);
-			// this.isDisabled = false;
 		}
 	},
 	watch: {
@@ -117,7 +112,6 @@ export default {
 }
 
 .img {
-	//background-image: url('@/assets/img/123.jpg');
 	background-position: center center;
 	background-size: cover;	
 	height: 100%;
