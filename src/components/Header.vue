@@ -65,7 +65,7 @@ export default {
 		]),
 	},
 	mounted() {
-		// this.fetchBasketItems();
+		this.fetchBasketItems();
 	}
 }
 </script>

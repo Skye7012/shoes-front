@@ -15,15 +15,15 @@ export default {
 			try {
 				const response = await axios({
 					method: 'post',
-					url: 'User/login',
+					url: 'users/login',
 					data: {
-						Login: login,
-						Password: password
+						login: login,
+						password: password
 					}
 				});
 
 				localStorage.setItem('token', response.data);
-				axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+				axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 				state.isAuth = true;
 				router.push('/profile');
 			}
@@ -35,13 +35,13 @@ export default {
 			try {
 				const response = await axios({
 					method: 'post',
-					url: 'User/register',
+					url: 'users/register',
 					data: {
-						Login: user.login,
-						Password: user.password,
-						Name: user.name,
-						Fname: user.fname,
-						Phone: user.phone,
+						login: user.login,
+						password: user.password,
+						name: user.name,
+						fname: user.fname,
+						phone: user.phone,
 					}
 				});
 				
@@ -58,7 +58,7 @@ export default {
 		},
 		async fetchUser({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/User');
+				const response = await axios.get('http://localhost:8888/users');
 
 				const user = response.data;
 				commit('updateUser', user);

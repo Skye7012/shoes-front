@@ -35,13 +35,10 @@ export default {
 				if(localStorage.basket) {
 					ids = JSON.parse(localStorage.basket).map(x => x.id);
 				}
-				const response = await axios.get('https://localhost:7163/Shoes/GetByIds', {
+				const response = await axios.get('http://localhost:8888/shoes/getByIds', {
 					params: {
 						ids: ids,
 					},
-					paramsSerializer: params => {
-						return qs.stringify(params)
-					}
 				});
 				const basketItems = response.data.items;
 				const basketTotalCount = response.data.totalCount;
