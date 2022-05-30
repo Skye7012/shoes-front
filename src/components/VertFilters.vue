@@ -70,7 +70,6 @@ export default {
 		]),
 		...mapActions(["fetchShoes"]),
 		downloadXMLFile() {
-			debugger;
 			var FileSaver = require('file-saver');
 			var res = this.allShoes;
 			res = JSON.stringify(res);
