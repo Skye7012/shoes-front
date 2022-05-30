@@ -12,6 +12,9 @@
 				</option>
 
 			</select>
+
+			<button class="button" @click="downloadXMLFile">XML</button>
+
 			<div class="pagination-container">
 				<button 
 				@click="this.decrementPage"
@@ -66,6 +69,34 @@ export default {
 			'updateSortOption'
 		]),
 		...mapActions(["fetchShoes"]),
+		downloadXMLFile() {
+			debugger;
+			var FileSaver = require('file-saver');
+			var res = this.allShoes;
+			res = JSON.stringify(res);
+			res = eval("OBJtoXML("+res+");")
+			var blob = new Blob([res], {type: "text/plain;charset=utf-8"});
+			FileSaver.saveAs(blob, "catalog.xml");
+
+			function OBJtoXML(obj) {
+				var xml = '';
+				for (var prop in obj) {
+					xml += "<" + prop + ">";
+					if(obj[prop] instanceof Array) {
+						for (var array in obj[prop]) {
+							xml += OBJtoXML(new Object(obj[prop][array]));
+						}
+					} else if (typeof obj[prop] == "object") {
+						xml += OBJtoXML(new Object(obj[prop]));
+					} else {
+						xml += obj[prop];
+					}
+					xml += "</" + prop + ">";
+				}
+				var xml = xml.replace(/<\/?[0-9]{1,}>/g,'');
+				return xml
+			}
+		},
 		changePage(page) {
 			if(page > 0 && page <= this.totalPages)
 			{
@@ -114,7 +145,8 @@ export default {
 	computed: {
 		...mapGetters([
 			'totalCount',
-			'totalPages'
+			'totalPages',
+			'allShoes'
 		]),
 	}
 }
@@ -127,7 +159,7 @@ export default {
 
 .filter {
 	display: grid;
-	grid-template-columns: min-content auto;
+	grid-template-columns: min-content auto auto;
 	align-items: center;
 }
 
