@@ -12,8 +12,9 @@
 				</option>
 
 			</select>
-
-			<button class="button" @click="downloadXMLFile">XML</button>
+			
+			<a href="shoes.xml" download="shoes.xml"><button class="button">XML</button></a>
+			<button disabled hidden class="button" @click="downloadXMLFile">XML</button>
 
 			<div class="pagination-container">
 				<button 
