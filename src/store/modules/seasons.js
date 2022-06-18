@@ -3,7 +3,6 @@ import axios from 'axios'
 export default {
 	state: {
 		seasons: [],
-		seasonFilters: [],
 		seasonsTotalCount: 0,
 	},
 	actions: {
@@ -27,9 +26,6 @@ export default {
 		},
 		updateSeasonsTotalCount(state, seasonsTotalCount) {
 			state.seasonsTotalCount = seasonsTotalCount
-		},
-		updateSeasonFilters(state, seasonFilters) {
-			state.seasonFilters = seasonFilters
 		}
 	},
 	getters: {
@@ -38,9 +34,6 @@ export default {
 	  },
 	  seasonsTotalCount(state) {
 		return state.seasonsTotalCount
-	  },
-	  seasonFilters(state){
-		return state.seasonFilters
 	  }
 	}
   }

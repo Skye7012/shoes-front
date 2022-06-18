@@ -10,9 +10,13 @@ export default {
 		limit: 4,
 		sortOption: {OrderBy: 'Name'},
 		searchQuery: null,
+		brandFilters: [],
+		destinationFilters: [],
+		seasonFilters: [],
+		sizeFilters: [],
 	},
 	actions: {
-		async fetchShoes({commit, state}, filters = {brandFilters: [], destinationFilters: [], seasonFilters: [], sizeFilters: []}) {
+		async fetchShoes({commit, state}) {
 			try {
 				const response = await axios.get('https://localhost:7163/Shoes', {
 					params: {
@@ -20,10 +24,10 @@ export default {
 						Limit: state.limit,
 						...state.sortOption,
 						...state.searchQuery,
-						BrandFilters: filters.brandFilters,
-						DestinationFilters: filters.destinationFilters,
-						SeasonFilters: filters.seasonFilters,
-						SizeFilters: filters.sizeFilters,
+						BrandFilters: state.brandFilters,
+						DestinationFilters: state.destinationFilters,
+						SeasonFilters: state.seasonFilters,
+						SizeFilters: state.sizeFilters,
 					},
 					paramsSerializer: params => {
 						return qs.stringify(params,  { arrayFormat: "repeat" })
@@ -60,6 +64,18 @@ export default {
 	  updateSearchQuery(state, searchQuery) {
 		state.searchQuery = {SearchQuery: searchQuery};
 	  },
+	  updateBrandFilters(state, brandFilters) {
+		state.brandFilters = brandFilters;
+	  },
+	  updateDestinationFilters(state, destinationFilters) {
+		state.destinationFilters = destinationFilters;
+	  },
+	  updateSeasonFilters(state, seasonFilters) {
+		state.seasonFilters = seasonFilters;
+	  },
+	  updateSizeFilters(state, sizeFilters) {
+		state.sizeFilters = sizeFilters;
+	  },
 	},
 	getters: {
 	  allShoes(state) {
@@ -70,6 +86,9 @@ export default {
 	  },
 	  totalPages(state) {
 		return state.totalPages
+	  },
+	  searchQueryGetter(state) {
+		return state.searchQuery
 	  }
 	}
   }

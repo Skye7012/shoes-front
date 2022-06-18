@@ -3,7 +3,6 @@ import axios from 'axios'
 export default {
 	state: {
 		brands: [],
-		brandFilters: [],
 		brandsTotalCount: 0,
 	},
 	actions: {
@@ -28,9 +27,6 @@ export default {
 		updateBrandsTotalCount(state, brandsTotalCount) {
 			state.brandsTotalCount = brandsTotalCount
 		},
-		updateBrandFilters(state, brandFilters) {
-			state.brandFilters = brandFilters
-		}
 	},
 	getters: {
 	  allBrands(state) {
@@ -38,9 +34,6 @@ export default {
 	  },
 	  brandsTotalCount(state) {
 		return state.brandsTotalCount
-	  },
-	  brandFilters(state){
-		return state.brandFilters
 	  }
 	}
   }

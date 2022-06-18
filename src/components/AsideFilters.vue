@@ -63,6 +63,7 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 	export default {
 		data() {
+			// try use only getters from busket store
 			return {
 				brandFilters: [],
 				destinationFilters: [],
@@ -87,19 +88,23 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 				'fetchSizes',
 			]),
 			...mapMutations([
+				'updateSearchQuery',
 				'updateBrandFilters',
 				'updateDestinationFilters',
 				'updateSeasonFilters',
 				'updateSizeFilters',
 			]),
-			callFetchShoes() {
-				this.fetchShoes({brandFilters: this.brandFilters, destinationFilters: this.destinationFilters, seasonFilters: this.seasonFilters, sizeFilters: this.sizeFilters});
-			},
 			dropFilters() {
 				this.brandFilters = [];
+				this.updateBrandFilters(this.brandFilters);
 				this.destinationFilters = [];
+				this.updateDestinationFilters(this.destinationFilters);
 				this.seasonFilters = [];
+				this.updateSeasonFilters(this.seasonFilters);
 				this.sizeFilters = [];
+				this.updateSizeFilters(this.sizeFilters);
+
+				this.updateSearchQuery('');
 			}
 		},
 		mounted() {
@@ -111,19 +116,19 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 		watch: {
 			brandFilters() {
 				this.updateBrandFilters(this.brandFilters);
-				this.callFetchShoes();
+				this.fetchShoes();
 			},
 			destinationFilters() {
 				this.updateDestinationFilters(this.destinationFilters);
-				this.callFetchShoes();
+				this.fetchShoes();
 			},
 			seasonFilters() {
 				this.updateSeasonFilters(this.seasonFilters);
-				this.callFetchShoes();
+				this.fetchShoes();
 			},
 			sizeFilters() {
 				this.updateSizeFilters(this.sizeFilters);
-				this.callFetchShoes();
+				this.fetchShoes();
 			},
 		}
 	}
