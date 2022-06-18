@@ -9,12 +9,10 @@ export default {
 	actions: {
 		async fetchSeasons({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Seasons');
+				const response = await axios.get('http://localhost:8000/season');
 
-				const seasonsTotalCount = response.data.totalCount;
-				const seasons = response.data.items;
+				const seasons = response.data;
 				commit('updateSeasons', seasons);
-				commit('updateSeasonsTotalCount', seasonsTotalCount);
 			}
 			catch (e) {
 				alert(e)

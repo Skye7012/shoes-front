@@ -9,9 +9,9 @@ export default {
 	actions: {
 		async fetchSizes({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Sizes');
+				const response = await axios.get('http://localhost:8000/size');
 
-				const sizes = response.data;
+				const sizes = response.data.map(x => x.ru_size);
 				const sizesTotalCount = sizes.length;
 				commit('updateSizes', sizes);
 				commit('updateSizesTotalCount', sizesTotalCount);

@@ -9,12 +9,10 @@ export default {
 	actions: {
 		async fetchDestinations({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Destinations');
+				const response = await axios.get('http://localhost:8000/destination');
 
-				const destinationsTotalCount = response.data.totalCount;
-				const destinations = response.data.items;
+				const destinations = response.data;
 				commit('updateDestinations', destinations);
-				commit('updateDestinationsTotalCount', destinationsTotalCount);
 			}
 			catch (e) {
 				alert(e)

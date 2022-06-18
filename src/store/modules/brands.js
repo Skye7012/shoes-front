@@ -9,12 +9,10 @@ export default {
 	actions: {
 		async fetchBrands({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/Brands');
+				const response = await axios.get('http://localhost:8000/brand');
 
-				const brandsTotalCount = response.data.totalCount;
-				const brands = response.data.items;
+				const brands = response.data;
 				commit('updateBrands', brands);
-				commit('updateBrandsTotalCount', brandsTotalCount);
 			}
 			catch (e) {
 				alert(e)
