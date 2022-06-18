@@ -86,6 +86,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 				'fetchDestinations',
 				'fetchSeasons',
 				'fetchSizes',
+				'dropFiltersAction',
 			]),
 			...mapMutations([
 				'updateSearchQuery',
@@ -96,15 +97,12 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 			]),
 			dropFilters() {
 				this.brandFilters = [];
-				this.updateBrandFilters(this.brandFilters);
 				this.destinationFilters = [];
-				this.updateDestinationFilters(this.destinationFilters);
 				this.seasonFilters = [];
-				this.updateSeasonFilters(this.seasonFilters);
 				this.sizeFilters = [];
-				this.updateSizeFilters(this.sizeFilters);
 
-				this.updateSearchQuery('');
+				this.dropFiltersAction();
+				this.fetchShoes();
 			}
 		},
 		mounted() {
@@ -115,20 +113,28 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 		},
 		watch: {
 			brandFilters() {
-				this.updateBrandFilters(this.brandFilters);
-				this.fetchShoes();
+				if(this.brandFilters[0] != null) {
+					this.updateBrandFilters(this.brandFilters);
+					this.fetchShoes();
+				}
 			},
 			destinationFilters() {
-				this.updateDestinationFilters(this.destinationFilters);
-				this.fetchShoes();
+				if(this.destinationFilters[0] != null) {
+					this.updateDestinationFilters(this.destinationFilters);
+					this.fetchShoes();
+				}
 			},
 			seasonFilters() {
-				this.updateSeasonFilters(this.seasonFilters);
-				this.fetchShoes();
+				if(this.seasonFilters[0] != null){
+					this.updateSeasonFilters(this.seasonFilters);
+					this.fetchShoes();
+				}
 			},
 			sizeFilters() {
-				this.updateSizeFilters(this.sizeFilters);
-				this.fetchShoes();
+				if(this.sizeFilters[0] != null){
+					this.updateSizeFilters(this.sizeFilters);
+					this.fetchShoes();
+				}
 			},
 		}
 	}

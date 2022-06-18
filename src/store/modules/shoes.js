@@ -44,6 +44,13 @@ export default {
 				alert(e)
 			}
 		},
+		dropFiltersAction({state}) {
+			state.searchQuery = ''
+			state.brandFilters = []
+			state.destinationFilters =[]
+			state.seasonFilters = []
+			state.sizeFilters = []
+		}
 	},
 	mutations: {
 	  updateShoes(state, shoes) {
