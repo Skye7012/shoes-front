@@ -26,7 +26,7 @@ export default {
 						SizeFilters: filters.sizeFilters,
 					},
 					paramsSerializer: params => {
-						return qs.stringify(params)
+						return qs.stringify(params,  { arrayFormat: "repeat" })
 					}
 				});
 				const totalPages = Math.ceil(response.data.totalCount / state.limit);
