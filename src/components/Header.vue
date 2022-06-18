@@ -61,8 +61,15 @@ export default {
 	computed: {
 		...mapGetters([
 			'getIsAuth',
-			'getBasketTotalCount'
+			'getBasketTotalCount',
+			'searchQueryGetter',
 		]),
+	},
+	watch: {
+		searchQueryGetter(){
+			if(!this.searchQueryGetter.SearchQuery)
+				this.searchQuery = ''
+		}
 	},
 	mounted() {
 		this.fetchBasketItems();

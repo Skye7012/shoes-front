@@ -3,7 +3,6 @@ import axios from 'axios'
 export default {
 	state: {
 		sizes: [],
-		sizeFilters: [],
 		sizesTotalCount: 0,
 	},
 	actions: {
@@ -27,9 +26,6 @@ export default {
 		},
 		updateSizesTotalCount(state, sizesTotalCount) {
 			state.sizesTotalCount = sizesTotalCount
-		},
-		updateSizeFilters(state, sizeFilters) {
-			state.sizeFilters = sizeFilters
 		}
 	},
 	getters: {
@@ -38,9 +34,6 @@ export default {
 	  },
 	  sizesTotalCount(state) {
 		return state.sizesTotalCount
-	  },
-	  sizeFilters(state){
-		return state.sizeFilters
 	  }
 	}
   }

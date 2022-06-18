@@ -3,7 +3,6 @@ import axios from 'axios'
 export default {
 	state: {
 		destinations: [],
-		destinationFilters: [],
 		destinationsTotalCount: 0,
 	},
 	actions: {
@@ -25,9 +24,6 @@ export default {
 		},
 		updateDestinationsTotalCount(state, destinationsTotalCount) {
 			state.destinationsTotalCount = destinationsTotalCount
-		},
-		updateDestinationFilters(state, destinationFilters) {
-			state.destinationFilters = destinationFilters
 		}
 	},
 	getters: {
@@ -36,9 +32,6 @@ export default {
 	  },
 	  destinationsTotalCount(state) {
 		return state.destinationsTotalCount
-	  },
-	  destinationFilters(state){
-		return state.destinationFilters
 	  }
 	}
   }
