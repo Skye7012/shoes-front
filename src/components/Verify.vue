@@ -28,25 +28,18 @@ export default {
 		]),
 	},
 	mounted() {
-		debugger;
-
 		const code = this.$route.query.code;
 
 		if (code) {
-			try {
-				this.verify({code}).then(
-					res => {
-						alert('1')
-					}, err => {
-						alert('2')
-					})
-				this.message = "Аккаунт успешно верифицирован!";
-				this.error = false;
-			}
-			catch(e) {
-				this.message = e;
-				this.error = true;
-			}
+			this.verify({code})
+				.then(() => {
+					this.message = "Аккаунт успешно верифицирован!";
+					this.error = false;
+				})
+				.catch(err => {
+					this.message = err.response.data
+					this.error = true
+				})
 		}
 		else {
 			this.message = 'Не указан код подтвеждения'
