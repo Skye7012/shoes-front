@@ -21,6 +21,7 @@
 		<input
 			v-model="firstName"
 			class="input"
+			v-bind:class="{ req: !firstName }"
 			placeholder="Имя"
 			type="text">
 		<input

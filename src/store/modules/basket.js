@@ -31,16 +31,19 @@ export default {
 		},
 		async fetchBasketItems({commit, state}) {
 			try {
+				if(!localStorage.basket)
+					return;
+
 				let ids = [];
 				if(localStorage.basket) {
 					ids = JSON.parse(localStorage.basket).map(x => x.id);
 				}
-				const response = await axios.get('https://localhost:7163/Shoes/GetByIds', {
+				const response = await axios.get('http://localhost:8000/shoe/get_by_ids/', {
 					params: {
 						ids: ids,
 					},
 					paramsSerializer: params => {
-						return qs.stringify(params)
+						return qs.stringify(params,  { arrayFormat: "repeat" })
 					}
 				});
 				const basketItems = response.data.items;
