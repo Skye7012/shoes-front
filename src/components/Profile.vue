@@ -1,11 +1,11 @@
 <template>
 	<div class="registration">
 		<div>
-			<label>Логин</label>
+			<label>email</label>
 			<input
-				v-model="login"
+				v-model="email"
 				class="input"
-				placeholder="Логин"
+				placeholder="email"
 				type="text"
 				disabled
 				>
@@ -13,18 +13,18 @@
 		<div>
 			<label>Имя</label>
 			<input
-				v-model="name"	
+				v-model="firstName"	
 				class="input"
-				v-bind:class="{ req: !name, changed: name != getUser?.name }"
+				v-bind:class="{ req: !firstName, changed: firstName != getUser?.firstName }"
 				placeholder="Имя"
 				type="text">
 		</div>
 		<div>
 			<label>Фамилия</label>
 			<input
-				v-model="fname"
+				v-model="lastName"
 				class="input"
-				v-bind:class="{ changed: fname != getUser?.fname }"
+				v-bind:class="{ changed: lastName != getUser?.lastName }"
 				placeholder="Фамилия"
 				type="text">
 		</div>
@@ -66,9 +66,9 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 	export default {
 		data() {
 			return {
-				login: null,
-				name: null,
-				fname: null,
+				email: null,
+				firstName: null,
+				lastName: null,
 				phone: null,
 			}
 		},
@@ -80,15 +80,15 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 				'deleteUser'
 			]),
 			updateUser() {
-				if(!this.name) {
+				if(!this.firstName) {
 					alert('Имя обязательно');
 					return;
 				}
 
 				var user = {
-					login: this.login,
-					name: this.name,
-					fname: this.fname,
+					email: this.email,
+					firstName: this.firstName,
+					lastName: this.lastName,
 					phone: this.phone,
 				}
 				this.putUser(user);
@@ -105,7 +105,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 		computed: {
 			...mapGetters([
 				'getUser',
-				'getLogin'
+				'getEmail'
 			]),
 		},
 		mounted() {
@@ -114,9 +114,9 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 		watch: {
 			getUser() {
 				var user = this.getUser;
-				this.login = user.login;
-				this.name = user.name;
-				this.fname = user.fname;
+				this.email = user.email;
+				this.firstName = user.firstName;
+				this.lastName = user.lastName;
 				this.phone = user.phone;
 			}
 		}

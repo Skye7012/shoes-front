@@ -1,10 +1,10 @@
 <template>
 	<div class="registration">
 		<input
-			v-model="login"
+			v-model="email"
 			class="input"
-			v-bind:class="{ req: !login }"
-			placeholder="Логин"
+			v-bind:class="{ req: !email }"
+			placeholder="Почта"
 			type="text">
 		<input
 			v-model="password"
@@ -19,13 +19,12 @@
 			placeholder="Подтвердите пароль"
 			type="password">
 		<input
-			v-model="name"
+			v-model="firstName"
 			class="input"
-			v-bind:class="{ req: !name }"
 			placeholder="Имя"
 			type="text">
 		<input
-			v-model="fname"
+			v-model="lastName"
 			class="input"
 			placeholder="Фамилия"
 			type="text">
@@ -48,11 +47,11 @@ import { mapActions } from 'vuex'
 	export default {
 		data() {
 			return {
-				login: null,
+				email: null,
 				password: null,
 				confirmPassword: null,
-				name: null,
-				fname: null,
+				firstName: null,
+				lastName: null,
 				phone: null,
 			}
 		},
@@ -61,8 +60,8 @@ import { mapActions } from 'vuex'
 				'doRegister'
 			]),
 			register() {
-				if(!this.login) {
-					alert('Логин обязателен');
+				if(!this.email) {
+					alert('Почта обязательна');
 					return;
 				}
 				if(!this.password) {
@@ -77,16 +76,16 @@ import { mapActions } from 'vuex'
 					alert('Пароли не совпадают');
 					return;
 				}
-				if(!this.name) {
+				if(!this.firstName) {
 					alert('Имя обязательно');
 					return;
 				}
 
 				var user = {
-					login: this.login,
+					email: this.email,
 					password: this.password,
-					name: this.name,
-					fname: this.fname,
+					firstName: this.firstName,
+					lastName: this.lastName,
 					phone: this.phone,
 				}
 				

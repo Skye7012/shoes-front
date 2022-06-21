@@ -1,10 +1,10 @@
 <template>
 	<div class="login">
 		<input
-			v-model="login"
+			v-model="email"
 			class="input"
 			style="margin-bottom: 10px"
-			placeholder="Логин"
+			placeholder="email"
 			type="text">
 		<input
 			v-model="password"
@@ -13,7 +13,7 @@
 			placeholder="Пароль"
 			type="password">
 		<button 
-			@click="doLogin({login, password})"
+			@click="doLogin({email, password})"
 			class="button">
 			Войти
 		</button>
@@ -28,7 +28,7 @@ import { mapActions } from 'vuex'
 	export default {
 		data() {
 			return {
-				login: null,
+				email: null,
 				password: null,
 			}
 		},

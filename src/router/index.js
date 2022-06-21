@@ -3,6 +3,7 @@ import HomePage from '@/pages/HomePage.vue'
 import ProfilePage from '@/pages/ProfilePage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import RegistrationPage from '@/pages/RegistrationPage.vue'
+import VerifyPage from '@/pages/VerifyPage.vue'
 import BasketPage from '@/pages/BasketPage.vue'
 import OrdersPage from '@/pages/OrdersPage.vue'
 
@@ -39,6 +40,15 @@ const routes = [
     path: '/registration',
     name: 'registration',
     component: RegistrationPage,
+    beforeEnter: (to, from) => {
+      if(localStorage.token)
+        return false;
+    },
+  },
+  {
+    path: '/verify',
+    name: 'verify',
+    component: VerifyPage,
     beforeEnter: (to, from) => {
       if(localStorage.token)
         return false;

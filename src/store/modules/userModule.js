@@ -4,45 +4,26 @@ import router from '@/router'
 export default {
 	state: {
 		isAuth: !!localStorage.token,
-		login: null,
-		name: null,
-		fname: null,
+		email: null,
+		firstName: null,
+		lastName: null,
 		phone: null,
 		user: null
 	},
 	actions: {
-		async doLogin({commit, state}, {login, password}) {
-			try {
-				const response = await axios({
-					method: 'post',
-					url: 'User/login',
-					data: {
-						Login: login,
-						Password: password
-					}
-				});
-
-				localStorage.setItem('token', response.data);
-				axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-				state.isAuth = true;
-				router.push('/profile');
-			}
-			catch (e) {
-				alert(e)
-			}
-		},
 		async doRegister({commit, state}, user) {
 			try {
+				var bodyFormData = new FormData();
+				bodyFormData.append('email', user.email);
+				bodyFormData.append('password', user.password);
+				bodyFormData.append('first_name', user.firstName);
+				bodyFormData.append('last_name', user.lastName);
+				bodyFormData.append('phone', user.phone);
+
 				const response = await axios({
 					method: 'post',
-					url: 'User/register',
-					data: {
-						Login: user.login,
-						Password: user.password,
-						Name: user.name,
-						Fname: user.fname,
-						Phone: user.phone,
-					}
+					url: 'user/signup/',
+					data: bodyFormData,
 				});
 				
 				router.push('/login');
@@ -51,16 +32,61 @@ export default {
 				alert(e)
 			}
 		},
-		doLogout({commit, state}) {
+		async doLogin({commit, state}, {email, password}) {
+			try {
+				var bodyFormData = new FormData();
+				bodyFormData.append('email', email);
+				bodyFormData.append('password',password);
+
+				const response = await axios({
+					method: 'post',
+					url: 'user/login/',
+					data: bodyFormData,
+				});
+
+				localStorage.setItem('token', response.data);
+				axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+				state.isAuth = true;
+				router.push('/profile');
+			}
+			catch (e) {
+				alert(e)
+			}
+		},
+		async verify({commit, state}, {code}) {
+			try {
+				const response = await axios({
+					method: 'post',
+					url: 'user/verify/',
+					params: {
+						code: code,
+					},
+				});
+			}
+			catch (e) {
+				return Promise.reject(e)
+			}
+		},
+		async doLogout({commit, state}) {
+
+			const response = await axios({
+				method: 'post',
+				url: 'user/logout/',
+			});
+
 			localStorage.removeItem('token');
+			delete axios.defaults.headers.common['Authorization']
 			state.isAuth = false;
 			router.push('/login');
 		},
 		async fetchUser({commit, state}) {
 			try {
-				const response = await axios.get('https://localhost:7163/User');
+				const response = await axios.get('http://localhost:8000/user/');
+				
+				var user = response.data;
 
-				const user = response.data;
+				user = parseRequestUser(user);
+
 				commit('updateUser', user);
 			}
 			catch (e) {
@@ -71,14 +97,14 @@ export default {
 			try {
 				const response = await axios({
 					method: 'put',
-					url: 'User',
+					url: 'user/',
 					data: {
-						Name: user.name,
-						Fname: user.fname,
-						Phone: user.phone,
+						first_name: user.firstName,
+						last_name: user.lastName,
+						phone: user.phone,
 					}
 				});
-
+				
 				commit('updateUser', user);
 			}
 			catch (e) {
@@ -89,17 +115,18 @@ export default {
 			try {
 				const response = await axios({
 					method: 'delete',
-					url: 'User',
+					url: 'user/',
 				});
 
 				this.isAuth= false;
-				this.login= null;
-				this.name= null;
-				this.fname= null;
+				this.email= null;
+				this.firstName= null;
+				this.lastName= null;
 				this.phone= null;
 				this.user= null;
 				localStorage.removeItem('token');
 				localStorage.removeItem('basket');
+				delete axios.defaults.headers.common['Authorization']
 				
 				router.push('/');
 			}
@@ -112,22 +139,10 @@ export default {
 		updateIsAuth(state, isAuth) {
 			state.isAuth = isAuth
 		},
-		updateLogin(state, login) {
-			state.login = login
-		},
-		updateName(state, name) {
-			state.name = name
-		},
-		updateFname(state, fname) {
-			state.fname = fname
-		},
-		updatePhone(state, phone) {
-			state.phone = phone
-		},
 		updateUser(state, user) {
-			state.login = user.login;
-			state.name = user.name;
-			state.fname = user.fname;
+			state.email = user.email;
+			state.firstName = user.firstName;
+			state.lastName = user.lastName;
 			state.phone = user.phone;
 			state.user = user;
 		}
@@ -139,9 +154,17 @@ export default {
 		getUser(state) {
 			return state.user
 		},
-		getLogin(state) {
-			return state.login
+		getEmail(state) {
+			return state.email
 		}
+	},
+}
+
+function parseRequestUser(user) {
+	return {
+		email: user.email,
+		firstName: user.first_name,
+		lastName: user.last_name,
+		phone: user.phone,
 	}
-  }
-  
+}
