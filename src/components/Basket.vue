@@ -13,16 +13,16 @@
 
 			<div class="buy">
 				<input
-					v-model="addres"
+					v-model="address"
 					class="input"
-					v-bind:class="{ req: !addres, changed: addres != '' }"
+					v-bind:class="{ req: !address, changed: address != '' }"
 					placeholder="Адрес"
 					type="text">
 
 				<button 
 				@click="buy()"
-				v-bind:class="{ dis : !addres, link: addres != '' }"
-				:disabled="!addres"
+				v-bind:class="{ dis : !address, link: address != '' }"
+				:disabled="!address"
 				class="button">Оформить</button>
 			</div>
 			
@@ -45,7 +45,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 		},
 		data() {
 			return {
-				addres: '',
+				address: '',
 			}
 		},
 		methods: {
@@ -72,7 +72,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 				));
 				
 				var order = {
-					addres: this.addres,
+					address: this.address,
 					orderItems: orderItems,
 				}
 

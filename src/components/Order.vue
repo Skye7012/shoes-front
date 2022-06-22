@@ -10,7 +10,7 @@
 		</div>
 		<div class="textBlock">
 			<span>Адрес: </span>
-			<span>{{order.addres}}</span>
+			<span>{{order.address}}</span>
 		</div>
 
 		<OrderItem 
