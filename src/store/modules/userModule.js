@@ -29,7 +29,7 @@ export default {
 				router.push('/login');
 			}
 			catch (e) {
-				alert(e)
+				return Promise.reject(e)
 			}
 		},
 		async doLogin({commit, state}, {email, password}) {
@@ -50,7 +50,7 @@ export default {
 				router.push('/profile');
 			}
 			catch (e) {
-				alert(e)
+				alert(e.response.data || "Произошла ошибка")
 			}
 		},
 		async verify({commit, state}, {code}) {

@@ -89,8 +89,15 @@ import { mapActions } from 'vuex'
 					lastName: this.lastName,
 					phone: this.phone,
 				}
-				
-				this.doRegister(user);
+
+				this.doRegister(user)
+					.then(() => alert("Регистрация прошла успешно"))
+					.catch((err) => {
+						if(err.response.status == 500)
+							alert("Произошла ошибка")
+						else
+							alert(err.response.data || "Произошла ошибка")
+					});
 			}
 		}
 	}
