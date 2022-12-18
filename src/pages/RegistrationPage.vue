@@ -1,29 +1,29 @@
 <template>
-    <div class="page">
-      <div class="header">
-        <Header></Header>
-      </div>
-      <Registration class="registration"></Registration>
-      <Footer class="footer"></Footer>
+  <div class="page">
+    <div class="header">
+      <HeaderComponent></HeaderComponent>
     </div>
+    <RegistrationComponent class="registration"></RegistrationComponent>
+    <FooterComponent class="footer"></FooterComponent>
+  </div>
 </template>
 
-<script>
-import Header from "@/components/Header.vue";
-import Registration from "@/components/Registration.vue";
-import Footer from "@/components/Footer.vue";
+<script lang="ts">
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import RegistrationComponent from "@/components/RegistrationComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import { defineComponent } from "vue";
 
-export default {
-    components: {
-    Header,
-    Registration,
-    Footer
-    }
-  }
+export default defineComponent({
+  components: {
+    HeaderComponent,
+    RegistrationComponent,
+    FooterComponent,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-
 .page {
   height: 100vh;
   display: flex;
@@ -34,5 +34,4 @@ export default {
 .registration {
   height: 100%;
 }
-
 </style>

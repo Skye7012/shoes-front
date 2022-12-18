@@ -1,29 +1,29 @@
 <template>
-    <div class="page">
-     <div class="header">
-        <Header></Header>
-      </div>
-      <OrderList class="main"></OrderList>
-      <Footer class="footer"></Footer>
+  <div class="page">
+    <div class="header">
+      <HeaderComponent></HeaderComponent>
     </div>
+    <OrderList class="main"></OrderList>
+    <FooterComponent class="footer"></FooterComponent>
+  </div>
 </template>
 
-<script>
-import Header from "@/components/Header.vue";
+<script lang="ts">
+import HeaderComponent from "@/components/HeaderComponent.vue";
 import OrderList from "@/components/OrderList.vue";
-import Footer from "@/components/Footer.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import { defineComponent } from "vue";
 
-export default {
-    components: {
-    Header,
+export default defineComponent({
+  components: {
+    HeaderComponent,
     OrderList,
-    Footer
-    }
-  }
+    FooterComponent,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-
 .page {
   min-height: 100vh;
   display: flex;
@@ -34,5 +34,4 @@ export default {
 .main {
   height: 100%;
 }
-
 </style>

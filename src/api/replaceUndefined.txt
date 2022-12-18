@@ -1,0 +1,5 @@
+// replace null to undefined
+find: (?<prop>\w+): (?<type>.+) \| null;
+replace: $1?: $2;
+
+npx swagger-typescript-api -p ${url} --patch -n "Api.g.ts" --axios

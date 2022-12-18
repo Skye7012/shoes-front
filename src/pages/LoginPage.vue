@@ -1,29 +1,29 @@
 <template>
-    <div class="page">
-      <div class="header">
-        <Header></Header>
-      </div>
-      <Login class="login"></Login>
-      <Footer class="footer"></Footer>
+  <div class="page">
+    <div class="header">
+      <HeaderComponent></HeaderComponent>
     </div>
+    <LoginComponent class="login"></LoginComponent>
+    <FooterComponent class="footer"></FooterComponent>
+  </div>
 </template>
 
-<script>
-import Login from "@/components/Login.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+<script lang="ts">
+import LoginComponent from "@/components/LoginComponent.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import { defineComponent } from "vue";
 
-export default {
-    components: {
-    Login,
-    Header,
-    Footer
-    }
-  }
+export default defineComponent({
+  components: {
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-
 .page {
   height: 100vh;
   display: flex;
@@ -34,5 +34,4 @@ export default {
 .login {
   height: 100%;
 }
-
 </style>

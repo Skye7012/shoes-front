@@ -1,29 +1,29 @@
 <template>
-    <div class="page">
-      <div class="header">
-        <Header></Header>
-      </div>
-      <Profile class="profile"></Profile>
-      <Footer class="footer"></Footer>
+  <div class="page">
+    <div class="header">
+      <HeaderComponent></HeaderComponent>
     </div>
+    <ProfileComponent class="profile"></ProfileComponent>
+    <FooterComponent class="footer"></FooterComponent>
+  </div>
 </template>
 
-<script>
-import Header from "@/components/Header.vue";
-import Profile from "@/components/Profile.vue";
-import Footer from "@/components/Footer.vue";
+<script lang="ts">
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import ProfileComponent from "@/components/ProfileComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import { defineComponent } from "vue";
 
-export default {
-    components: {
-    Header,
-    Profile,
-    Footer
-    }
-  }
+export default defineComponent({
+  components: {
+    HeaderComponent,
+    ProfileComponent,
+    FooterComponent,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-
 .page {
   height: 100vh;
   display: flex;
@@ -34,5 +34,4 @@ export default {
 .profile {
   height: 100%;
 }
-
 </style>

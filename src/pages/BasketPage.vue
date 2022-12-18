@@ -1,29 +1,29 @@
 <template>
-    <div class="page">
-      <div>
-        <Header></Header>
-      </div>
-      <Basket class="basket"></Basket>
-      <Footer class="footer"></Footer>
+  <div class="page">
+    <div>
+      <HeaderComponent></HeaderComponent>
     </div>
+    <BasketCollection class="basket"></BasketCollection>
+    <FooterComponent class="footer"></FooterComponent>
+  </div>
 </template>
 
-<script>
-import Header from "@/components/Header.vue";
-import Basket from "@/components/Basket.vue";
-import Footer from "@/components/Footer.vue";
+<script lang="ts">
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import BasketCollection from "@/components/BasketCollection.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import { defineComponent } from "vue";
 
-export default {
-    components: {
-    Header,
-    Basket,
-    Footer
-    }
-  }
+export default defineComponent({
+  components: {
+    HeaderComponent,
+    BasketCollection,
+    FooterComponent,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
-
 .page {
   height: 100vh;
   display: flex;
@@ -34,5 +34,4 @@ export default {
 .basket {
   height: 100%;
 }
-
 </style>
