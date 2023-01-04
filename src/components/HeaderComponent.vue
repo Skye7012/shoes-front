@@ -14,16 +14,16 @@
     </div>
     <div class="nav-item-end">
       <button @click="$router.push('/profile')" class="button">
-        <span class="icon">
-          <i class="icons fa-solid fa-user"></i>
+        <span>
+          <FontAwesomeIcon icon="fa-solid fa-user" />
         </span>
         <span>
           {{ user.isAuth ? "Профиль" : "Войти" }}
         </span>
       </button>
       <button @click="$router.push('/basket')" class="button end">
-        <span class="icon">
-          <i class="fa-solid fa-cart-shopping"></i>
+        <span>
+          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
         </span>
         <span>
           Корзина
@@ -42,6 +42,7 @@ import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useShoesStore } from "@/stores/shoesStore";
 import { useUserStore } from "@/stores/userStore";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -50,9 +51,7 @@ export default defineComponent({
     const shoes = useShoesStore();
     const orders = useOrderStore();
     const basket = useBasketStore();
-
     const goHome = () => router.push("/");
-
     return {
       user,
       shoes,
@@ -61,6 +60,7 @@ export default defineComponent({
       goHome,
     };
   },
+  components: { FontAwesomeIcon },
 });
 </script>
 
@@ -128,9 +128,7 @@ $size: 3em;
 .button {
   span {
     font-size: 1rem;
-    i {
-      padding-right: 5px;
-    }
+    padding-right: 5px;
   }
 }
 
