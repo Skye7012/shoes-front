@@ -1,5 +1,7 @@
 <template>
-  <div class="order box">
+  <BoxComponent
+    class="overflow-y-auto overflow-x-hidden h-[60vh] flex flex-col w-[400px]"
+  >
     <div class="textBlock">
       <span>Дата:</span>
       <span>{{ getDate() }}</span>
@@ -19,7 +21,7 @@
       v-bind:orderItem="orderItem"
     >
     </OrderItem>
-  </div>
+  </BoxComponent>
 </template>
 
 <script lang="ts">
@@ -27,10 +29,12 @@ import { GetOrdersResponseItem } from "@/api/Api";
 import OrderItem from "@/components/OrderItem.vue";
 import { useOrderStore } from "@/stores/orderStore";
 import { PropType, defineComponent } from "vue";
+import BoxComponent from "./UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {
     OrderItem,
+    BoxComponent,
   },
   data() {
     return {
@@ -65,25 +69,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.order {
-  overflow-y: auto;
-  height: 60vh;
-  display: grid;
-  grid-auto-rows: min-content;
-  max-width: 350px;
-}
-
-.price {
-  color: $danger;
-}
-
+<style scoped>
 .textBlock {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.1rem 0.5rem;
+  @apply flex justify-between my-[0.1rem] mx-2;
 }
 </style>

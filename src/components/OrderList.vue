@@ -1,5 +1,7 @@
 <template>
-  <div class="orderList">
+  <div
+    class="m-auto grid grid-cols-[1fr_1fr] content-center gap-8 items-center mt-12"
+  >
     <Order v-for="order in orders.orders" :key="order.id" v-bind:order="order">
     </Order>
   </div>
@@ -26,19 +28,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.orderList {
-  margin: auto auto;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  gap: 2rem;
-  align-items: center;
-  margin-top: 50px;
-}
-</style>

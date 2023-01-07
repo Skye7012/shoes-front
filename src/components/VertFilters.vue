@@ -1,7 +1,10 @@
 <template>
-  <div class="filter">
+  <div class="flex justify-between items-center">
     <div>
-      <select @change="changeFilter" class="select">
+      <select
+        @change="changeFilter"
+        class="bg-white border border-light rounded h-10 px-1"
+      >
         <option
           v-for="sortOption in sortOptions"
           :key="sortOption.value"
@@ -10,40 +13,48 @@
           {{ sortOption.title }}
         </option>
       </select>
-      <button class="button" @click="shoes.downloadXMLFile">XML</button>
+      <ButtonComponent class="element-spacing" @click="shoes.downloadXMLFile"
+        >XML</ButtonComponent
+      >
     </div>
 
-    <div class="pagination-container">
-      <button @click="decrementPage" class="button">Пред</button>
+    <div class="flex justify-end">
+      <ButtonComponent @click="decrementPage" class="element-spacing"
+        >Пред</ButtonComponent
+      >
 
-      <button
+      <ButtonComponent
         @click="changePage(1)"
-        :class="{ link: activePag === 1 }"
-        class="button"
+        :class="{ 'bg-info text-white': activePag === 1 }"
+        class="element-spacing"
       >
         1
-      </button>
+      </ButtonComponent>
 
-      <input
-        class="input"
+      <InputComponent
+        class="element-spacing !w-16 text-center !cursor-auto"
         v-model="nowPage"
-        :class="{ link: activePag === 2 }"
+        :class="{ 'bg-info text-white indent-0': activePag === 2 }"
         placeholder="num"
       />
 
-      <button
+      <ButtonComponent
         @click="changePage(shoes.totalPages)"
-        :class="{ link: activePag === 3 }"
-        class="button"
+        :class="{ 'bg-info text-white': activePag === 3 }"
+        class="element-spacing"
       >
         {{ shoes.totalPages }}
-      </button>
+      </ButtonComponent>
 
-      <button @click="incrementPage" class="button">След</button>
+      <ButtonComponent @click="incrementPage" class="element-spacing"
+        >След</ButtonComponent
+      >
 
-      <button class="button count">
+      <ButtonComponent
+        class="element-spacing !border-info !rounded-full !w-auto"
+      >
         {{ shoes.totalCount ? shoes.totalCount : 0 }}
-      </button>
+      </ButtonComponent>
     </div>
   </div>
 </template>
@@ -51,6 +62,8 @@
 <script lang="ts">
 import { useShoesStore } from "@/stores/shoesStore";
 import { defineComponent } from "vue";
+import ButtonComponent from "./UI/ButtonComponent.vue";
+import InputComponent from "./UI/InputComponent.vue";
 
 export default defineComponent({
   data() {
@@ -66,7 +79,6 @@ export default defineComponent({
   },
   setup() {
     const shoes = useShoesStore();
-
     return {
       shoes,
     };
@@ -102,7 +114,6 @@ export default defineComponent({
           this.shoes.sortOption = { OrderBy: "Price", IsAscending: false };
           break;
       }
-
       this.shoes.fetchShoes();
     },
   },
@@ -113,51 +124,12 @@ export default defineComponent({
       },
     },
   },
+  components: { ButtonComponent, InputComponent },
 });
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.button {
-  margin-left: 10px;
-  min-width: 2.5rem;
-}
-
-.select {
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-}
-
-.pagination-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.link {
-  background-color: $info;
-  color: white;
-}
-
-.input {
-  @extend .button;
-  width: 4rem;
-  text-align: center;
-  cursor: auto;
-}
-
-.count {
-  border-color: $info;
-  border-radius: 2rem;
-  width: auto;
+<style scoped>
+.element-spacing {
+  @apply ml-2 min-w-[2.5rem];
 }
 </style>

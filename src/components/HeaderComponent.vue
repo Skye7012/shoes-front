@@ -1,49 +1,59 @@
 <template>
-  <div class="nav">
-    <a @click="goHome" class="nav-item logo">
-      <span class="title">Shoes</span>
-    </a>
-    <div class="nav-item search">
+  <div
+    class="p-[0_2vw] min-w-[700px] max-w-[1200px] my-0 mx-auto mt-5 grid grid-cols-[auto_1fr_auto]"
+  >
+    <router-link to="/" class="mt-auto mx-0 pt-0 px-2 pl-0 cursor-pointer">
+      <span class="text-5xl font-bold text-info">Shoes</span>
+    </router-link>
+    <div class="mt-auto mx-0 pt-0 px-2 relative">
       <input
         v-model="shoes.searchQuery"
-        class="input"
+        class="w-full border border-light rounded h-10 indent-4"
         type="text"
         placeholder="Найти"
       />
-      <button @click="shoes.fetchShoes" class="find">Найти</button>
+      <ButtonComponent
+        @click="shoes.fetchShoes"
+        class="absolute !bg-info text-white right-0 !rounded-tl-none !rounded-bl-none !border-l-0"
+        >Найти</ButtonComponent
+      >
     </div>
-    <div class="nav-item-end">
-      <button @click="$router.push('/profile')" class="button">
-        <span>
-          <FontAwesomeIcon icon="fa-solid fa-user" />
-        </span>
-        <span>
-          {{ user.isAuth ? "Профиль" : "Войти" }}
-        </span>
-      </button>
-      <button @click="$router.push('/basket')" class="button end">
-        <span>
-          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
-        </span>
-        <span>
-          Корзина
-          <span class="count">{{
-            basket.basketTotalCount ? `(${basket.basketTotalCount})` : ""
-          }}</span>
-        </span>
-      </button>
+    <div class="mt-auto mx-0 pl-2 ml-auto">
+      <ButtonComponent @click="$router.push('/profile')">
+        <div class="text-base">
+          <span>
+            <FontAwesomeIcon class="pr-1" icon="fa-solid fa-user" />
+          </span>
+          <span>
+            {{ user.isAuth ? "Профиль" : "Войти" }}
+          </span>
+        </div>
+      </ButtonComponent>
+      <ButtonComponent @click="$router.push('/basket')" class="ml-2">
+        <div class="text-base">
+          <span>
+            <FontAwesomeIcon class="pr-1" icon="fa-solid fa-cart-shopping" />
+          </span>
+          <span>
+            Корзина
+            <span class="text-info">{{
+              basket.basketTotalCount ? `(${basket.basketTotalCount})` : ""
+            }}</span>
+          </span>
+        </div>
+      </ButtonComponent>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import router from "@/router";
 import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useShoesStore } from "@/stores/shoesStore";
 import { useUserStore } from "@/stores/userStore";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { defineComponent } from "vue";
+import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
   setup() {
@@ -51,93 +61,13 @@ export default defineComponent({
     const shoes = useShoesStore();
     const orders = useOrderStore();
     const basket = useBasketStore();
-    const goHome = () => router.push("/");
     return {
       user,
       shoes,
       orders,
       basket,
-      goHome,
     };
   },
-  components: { FontAwesomeIcon },
+  components: { FontAwesomeIcon, ButtonComponent },
 });
 </script>
-
-<style scoped lang="scss">
-@import "@/assets/My/button.scss";
-
-$text-size: 3em;
-$size: 3em;
-
-.nav {
-  box-sizing: border-box;
-  padding: 0 2vw;
-
-  min-width: 700px;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  &-item {
-    margin: auto 0;
-    padding: 0 10px;
-    &-end {
-      margin: auto 0;
-      padding-left: 10px;
-      margin-left: auto;
-    }
-  }
-}
-
-.search {
-  position: relative;
-}
-
-.input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-  text-indent: 1rem;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: $info;
-}
-
-.find {
-  position: absolute;
-  @extend .button;
-  background-color: $info;
-  color: white;
-  right: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-left-width: 0;
-}
-
-.end {
-  margin-left: 10px;
-}
-
-.button {
-  span {
-    font-size: 1rem;
-    padding-right: 5px;
-  }
-}
-
-.logo {
-  padding-left: 0;
-  cursor: pointer;
-}
-
-.count {
-  color: $info;
-}
-</style>

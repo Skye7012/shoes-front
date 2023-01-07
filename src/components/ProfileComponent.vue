@@ -1,49 +1,58 @@
 <template>
-  <div class="registration">
-    <div>
-      <label>Логин</label>
-      <input
+  <div
+    class="grid grid-cols-[200px_200px] gap-x-3 auto-rows-min justify-center content-center"
+  >
+    <FormComponent title="Логин">
+      <InputComponent
         v-model="login"
-        class="input"
+        class="mb-3 text-center !indent-0"
         placeholder="Логин"
         type="text"
         disabled
       />
-    </div>
-    <div>
-      <label>Имя</label>
-      <input
+    </FormComponent>
+    <FormComponent title="Имя">
+      <InputComponent
         v-model="name"
-        class="input"
-        v-bind:class="{ req: !name, changed: name != user.name }"
+        class="mb-3 text-center !indent-0"
+        v-bind:class="{
+          '!border-danger': !name,
+          '!border-info': name != user.name,
+        }"
         placeholder="Имя"
         type="text"
       />
-    </div>
-    <div>
-      <label>Фамилия</label>
-      <input
+    </FormComponent>
+    <FormComponent title="Фамилия">
+      <InputComponent
         v-model="firstName"
-        class="input"
-        v-bind:class="{ changed: firstName !== user.firstName }"
+        class="mb-5 text-center !indent-0"
+        v-bind:class="{ '!border-info': firstName !== user.firstName }"
         placeholder="Фамилия"
         type="text"
       />
-    </div>
-    <div>
-      <label>Телефон</label>
-      <input
+    </FormComponent>
+    <FormComponent title="Телефон">
+      <InputComponent
         v-model="phone"
-        class="input"
-        v-bind:class="{ changed: phone !== user.phone }"
+        class="mb-5 text-center !indent-0"
+        v-bind:class="{ '!border-info': phone !== user.phone }"
         placeholder="Телефон"
         type="text"
       />
-    </div>
-    <button @click="updateUser" class="button">Сохранить изменения</button>
-    <button @click="$router.push('/orders')" class="button link">Заказы</button>
-    <button @click="delProfile" class="button del">Удалить аккаунт</button>
-    <button @click="user.logout()" class="button exit">Выйти</button>
+    </FormComponent>
+    <ButtonComponent @click="updateUser" class="mb-2"
+      >Сохранить изменения</ButtonComponent
+    >
+    <ButtonComponent
+      @click="$router.push('/orders')"
+      class="mb-2 !bg-info text-white"
+      >Заказы</ButtonComponent
+    >
+    <ButtonComponent @click="delProfile" class="mb-2 !bg-danger text-white"
+      >Удалить аккаунт</ButtonComponent
+    >
+    <ButtonComponent @click="user.logout()" class="mb-2">Выйти</ButtonComponent>
   </div>
 </template>
 
@@ -51,6 +60,9 @@
 import { UserPutRequest } from "@/api/Api";
 import { useUserStore } from "@/stores/userStore";
 import { defineComponent, ref } from "vue";
+import FormComponent from "./UI/FormComponent.vue";
+import InputComponent from "./UI/InputComponent.vue";
+import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
   data() {
@@ -63,7 +75,6 @@ export default defineComponent({
   setup() {
     const user = useUserStore();
     const login = ref(null as string | null);
-
     return {
       user,
       login,
@@ -75,7 +86,6 @@ export default defineComponent({
         alert("Имя обязательно");
         return;
       }
-
       this.user.putUser({
         ...(this.$data as Partial<UserPutRequest>),
       });
@@ -88,61 +98,14 @@ export default defineComponent({
       }
     },
   },
-
   async mounted() {
     await this.user.fetchUser();
     if (!this.user.login) throw new Error("FetchUser Error");
-
     this.login = this.user.login;
     this.name = this.user.name;
     this.firstName = this.user.firstName;
     this.phone = this.user.phone;
   },
+  components: { FormComponent, InputComponent, ButtonComponent },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.registration {
-  display: grid;
-  grid-template-columns: 200px 200px;
-  column-gap: 10px;
-  grid-auto-rows: min-content;
-  justify-content: center;
-  align-content: center;
-}
-
-label {
-  text-align: center;
-}
-
-.input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-  text-align: center;
-
-  margin-bottom: 10px;
-}
-
-.button {
-  margin-bottom: 10px;
-}
-
-.del {
-  background-color: $danger;
-  color: white;
-}
-
-.changed {
-  border-color: $info;
-}
-
-.req {
-  border-color: $danger;
-}
-</style>

@@ -1,47 +1,56 @@
 <template>
-  <div class="registration">
-    <input
+  <div class="m-auto flex flex-col justify-center">
+    <InputComponent
+      class="mb-3"
       v-model="login"
-      class="input"
-      v-bind:class="{ req: !login }"
+      v-bind:class="{ 'border-danger': !login }"
       placeholder="Логин"
       type="text"
     />
-    <input
+    <InputComponent
+      class="mb-3"
       v-model="password"
-      class="input"
-      v-bind:class="{ req: !password }"
+      v-bind:class="{ 'border-danger': !password }"
       placeholder="Пароль"
       type="password"
     />
-    <input
+    <InputComponent
+      class="mb-3"
       v-model="confirmPassword"
-      class="input"
-      v-bind:class="{ req: !confirmPassword }"
+      v-bind:class="{ 'border-danger': !confirmPassword }"
       placeholder="Подтвердите пароль"
       type="password"
     />
-    <input
+    <InputComponent
+      class="mb-3"
       v-model="name"
-      class="input"
-      v-bind:class="{ req: !name }"
+      v-bind:class="{ 'border-danger': !name }"
       placeholder="Имя"
       type="text"
     />
-    <input
+    <InputComponent
+      class="mb-3"
       v-model="firstName"
-      class="input"
       placeholder="Фамилия"
       type="text"
     />
-    <input v-model="phone" class="input" placeholder="Телефон" type="text" />
-    <button @click="signUp" class="button">Зарегистрироваться</button>
+    <InputComponent
+      class="mb-3"
+      v-model="phone"
+      placeholder="Телефон"
+      type="text"
+    />
+    <ButtonComponent @click="signUp" class="mt-5"
+      >Зарегистрироваться</ButtonComponent
+    >
   </div>
 </template>
 
 <script lang="ts">
 import { useUserStore } from "@/stores/userStore";
 import { defineComponent } from "vue";
+import InputComponent from "./UI/InputComponent.vue";
+import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
   data() {
@@ -56,7 +65,6 @@ export default defineComponent({
   },
   setup() {
     const user = useUserStore();
-
     return {
       user,
     };
@@ -83,7 +91,6 @@ export default defineComponent({
         alert("Имя обязательно");
         return;
       }
-
       this.user.signUp({
         login: this.login,
         name: this.name,
@@ -93,37 +100,6 @@ export default defineComponent({
       });
     },
   },
+  components: { InputComponent, ButtonComponent },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.registration {
-  margin: auto auto;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-  text-indent: 1rem;
-
-  margin-bottom: 10px;
-}
-
-.button {
-  margin-top: 20px;
-}
-
-.req {
-  border-color: $danger;
-}
-</style>

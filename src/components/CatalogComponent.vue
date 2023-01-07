@@ -1,15 +1,11 @@
 <template>
-  <div class="mcolumns">
-    <div class="mcolumn">
-      <div class="box">
-        <AsideFilters></AsideFilters>
-      </div>
-    </div>
-    <div class="mcolumn">
-      <div class="box mbox">
-        <Cards></Cards>
-      </div>
-    </div>
+  <div class="w-full my-5 h-full p-[0_2vw] grid grid-cols-[200px_auto] gap-x-3">
+    <BoxComponent class="h-full pt-1">
+      <AsideFilters />
+    </BoxComponent>
+    <BoxComponent class="h-full pt-1">
+      <Cards />
+    </BoxComponent>
   </div>
 </template>
 
@@ -17,35 +13,13 @@
 import Cards from "@/components/CardCollection.vue";
 import AsideFilters from "@/components/AsideFilters.vue";
 import { defineComponent } from "vue";
+import BoxComponent from "./UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {
     Cards,
     AsideFilters,
+    BoxComponent,
   },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.mcolumns {
-  width: 100%;
-  margin-top: 20px;
-  height: 100%;
-  padding: 0 2vw;
-  display: grid;
-  grid-template-columns: 200px auto;
-  column-gap: 10px;
-}
-
-.box {
-  height: 100%;
-  padding-top: 0.25rem;
-}
-
-.mbox {
-  padding-top: 0.25rem;
-}
-</style>

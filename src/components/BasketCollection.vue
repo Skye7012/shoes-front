@@ -1,42 +1,53 @@
 <template>
-  <div class="basket">
-    <div class="basketItems box">
+  <div class="m-auto flex justify-center items-center mt-12">
+    <BoxComponent
+      class="overflow-y-auto h-[60vh] grid auto-rows-[140px] gap-y-3 min-h-[480px]"
+    >
       <BasketItem
         v-for="basketItem in basket.basketItems"
         :key="basketItem.id"
         v-bind:basketItem="basketItem"
       >
       </BasketItem>
-    </div>
-    <div class="summary box">
+    </BoxComponent>
+    <BoxComponent
+      class="flex flex-col items-center min-w-[250px] ml-12 h-[60vh] text-center"
+    >
       <p>Товаров ({{ basket.basketTotalCount }})</p>
       <p>
-        Общая стоимость <span class="price">{{ basket.basketPrice }} ₽</span>
+        Общая стоимость
+        <span class="text-danger">{{ basket.basketPrice }} ₽</span>
       </p>
 
-      <div class="buy">
-        <input
+      <div class="my-5 mx-0">
+        <InputComponent
           v-model="address"
-          class="input"
-          v-bind:class="{ req: !address, changed: address != '' }"
+          class="text-center !w-[80%]"
+          v-bind:class="{
+            'border-danger': !address,
+            'border-info': !!address,
+          }"
           placeholder="Адрес"
           type="text"
         />
 
-        <button
+        <ButtonComponent
           @click="buy()"
-          v-bind:class="{ dis: !address, link: address != '' }"
+          v-bind:class="{
+            'bg-light': !address,
+            'bg-info text-white': !!address,
+          }"
           :disabled="!address"
-          class="button"
+          class="m-[2vh_0] w-[80%]"
         >
           Оформить
-        </button>
+        </ButtonComponent>
       </div>
 
-      <button @click="clearBasket" class="button clear">
+      <ButtonComponent @click="clearBasket" class="m-p[2vh_0] w-[80%] mt-auto">
         Очистить корзину
-      </button>
-    </div>
+      </ButtonComponent>
+    </BoxComponent>
   </div>
 </template>
 
@@ -47,10 +58,16 @@ import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useUserStore } from "@/stores/userStore";
 import { defineComponent } from "vue";
+import ButtonComponent from "./UI/ButtonComponent.vue";
+import InputComponent from "./UI/InputComponent.vue";
+import BoxComponent from "./UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {
     BasketItem,
+    ButtonComponent,
+    InputComponent,
+    BoxComponent,
   },
   data() {
     return {
@@ -110,74 +127,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.basket {
-  margin: auto auto;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.summary {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 250px;
-  margin-left: 50px;
-  height: 60vh;
-  text-align: center;
-}
-
-.basketItems {
-  overflow-y: auto;
-  height: 60vh;
-  display: grid;
-  grid-auto-rows: 120px;
-  row-gap: 10px;
-  min-width: 450px;
-}
-
-.input {
-  width: 80%;
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-  text-align: center;
-}
-
-.price {
-  color: $danger;
-}
-
-.button {
-  margin: 2vh 0;
-  width: 80%;
-}
-
-.clear {
-  margin-top: auto;
-}
-
-.buy {
-  margin: 20px 0;
-}
-
-.changed {
-  border-color: $info;
-}
-
-.req {
-  border-color: $danger;
-}
-
-.dis {
-  background-color: $light;
-}
-</style>

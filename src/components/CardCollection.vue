@@ -1,7 +1,7 @@
 <template>
-  <div class="mrows">
-    <VertFilters class="vert" />
-    <div class="cards">
+  <div class="grid grid-rows-[50px_auto] gap-y-2">
+    <VertFilters class="mt-auto mx-1" />
+    <div class="mt-2 grid grid-cols-[repeat(2,300px)] justify-center gap-y-2">
       <CardItem
         v-for="shoe in shoes.shoes"
         :key="shoe.id"
@@ -34,26 +34,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.mrows {
-  display: grid;
-  grid-template-rows: 50px auto;
-  column-gap: 10px;
-}
-
-.cards {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(2, 300px);
-  justify-content: center;
-  row-gap: 10px;
-}
-
-.vert {
-  margin: auto 4px;
-}
-</style>

@@ -1,13 +1,14 @@
 import { createApp } from "vue";
-import App from "@/App.vue";
+import AppComponent from "@/App.vue";
 import router from "@/router";
 import { createPinia } from "pinia";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { configureFontAwesome } from "./fontAwesomeConfig";
+import "./index.css";
 
 configureFontAwesome();
 const pinia = createPinia();
-const app = createApp(App);
+const app = createApp(AppComponent);
 
 app
   .use(router)
