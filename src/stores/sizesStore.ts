@@ -1,5 +1,5 @@
-import { apiClient } from "@/api/apiClient";
 import { defineStore } from "pinia";
+import { apiClient } from "@/api/apiClient";
 
 interface SizeType {
   sizes: number[];
@@ -11,7 +11,7 @@ export const useSizesStore = defineStore({
 
   state: (): SizeType => ({
     sizes: [],
-    sizesTotalCount: 0,
+    sizesTotalCount: 0
   }),
 
   actions: {
@@ -24,6 +24,6 @@ export const useSizesStore = defineStore({
       } catch (e) {
         alert(e);
       }
-    },
-  },
+    }
+  }
 });

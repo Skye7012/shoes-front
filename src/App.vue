@@ -13,12 +13,12 @@ export default defineComponent({
     const basket = useBasketStore();
 
     return {
-      basket,
+      basket
     };
   },
   mounted() {
     this.basket.fetchBasketItems();
-  },
+  }
 });
 </script>
 

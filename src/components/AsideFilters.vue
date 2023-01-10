@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <ButtonComponent @click="dropFilters" class="mt-1"
+    <ButtonComponent class="mt-1" @click="dropFilters"
       >Сбросить фильтры</ButtonComponent
     >
 
@@ -62,12 +62,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { useBrandStore } from "@/stores/brandsStore";
 import { useDestinationStore } from "@/stores/destinationStore";
 import { useSeasonStore } from "@/stores/seasonsStore";
 import { useShoesStore } from "@/stores/shoesStore";
 import { useSizesStore } from "@/stores/sizesStore";
-import { defineComponent } from "vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 
 interface IFilter {
@@ -78,16 +78,7 @@ interface IFilter {
 }
 
 export default defineComponent({
-  data() {
-    return {
-      filters: {
-        brandFilters: [],
-        destinationFilters: [],
-        seasonFilters: [],
-        sizeFilters: [],
-      } as IFilter,
-    };
-  },
+  components: { ButtonComponent },
   setup() {
     const shoes = useShoesStore();
     const sizes = useSizesStore();
@@ -99,8 +90,33 @@ export default defineComponent({
       sizes,
       brands,
       seasons,
-      destinations,
+      destinations
     };
+  },
+  data() {
+    return {
+      filters: {
+        brandFilters: [],
+        destinationFilters: [],
+        seasonFilters: [],
+        sizeFilters: []
+      } as IFilter
+    };
+  },
+  watch: {
+    filters: {
+      handler() {
+        this.shoes.$patch({ ...this.filters });
+        this.shoes.fetchShoes();
+      },
+      deep: true
+    }
+  },
+  mounted() {
+    this.brands.fetchBrands();
+    this.destinations.fetchDestinations();
+    this.seasons.fetchSeasons();
+    this.sizes.fetchSizes();
   },
   methods: {
     dropFilters() {
@@ -111,23 +127,7 @@ export default defineComponent({
       this.filters.sizeFilters = [];
       this.shoes.$patch({ ...this.filters });
       this.shoes.fetchShoes();
-    },
-  },
-  mounted() {
-    this.brands.fetchBrands();
-    this.destinations.fetchDestinations();
-    this.seasons.fetchSeasons();
-    this.sizes.fetchSizes();
-  },
-  watch: {
-    filters: {
-      handler() {
-        this.shoes.$patch({ ...this.filters });
-        this.shoes.fetchShoes();
-      },
-      deep: true,
-    },
-  },
-  components: { ButtonComponent },
+    }
+  }
 });
 </script>

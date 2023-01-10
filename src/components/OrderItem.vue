@@ -19,19 +19,18 @@
 </template>
 
 <script lang="ts">
-import { GetOrdersResponseItemOrderItem } from "@/api/Api";
 import { PropType, defineComponent } from "vue";
+import { GetOrdersResponseItemOrderItem } from "@/api/Api";
 import ShoeImgComponent from "./UI/ShoeImgComponent.vue";
 import ShoeSizeBadgeComponent from "./UI/ShoeSizeBadgeComponent.vue";
 
 export default defineComponent({
-  methods: {},
+  components: { ShoeImgComponent, ShoeSizeBadgeComponent },
   props: {
     orderItem: {
       type: Object as PropType<GetOrdersResponseItemOrderItem>,
-      required: true,
-    },
+      required: true
+    }
   },
-  components: { ShoeImgComponent, ShoeSizeBadgeComponent },
 });
 </script>

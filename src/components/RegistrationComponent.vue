@@ -1,58 +1,65 @@
 <template>
   <div class="m-auto flex flex-col justify-center">
     <InputComponent
-      class="mb-3"
       v-model="login"
-      v-bind:class="{ 'border-danger': !login }"
+      class="mb-3"
+      :class="{ 'border-danger': !login }"
       placeholder="Логин"
       type="text"
     />
     <InputComponent
-      class="mb-3"
       v-model="password"
-      v-bind:class="{ 'border-danger': !password }"
+      class="mb-3"
+      :class="{ 'border-danger': !password }"
       placeholder="Пароль"
       type="password"
     />
     <InputComponent
-      class="mb-3"
       v-model="confirmPassword"
-      v-bind:class="{ 'border-danger': !confirmPassword }"
+      class="mb-3"
+      :class="{ 'border-danger': !confirmPassword }"
       placeholder="Подтвердите пароль"
       type="password"
     />
     <InputComponent
-      class="mb-3"
       v-model="name"
-      v-bind:class="{ 'border-danger': !name }"
+      class="mb-3"
+      :class="{ 'border-danger': !name }"
       placeholder="Имя"
       type="text"
     />
     <InputComponent
-      class="mb-3"
       v-model="firstName"
+      class="mb-3"
       placeholder="Фамилия"
       type="text"
     />
     <InputComponent
-      class="mb-3"
       v-model="phone"
+      class="mb-3"
       placeholder="Телефон"
       type="text"
     />
-    <ButtonComponent @click="signUp" class="mt-5"
+    <ButtonComponent class="mt-5" @click="signUp"
       >Зарегистрироваться</ButtonComponent
     >
   </div>
 </template>
 
 <script lang="ts">
-import { useUserStore } from "@/stores/userStore";
 import { defineComponent } from "vue";
+import { useUserStore } from "@/stores/userStore";
 import InputComponent from "./UI/InputComponent.vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
+  components: { InputComponent, ButtonComponent },
+  setup() {
+    const user = useUserStore();
+    return {
+      user
+    };
+  },
   data() {
     return {
       login: null as string | null,
@@ -60,13 +67,7 @@ export default defineComponent({
       confirmPassword: null as string | null,
       name: null as string | null,
       firstName: null as string | null,
-      phone: null as string | null,
-    };
-  },
-  setup() {
-    const user = useUserStore();
-    return {
-      user,
+      phone: null as string | null
     };
   },
   methods: {
@@ -83,7 +84,7 @@ export default defineComponent({
         alert("Подтвердите пароль");
         return;
       }
-      if (this.password != this.confirmPassword) {
+      if (this.password !== this.confirmPassword) {
         alert("Пароли не совпадают");
         return;
       }
@@ -96,10 +97,9 @@ export default defineComponent({
         name: this.name,
         password: this.password,
         firstName: this.firstName ?? undefined,
-        phone: this.phone ?? undefined,
+        phone: this.phone ?? undefined
       });
-    },
-  },
-  components: { InputComponent, ButtonComponent },
+    }
+  }
 });
 </script>

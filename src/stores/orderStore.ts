@@ -1,6 +1,6 @@
+import { defineStore } from "pinia";
 import { GetOrdersResponseItem, PostOrderRequest } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
-import { defineStore } from "pinia";
 
 interface OrderType {
   orders: GetOrdersResponseItem[];
@@ -14,7 +14,7 @@ export const useOrderStore = defineStore({
   state: (): OrderType => ({
     orders: [],
     ordersTotalCount: 0,
-    orderPrice: 0,
+    orderPrice: 0
   }),
 
   actions: {
@@ -32,12 +32,12 @@ export const useOrderStore = defineStore({
     async postOrder(order: PostOrderRequest) {
       try {
         await apiClient.orders.ordersCreate({
-          ...order,
+          ...order
         });
         alert("Заказ принят");
       } catch (e) {
         alert(e);
       }
-    },
-  },
+    }
+  }
 });

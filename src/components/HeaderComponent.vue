@@ -13,8 +13,8 @@
         placeholder="Найти"
       />
       <ButtonComponent
-        @click="shoes.fetchShoes"
         class="absolute !bg-info text-white right-0 !rounded-tl-none !rounded-bl-none !border-l-0"
+        @click="shoes.fetchShoes"
         >Найти</ButtonComponent
       >
     </div>
@@ -29,7 +29,7 @@
           </span>
         </div>
       </ButtonComponent>
-      <ButtonComponent @click="$router.push('/basket')" class="ml-2">
+      <ButtonComponent class="ml-2" @click="$router.push('/basket')">
         <div class="text-base">
           <span>
             <FontAwesomeIcon class="pr-1" icon="fa-solid fa-cart-shopping" />
@@ -47,15 +47,16 @@
 </template>
 
 <script lang="ts">
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { defineComponent } from "vue";
 import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useShoesStore } from "@/stores/shoesStore";
 import { useUserStore } from "@/stores/userStore";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { defineComponent } from "vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
+  components: { FontAwesomeIcon, ButtonComponent },
   setup() {
     const user = useUserStore();
     const shoes = useShoesStore();
@@ -65,9 +66,8 @@ export default defineComponent({
       user,
       shoes,
       orders,
-      basket,
+      basket
     };
-  },
-  components: { FontAwesomeIcon, ButtonComponent },
+  }
 });
 </script>

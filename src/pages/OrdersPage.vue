@@ -9,17 +9,17 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import OrderList from "@/components/OrderList.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
-import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
     HeaderComponent,
     OrderList,
-    FooterComponent,
-  },
+    FooterComponent
+  }
 });
 </script>
 

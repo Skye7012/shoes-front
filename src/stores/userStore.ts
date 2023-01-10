@@ -1,8 +1,8 @@
+import { defineStore } from "pinia";
 import { SignUpRequest, UserPutRequest } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
 import { getToken, removeToken, setToken } from "@/envHelper";
 import router from "@/router";
-import { defineStore } from "pinia";
 
 interface UserType {
   isAuth: boolean;
@@ -20,7 +20,7 @@ export const useUserStore = defineStore({
     name: null,
     firstName: null,
     login: null,
-    phone: null,
+    phone: null
   }),
 
   actions: {
@@ -37,7 +37,7 @@ export const useUserStore = defineStore({
       try {
         const response = await apiClient.user.signInCreate({
           login: this.login,
-          password: password,
+          password
         });
 
         setToken(response.data.token);
@@ -70,7 +70,7 @@ export const useUserStore = defineStore({
 
         const user = response.data;
         await this.$patch({
-          ...user,
+          ...user
         });
       } catch (e) {
         alert(e);
@@ -82,7 +82,7 @@ export const useUserStore = defineStore({
         await apiClient.user.userUpdate(user);
 
         this.$patch({
-          ...user,
+          ...user
         });
       } catch (e) {
         alert(e);
@@ -105,6 +105,6 @@ export const useUserStore = defineStore({
       } catch (e) {
         alert(e);
       }
-    },
-  },
+    }
+  }
 });

@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: HomePage,
+    component: HomePage
   },
   {
     path: "/profile",
@@ -18,12 +18,13 @@ const routes: Array<RouteRecordRaw> = [
     component: ProfilePage,
     beforeEnter: () => {
       if (!localStorage.token) return { name: "login" };
-    },
+      return undefined;
+    }
   },
   {
     path: "/basket",
     name: "basket",
-    component: BasketPage,
+    component: BasketPage
   },
   {
     path: "/login",
@@ -31,7 +32,8 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginPage,
     beforeEnter: () => {
       if (localStorage.token) return false;
-    },
+      return undefined;
+    }
   },
   {
     path: "/registration",
@@ -39,7 +41,8 @@ const routes: Array<RouteRecordRaw> = [
     component: RegistrationPage,
     beforeEnter: () => {
       if (localStorage.token) return false;
-    },
+      return undefined;
+    }
   },
   {
     path: "/orders",
@@ -47,13 +50,14 @@ const routes: Array<RouteRecordRaw> = [
     component: OrdersPage,
     beforeEnter: () => {
       if (!localStorage.token) return { name: "login" };
-    },
-  },
+      return undefined;
+    }
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 });
 
 export default router;

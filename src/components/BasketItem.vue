@@ -26,37 +26,37 @@
 </template>
 
 <script lang="ts">
+import { PropType, defineComponent } from "vue";
 import { GetShoesResponseItem } from "@/api/Api";
 import { useBasketStore } from "@/stores/basketStore";
-import { PropType, defineComponent } from "vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 import ShoeImgComponent from "./UI/ShoeImgComponent.vue";
 import ShoeSizeBadgeComponent from "./UI/ShoeSizeBadgeComponent.vue";
 
 export default defineComponent({
-  data() {
-    return {
-      inBasket: false,
-    };
+  components: { ButtonComponent, ShoeImgComponent, ShoeSizeBadgeComponent },
+  props: {
+    basketItem: {
+      type: Object as PropType<GetShoesResponseItem>,
+      required: true
+    }
   },
   setup() {
     const basket = useBasketStore();
     return {
-      basket,
+      basket
+    };
+  },
+  data() {
+    return {
+      inBasket: false
     };
   },
   methods: {
     onRemoveClick(id: number) {
       this.basket.removeBasketItem(id);
       this.basket.removeShoe(id);
-    },
-  },
-  props: {
-    basketItem: {
-      type: Object as PropType<GetShoesResponseItem>,
-      required: true,
-    },
-  },
-  components: { ButtonComponent, ShoeImgComponent, ShoeSizeBadgeComponent },
+    }
+  }
 });
 </script>

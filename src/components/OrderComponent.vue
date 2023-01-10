@@ -18,54 +18,50 @@
     <OrderItem
       v-for="orderItem in order.orderItems"
       :key="orderItem.id"
-      v-bind:orderItem="orderItem"
+      :order-item="orderItem"
     >
     </OrderItem>
   </BoxComponent>
 </template>
 
 <script lang="ts">
+import { PropType, defineComponent } from "vue";
 import { GetOrdersResponseItem } from "@/api/Api";
 import OrderItem from "@/components/OrderItem.vue";
 import { useOrderStore } from "@/stores/orderStore";
-import { PropType, defineComponent } from "vue";
 import BoxComponent from "./UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {
     OrderItem,
-    BoxComponent,
+    BoxComponent
   },
-  data() {
-    return {
-      orderItems: [],
-    };
+  props: {
+    order: {
+      type: Object as PropType<GetOrdersResponseItem>,
+      required: true
+    }
   },
   setup() {
     const orders = useOrderStore();
 
     return {
-      orders,
+      orders
+    };
+  },
+  data() {
+    return {
+      orderItems: []
     };
   },
   methods: {
     getDate() {
       const orderDate = new Date(Date.parse(this.order.orderDate));
-      return (
-        orderDate.getFullYear() +
-        " / " +
-        (orderDate.getMonth() + 1) +
-        " / " +
-        orderDate.getDate()
-      );
-    },
-  },
-  props: {
-    order: {
-      type: Object as PropType<GetOrdersResponseItem>,
-      required: true,
-    },
-  },
+      return `${orderDate.getFullYear()} / ${
+        orderDate.getMonth() + 1
+      } / ${orderDate.getDate()}`;
+    }
+  }
 });
 </script>
 

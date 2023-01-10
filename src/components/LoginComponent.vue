@@ -22,24 +22,24 @@
 </template>
 
 <script lang="ts">
-import { useUserStore } from "@/stores/userStore";
 import { defineComponent } from "vue";
+import { useUserStore } from "@/stores/userStore";
 import LinkComponent from "./UI/LinkComponent.vue";
 import InputComponent from "./UI/InputComponent.vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
-  data() {
-    return {
-      password: null as string | null,
-    };
-  },
+  components: { LinkComponent, InputComponent, ButtonComponent },
   setup() {
     const user = useUserStore();
     return {
-      user,
+      user
     };
   },
-  components: { LinkComponent, InputComponent, ButtonComponent },
+  data() {
+    return {
+      password: null as string | null
+    };
+  }
 });
 </script>

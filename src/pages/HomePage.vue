@@ -5,17 +5,17 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import CatalogComponent from "@/components/CatalogComponent.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
-import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
     CatalogComponent,
     HeaderComponent,
-    FooterComponent,
-  },
+    FooterComponent
+  }
 });
 </script>
 

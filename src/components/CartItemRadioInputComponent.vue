@@ -6,12 +6,12 @@
       :value="size"
       :label="size.toString()"
       :name="shoe.name"
-      @change="
-        $emit('update:modelValue', +($event.target as HTMLInputElement)!.value)
-      "
       type="radio"
       v-bind="$attrs"
       :checked="!!modelValue && modelValue == size"
+      @change="
+        $emit('update:modelValue', +($event.target as HTMLInputElement)!.value)
+      "
     />
   </div>
 </template>
@@ -24,7 +24,8 @@ interface Props {
   modelValue: number | null;
 }
 
-const props = defineProps<Props>();
+defineEmits(["update:modelValue"]);
+defineProps<Props>();
 </script>
 
 <style scoped>

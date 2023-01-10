@@ -5,32 +5,32 @@
       <CardItem
         v-for="shoe in shoes.shoes"
         :key="shoe.id"
-        v-bind:shoe="shoe"
+        :shoe="shoe"
       ></CardItem>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import VertFilters from "@/components/VertFilters.vue";
 import CardItem from "@/components/CardItem.vue";
-import { defineComponent } from "vue";
 import { useShoesStore } from "@/stores/shoesStore";
 
 export default defineComponent({
   components: {
     VertFilters,
-    CardItem,
+    CardItem
   },
   setup() {
     const shoes = useShoesStore();
 
     return {
-      shoes,
+      shoes
     };
   },
   mounted() {
     this.shoes.fetchShoes();
-  },
+  }
 });
 </script>

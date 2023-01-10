@@ -1,6 +1,6 @@
+import { defineStore } from "pinia";
 import { GetSeasonsResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
-import { defineStore } from "pinia";
 
 interface SeasonType {
   seasons: GetSeasonsResponseItem[];
@@ -12,7 +12,7 @@ export const useSeasonStore = defineStore({
 
   state: (): SeasonType => ({
     seasons: [],
-    seasonsTotalCount: 0,
+    seasonsTotalCount: 0
   }),
 
   actions: {
@@ -25,6 +25,6 @@ export const useSeasonStore = defineStore({
       } catch (e) {
         alert(e);
       }
-    },
-  },
+    }
+  }
 });

@@ -10,16 +10,16 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import Cards from "@/components/CardCollection.vue";
 import AsideFilters from "@/components/AsideFilters.vue";
-import { defineComponent } from "vue";
 import BoxComponent from "./UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {
     Cards,
     AsideFilters,
-    BoxComponent,
-  },
+    BoxComponent
+  }
 });
 </script>

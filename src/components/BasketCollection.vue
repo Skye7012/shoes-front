@@ -6,7 +6,7 @@
       <BasketItem
         v-for="basketItem in basket.basketItems"
         :key="basketItem.id"
-        v-bind:basketItem="basketItem"
+        :basket-item="basketItem"
       >
       </BasketItem>
     </BoxComponent>
@@ -23,28 +23,28 @@
         <InputComponent
           v-model="address"
           class="text-center !w-[80%]"
-          v-bind:class="{
+          :class="{
             'border-danger': !address,
-            'border-info': !!address,
+            'border-info': !!address
           }"
           placeholder="Адрес"
           type="text"
         />
 
         <ButtonComponent
-          @click="buy()"
-          v-bind:class="{
+          :class="{
             'bg-light': !address,
-            'bg-info text-white': !!address,
+            'bg-info text-white': !!address
           }"
           :disabled="!address"
           class="m-[2vh_0] w-[80%]"
+          @click="buy()"
         >
           Оформить
         </ButtonComponent>
       </div>
 
-      <ButtonComponent @click="clearBasket" class="m-p[2vh_0] w-[80%] mt-auto">
+      <ButtonComponent class="m-p[2vh_0] w-[80%] mt-auto" @click="clearBasket">
         Очистить корзину
       </ButtonComponent>
     </BoxComponent>
@@ -52,12 +52,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import BasketItem from "@/components/BasketItem.vue";
 import { removeBasket } from "@/envHelper";
 import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useUserStore } from "@/stores/userStore";
-import { defineComponent } from "vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 import InputComponent from "./UI/InputComponent.vue";
 import BoxComponent from "./UI/BoxComponent.vue";
@@ -67,12 +67,7 @@ export default defineComponent({
     BasketItem,
     ButtonComponent,
     InputComponent,
-    BoxComponent,
-  },
-  data() {
-    return {
-      address: null as string | null,
-    };
+    BoxComponent
   },
   setup() {
     const orders = useOrderStore();
@@ -82,8 +77,16 @@ export default defineComponent({
     return {
       orders,
       user,
-      basket,
+      basket
     };
+  },
+  data() {
+    return {
+      address: null as string | null
+    };
+  },
+  mounted() {
+    this.basket.fetchBasketItems();
   },
   methods: {
     buy() {
@@ -99,14 +102,14 @@ export default defineComponent({
         return;
       }
 
-      var orderItems = this.basket.basketItems.map((x) => ({
+      const orderItems = this.basket.basketItems.map((x) => ({
         shoeId: x.id,
-        ruSize: this.basket.getSize(x.id),
+        ruSize: this.basket.getSize(x.id)
       }));
 
-      var order = {
+      const order = {
         address: this.address,
-        orderItems: orderItems,
+        orderItems
       };
 
       this.orders.postOrder(order);
@@ -120,10 +123,7 @@ export default defineComponent({
       this.basket.basketItems = [];
       this.basket.basketPrice = 0;
       this.basket.basketTotalCount = 0;
-    },
-  },
-  mounted() {
-    this.basket.fetchBasketItems();
-  },
+    }
+  }
 });
 </script>

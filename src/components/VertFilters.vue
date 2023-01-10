@@ -2,8 +2,8 @@
   <div class="flex justify-between items-center">
     <div>
       <select
-        @change="changeFilter"
         class="bg-white border border-light rounded h-10 px-1"
+        @change="changeFilter"
       >
         <option
           v-for="sortOption in sortOptions"
@@ -19,34 +19,34 @@
     </div>
 
     <div class="flex justify-end">
-      <ButtonComponent @click="decrementPage" class="element-spacing"
+      <ButtonComponent class="element-spacing" @click="decrementPage"
         >Пред</ButtonComponent
       >
 
       <ButtonComponent
-        @click="changePage(1)"
         :class="{ 'bg-info text-white': activePag === 1 }"
         class="element-spacing"
+        @click="changePage(1)"
       >
         1
       </ButtonComponent>
 
       <InputComponent
-        class="element-spacing !w-16 text-center !cursor-auto"
         v-model="nowPage"
+        class="element-spacing !w-16 text-center !cursor-auto"
         :class="{ 'bg-info text-white indent-0': activePag === 2 }"
         placeholder="num"
       />
 
       <ButtonComponent
-        @click="changePage(shoes.totalPages)"
         :class="{ 'bg-info text-white': activePag === 3 }"
         class="element-spacing"
+        @click="changePage(shoes.totalPages)"
       >
         {{ shoes.totalPages }}
       </ButtonComponent>
 
-      <ButtonComponent @click="incrementPage" class="element-spacing"
+      <ButtonComponent class="element-spacing" @click="incrementPage"
         >След</ButtonComponent
       >
 
@@ -60,12 +60,19 @@
 </template>
 
 <script lang="ts">
-import { useShoesStore } from "@/stores/shoesStore";
 import { defineComponent } from "vue";
+import { useShoesStore } from "@/stores/shoesStore";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 import InputComponent from "./UI/InputComponent.vue";
 
 export default defineComponent({
+  components: { ButtonComponent, InputComponent },
+  setup() {
+    const shoes = useShoesStore();
+    return {
+      shoes
+    };
+  },
   data() {
     return {
       nowPage: 1,
@@ -73,15 +80,16 @@ export default defineComponent({
       sortOptions: [
         { title: "По названию", value: "Name" },
         { title: "Сначала дешевые", value: "Cheaper" },
-        { title: "Сначала дорогие", value: "Expensive" },
-      ],
+        { title: "Сначала дорогие", value: "Expensive" }
+      ]
     };
   },
-  setup() {
-    const shoes = useShoesStore();
-    return {
-      shoes,
-    };
+  watch: {
+    nowPage: {
+      handler() {
+        this.changePage(this.nowPage);
+      }
+    }
   },
   methods: {
     changePage(page: number) {
@@ -92,14 +100,14 @@ export default defineComponent({
       }
     },
     decrementPage() {
-      if (this.nowPage <= 1) this.nowPage == 1;
-      else this.nowPage--;
+      if (this.nowPage <= 1) this.nowPage = 1;
+      else this.nowPage += 1;
       this.activePag = 2;
     },
     incrementPage() {
-      if (this.nowPage >= this.shoes.totalPages)
+      if (this.nowPage >= this.shoes.totalPages) {
         this.nowPage = this.shoes.totalPages;
-      else this.nowPage++;
+      } else this.nowPage += 1;
       this.activePag = 2;
     },
     changeFilter(event: Event) {
@@ -113,18 +121,12 @@ export default defineComponent({
         case "Expensive":
           this.shoes.sortOption = { OrderBy: "Price", IsAscending: false };
           break;
+        default:
+          throw new Error("Не реализованная опция в switch");
       }
       this.shoes.fetchShoes();
-    },
-  },
-  watch: {
-    nowPage: {
-      handler() {
-        this.changePage(this.nowPage);
-      },
-    },
-  },
-  components: { ButtonComponent, InputComponent },
+    }
+  }
 });
 </script>
 

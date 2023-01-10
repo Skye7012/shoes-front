@@ -1,12 +1,12 @@
 <template>
   <input
     :value="modelValue"
-    @change="
-      $emit('update:modelValue', ($event.target as HTMLInputElement)!.value)
-    "
     v-bind="$attrs"
     class="w-full border border-light rounded h-10 indent-4"
     :placeholder="placeholder"
+    @change="
+      $emit('update:modelValue', ($event.target as HTMLInputElement)!.value)
+    "
   />
 </template>
 
@@ -16,5 +16,6 @@ interface Props {
   modelValue: string | number | null;
 }
 
-const props = defineProps<Props>();
+defineEmits(["update:modelValue"]);
+defineProps<Props>();
 </script>
