@@ -17,7 +17,7 @@
         class="mb-3 text-center !indent-0"
         :class="{
           '!border-danger': !name,
-          '!border-info': name != user.name
+          '!border-info': !!name && name != user.name
         }"
         placeholder="Имя"
         type="text"

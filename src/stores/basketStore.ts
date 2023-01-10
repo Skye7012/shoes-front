@@ -31,12 +31,17 @@ export const useBasketStore = defineStore({
 
     removeShoe(id: number) {
       let basket = getBasket();
-
-      if (!basket) return;
+      if (!basket) throw new Error(`Не удается получить Корзину`);
 
       basket = basket.filter((x) => x.id !== id);
       setBasket(basket);
-      this.basketTotalCount = basket.length;
+
+      const basketItem = this.basketItems.find((x) => x.id === id)?.price;
+      if (!basketItem) throw new Error(`Обуви с id ${id} не существует`);
+
+      this.basketPrice -= basketItem;
+      this.basketItems = this.basketItems.filter((x) => x.id !== id);
+      this.basketTotalCount = this.basketItems.length;
     },
 
     async fetchBasketItems() {
@@ -55,16 +60,6 @@ export const useBasketStore = defineStore({
       } catch (e) {
         alert(e);
       }
-    },
-
-    removeBasketItem(id: number) {
-      const basketItem = this.basketItems.find((x) => x.id === id)?.price;
-
-      if (!basketItem) throw new Error(`Обуви с id ${id} не существует`);
-
-      this.basketPrice -= basketItem;
-      this.basketItems = this.basketItems.filter((x) => x.id !== id);
-      this.basketTotalCount = this.basketItems.length;
     }
   },
 

@@ -17,7 +17,7 @@
         />
       </div>
       <div>
-        <ButtonComponent @click="onRemoveClick(basketItem.id)">
+        <ButtonComponent @click="basket.removeShoe(basketItem.id)">
           Убрать из корзины
         </ButtonComponent>
       </div>
@@ -51,12 +51,6 @@ export default defineComponent({
     return {
       inBasket: false
     };
-  },
-  methods: {
-    onRemoveClick(id: number) {
-      this.basket.removeBasketItem(id);
-      this.basket.removeShoe(id);
-    }
   }
 });
 </script>

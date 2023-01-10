@@ -1,7 +1,7 @@
 <template>
   <div class="m-auto flex justify-center items-center mt-12">
     <BoxComponent
-      class="overflow-y-auto h-[60vh] grid auto-rows-[140px] gap-y-3 min-h-[480px]"
+      class="overflow-y-auto h-[60vh] grid auto-rows-[140px] gap-y-3 min-h-[480px] min-w-[500px]"
     >
       <BasketItem
         v-for="basketItem in basket.basketItems"
@@ -24,8 +24,8 @@
           v-model="address"
           class="text-center !w-[80%]"
           :class="{
-            'border-danger': !address,
-            'border-info': !!address
+            '!border-danger': !address,
+            '!border-info': !!address
           }"
           placeholder="Адрес"
           type="text"
@@ -34,7 +34,7 @@
         <ButtonComponent
           :class="{
             'bg-light': !address,
-            'bg-info text-white': !!address
+            '!bg-info text-white': !!address
           }"
           :disabled="!address"
           class="m-[2vh_0] w-[80%]"
