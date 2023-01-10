@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-[200px_200px] gap-x-3 auto-rows-min justify-center content-center"
+    class="h-full grid grid-cols-[200px_200px] gap-x-3 auto-rows-min justify-center content-center"
   >
     <FormComponent title="Логин">
       <InputComponent
@@ -60,9 +60,9 @@
 import { defineComponent, ref } from "vue";
 import { UserPutRequest } from "@/api/Api";
 import { useUserStore } from "@/stores/userStore";
-import FormComponent from "./UI/FormComponent.vue";
-import InputComponent from "./UI/InputComponent.vue";
-import ButtonComponent from "./UI/ButtonComponent.vue";
+import FormComponent from "@/components/UI/FormComponent.vue";
+import InputComponent from "@/components/UI/InputComponent.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 
 export default defineComponent({
   components: { FormComponent, InputComponent, ButtonComponent },

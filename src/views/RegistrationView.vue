@@ -1,5 +1,5 @@
 <template>
-  <div class="m-auto flex flex-col justify-center">
+  <div class="h-full m-auto flex flex-col justify-center">
     <InputComponent
       v-model="login"
       class="mb-3"
@@ -49,8 +49,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useUserStore } from "@/stores/userStore";
-import InputComponent from "./UI/InputComponent.vue";
-import ButtonComponent from "./UI/ButtonComponent.vue";
+import InputComponent from "@/components/UI/InputComponent.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 
 export default defineComponent({
   components: { InputComponent, ButtonComponent },

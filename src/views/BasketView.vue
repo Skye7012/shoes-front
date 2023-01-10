@@ -1,5 +1,5 @@
 <template>
-  <div class="m-auto flex justify-center items-center mt-12">
+  <div class="h-full m-auto flex justify-center items-center mt-12">
     <BoxComponent
       class="overflow-y-auto h-[60vh] grid auto-rows-[140px] gap-y-3 min-h-[480px] min-w-[500px]"
     >
@@ -53,14 +53,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import BasketItem from "@/components/BasketItem.vue";
 import { removeBasket } from "@/envHelper";
 import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useUserStore } from "@/stores/userStore";
-import ButtonComponent from "./UI/ButtonComponent.vue";
-import InputComponent from "./UI/InputComponent.vue";
-import BoxComponent from "./UI/BoxComponent.vue";
+import BasketItem from "@/components/BasketItem.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import InputComponent from "@/components/UI/InputComponent.vue";
+import BoxComponent from "@/components/UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {

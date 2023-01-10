@@ -1,17 +1,25 @@
-import { createApp } from "vue";
+import { createApp, markRaw } from "vue";
 import { createPinia } from "pinia";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import AppComponent from "@/App.vue";
 import router from "@/router";
 import { configureFontAwesome } from "./fontAwesomeConfig";
 import "./index.css";
 
-configureFontAwesome();
 const pinia = createPinia();
 const app = createApp(AppComponent);
 
+/** Конфигурация pinia */
+pinia.use(({ store }) => {
+  // eslint-disable-next-line no-param-reassign
+  store.$router = markRaw(router)
+});
+
+/** Конфигурация приложения */
 app
   .use(router)
   .use(pinia)
-  .component("FontAwesomeIcon", FontAwesomeIcon)
-  .mount("#app");
+
+configureFontAwesome(app);
+
+/** Запуск приложения */
+app.mount("#app");
