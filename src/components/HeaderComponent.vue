@@ -79,6 +79,9 @@ export default defineComponent({
       orders,
       basket
     };
+  },
+  mounted() {
+    this.basket.getBasketCount();
   }
 });
 </script>

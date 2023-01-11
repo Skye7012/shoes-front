@@ -31,12 +31,17 @@ export const useBasketStore = defineStore({
 
     removeShoe(id: number) {
       let basket = getBasket();
-      if (!basket) throw new Error(`Не удается получить Корзину`);
+
+      if (!basket) throw new Error("Basket не определен");
 
       basket = basket.filter((x) => x.id !== id);
       setBasket(basket);
+      this.basketTotalCount = basket.length;
+    },
 
+    removeBasketItem(id: number) {
       const basketItem = this.basketItems.find((x) => x.id === id)?.price;
+
       if (!basketItem) throw new Error(`Обуви с id ${id} не существует`);
 
       this.basketPrice -= basketItem;
@@ -60,6 +65,11 @@ export const useBasketStore = defineStore({
       } catch (e) {
         alert(e);
       }
+    },
+
+    getBasketCount() {
+      const basket = getBasket() ?? [];
+      this.basketTotalCount = basket.length;
     }
   },
 
