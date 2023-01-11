@@ -8,8 +8,9 @@ import OrderView from "@/views/OrderView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import HeaderLayoutWithSearch from "@/layouts/HeaderLayoutWithSearch.vue";
 import HeaderLayout from "@/layouts/HeaderLayout.vue";
+import { routeNames } from "./routeNames";
 
-/** Руты с шаблонами */
+/** Руты */
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -17,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/",
-        name: "home",
+        name: routeNames.home,
         component: CatalogView
       }
     ]
@@ -28,21 +29,21 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/profile",
-        name: "profile",
+        name: routeNames.profile,
         component: ProfileView,
         beforeEnter: () => {
-          if (!localStorage.token) return { name: "login" };
+          if (!localStorage.token) return { name: routeNames.login };
           return undefined;
         }
       },
       {
         path: "/basket",
-        name: "basket",
+        name: routeNames.basket,
         component: BasketView
       },
       {
         path: "/login",
-        name: "login",
+        name: routeNames.login,
         component: LoginView,
         beforeEnter: () => {
           if (localStorage.token) return false;
@@ -51,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/registration",
-        name: "registration",
+        name: routeNames.registration,
         component: RegistrationView,
         beforeEnter: () => {
           if (localStorage.token) return false;
@@ -60,10 +61,10 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/orders",
-        name: "orders",
+        name: routeNames.orders,
         component: OrderView,
         beforeEnter: () => {
-          if (!localStorage.token) return { name: "login" };
+          if (!localStorage.token) return { name: routeNames.login };
           return undefined;
         }
       }
@@ -71,7 +72,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/:pathMatch(.*)*",
-    name: "notFound",
+    name: routeNames.notFound,
     component: NotFoundView
   }
 ];

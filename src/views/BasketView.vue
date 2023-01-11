@@ -61,6 +61,7 @@ import BasketItem from "@/components/BasketItem.vue";
 import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 import InputComponent from "@/components/UI/InputComponent.vue";
 import BoxComponent from "@/components/UI/BoxComponent.vue";
+import { routeNames } from "@/router/routeNames";
 
 export default defineComponent({
   components: {
@@ -91,7 +92,7 @@ export default defineComponent({
   methods: {
     buy() {
       if (!this.user.isAuth) {
-        this.$router.push("/login");
+        this.$router.push({ name: routeNames.login });
         return;
       }
 
@@ -115,7 +116,7 @@ export default defineComponent({
       this.orders.postOrder(order);
 
       this.clearBasket();
-      this.$router.push("/");
+      this.$router.push({ name: routeNames.home });
     },
     clearBasket() {
       removeBasket();

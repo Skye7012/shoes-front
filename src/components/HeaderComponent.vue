@@ -20,7 +20,7 @@
         >
       </div>
       <div class="mt-auto mx-0 pl-2 ml-auto">
-        <ButtonComponent @click="$router.push('/profile')">
+        <ButtonComponent @click="$router.push({ name: $routeNames.profile })">
           <div class="text-base">
             <span>
               <FontAwesomeIcon class="pr-1" icon="fa-solid fa-user" />
@@ -30,7 +30,10 @@
             </span>
           </div>
         </ButtonComponent>
-        <ButtonComponent class="ml-2" @click="$router.push('/basket')">
+        <ButtonComponent
+          class="ml-2"
+          @click="$router.push({ name: $routeNames.basket })"
+        >
           <div class="text-base">
             <span>
               <FontAwesomeIcon class="pr-1" icon="fa-solid fa-cart-shopping" />
@@ -62,7 +65,7 @@ export default defineComponent({
   props: {
     isWithSearch: {
       type: Boolean,
-      default: () => false,
+      default: () => false
     }
   },
   setup() {
@@ -76,6 +79,6 @@ export default defineComponent({
       orders,
       basket
     };
-  },
+  }
 });
 </script>

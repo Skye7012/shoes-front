@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { SignUpRequest, UserPutRequest } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
 import { getToken, removeToken, setToken } from "@/envHelper";
+import { routeNames } from "@/router/routeNames";
 
 interface UserType {
   isAuth: boolean;
@@ -41,7 +42,7 @@ export const useUserStore = defineStore({
 
         setToken(response.data.token);
         this.isAuth = true;
-        this.$router.push("/profile");
+        this.$router.push({ name: routeNames.profile });
       } catch (e) {
         alert(e);
       }
@@ -51,7 +52,7 @@ export const useUserStore = defineStore({
       try {
         await apiClient.user.signUpCreate(user);
 
-        this.$router.push("/login");
+        this.$router.push({ name: routeNames.login });
       } catch (e) {
         alert(e);
       }
@@ -60,7 +61,7 @@ export const useUserStore = defineStore({
     logout() {
       removeToken();
       this.isAuth = false;
-      this.$router.push("/login");
+      this.$router.push({ name: routeNames.login });
     },
 
     async fetchUser() {
@@ -100,7 +101,7 @@ export const useUserStore = defineStore({
         removeToken();
         localStorage.removeItem("basket");
 
-        this.$router.push("/");
+        this.$router.push({ name: routeNames.home });
       } catch (e) {
         alert(e);
       }
