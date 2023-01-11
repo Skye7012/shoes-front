@@ -1,11 +1,7 @@
+import { defineStore } from "pinia";
 import { GetShoesResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
-import {
-  IBasketStoreItem as IBasketStoreItem,
-  getBasket,
-  setBasket,
-} from "@/envHelper";
-import { defineStore } from "pinia";
+import { IBasketStoreItem, getBasket, setBasket } from "@/envHelper";
 
 interface BasketType {
   basketItems: GetShoesResponseItem[];
@@ -19,7 +15,7 @@ export const useBasketStore = defineStore({
   state: (): BasketType => ({
     basketItems: [],
     basketTotalCount: 0,
-    basketPrice: 0,
+    basketPrice: 0
   }),
 
   actions: {
@@ -36,11 +32,21 @@ export const useBasketStore = defineStore({
     removeShoe(id: number) {
       let basket = getBasket();
 
-      if (!basket) return;
+      if (!basket) throw new Error("Basket не определен");
 
       basket = basket.filter((x) => x.id !== id);
       setBasket(basket);
       this.basketTotalCount = basket.length;
+    },
+
+    removeBasketItem(id: number) {
+      const basketItem = this.basketItems.find((x) => x.id === id)?.price;
+
+      if (!basketItem) throw new Error(`Обуви с id ${id} не существует`);
+
+      this.basketPrice -= basketItem;
+      this.basketItems = this.basketItems.filter((x) => x.id !== id);
+      this.basketTotalCount = this.basketItems.length;
     },
 
     async fetchBasketItems() {
@@ -61,15 +67,10 @@ export const useBasketStore = defineStore({
       }
     },
 
-    removeBasketItem(id: number) {
-      const basketItem = this.basketItems.find((x) => x.id === id)?.price;
-
-      if (!basketItem) throw new Error(`Обуви с id ${id} не существует`);
-
-      this.basketPrice -= basketItem;
-      this.basketItems = this.basketItems.filter((x) => x.id !== id);
-      this.basketTotalCount = this.basketItems.length;
-    },
+    getBasketCount() {
+      const basket = getBasket() ?? [];
+      this.basketTotalCount = basket.length;
+    }
   },
 
   getters: {
@@ -82,11 +83,11 @@ export const useBasketStore = defineStore({
     },
     getSize: () => (id: number) => {
       const basket = getBasket();
-      const size = basket?.find((x) => x.id == id)?.size;
+      const size = basket?.find((x) => x.id === id)?.size;
 
       if (!size) throw new Error("Не удалось получить размер обуви");
 
       return size;
-    },
-  },
+    }
+  }
 });

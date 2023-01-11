@@ -1,6 +1,6 @@
+import { defineStore } from "pinia";
 import { GetBrandsResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
-import { defineStore } from "pinia";
 
 interface BrandType {
   brands: GetBrandsResponseItem[];
@@ -12,7 +12,7 @@ export const useBrandStore = defineStore({
 
   state: (): BrandType => ({
     brands: [],
-    brandsTotalCount: 0,
+    brandsTotalCount: 0
   }),
 
   actions: {
@@ -25,6 +25,6 @@ export const useBrandStore = defineStore({
       } catch (e) {
         alert(e);
       }
-    },
-  },
+    }
+  }
 });

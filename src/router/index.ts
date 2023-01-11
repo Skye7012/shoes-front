@@ -1,59 +1,85 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
-import HomePage from "@/pages/HomePage.vue";
-import ProfilePage from "@/pages/ProfilePage.vue";
-import LoginPage from "@/pages/LoginPage.vue";
-import RegistrationPage from "@/pages/RegistrationPage.vue";
-import BasketPage from "@/pages/BasketPage.vue";
-import OrdersPage from "@/pages/OrdersPage.vue";
+import BasketView from "@/views/BasketView.vue";
+import ProfileView from "@/views/ProfileView.vue";
+import LoginView from "@/views/LoginView.vue";
+import CatalogView from "@/views/CatalogView.vue";
+import RegistrationView from "@/views/RegistrationView.vue";
+import OrderView from "@/views/OrderView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
+import HeaderLayoutWithSearch from "@/layouts/HeaderLayoutWithSearch.vue";
+import HeaderLayout from "@/layouts/HeaderLayout.vue";
+import { routeNames } from "./routeNames";
 
+/** Руты */
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
-    component: HomePage,
+    component: HeaderLayoutWithSearch,
+    children: [
+      {
+        path: "/",
+        name: routeNames.home,
+        component: CatalogView
+      }
+    ]
   },
   {
-    path: "/profile",
-    name: "profile",
-    component: ProfilePage,
-    beforeEnter: () => {
-      if (!localStorage.token) return { name: "login" };
-    },
+    path: "/",
+    component: HeaderLayout,
+    children: [
+      {
+        path: "/profile",
+        name: routeNames.profile,
+        component: ProfileView,
+        beforeEnter: () => {
+          if (!localStorage.token) return { name: routeNames.login };
+          return undefined;
+        }
+      },
+      {
+        path: "/basket",
+        name: routeNames.basket,
+        component: BasketView
+      },
+      {
+        path: "/login",
+        name: routeNames.login,
+        component: LoginView,
+        beforeEnter: () => {
+          if (localStorage.token) return false;
+          return undefined;
+        }
+      },
+      {
+        path: "/registration",
+        name: routeNames.registration,
+        component: RegistrationView,
+        beforeEnter: () => {
+          if (localStorage.token) return false;
+          return undefined;
+        }
+      },
+      {
+        path: "/orders",
+        name: routeNames.orders,
+        component: OrderView,
+        beforeEnter: () => {
+          if (!localStorage.token) return { name: routeNames.login };
+          return undefined;
+        }
+      }
+    ]
   },
   {
-    path: "/basket",
-    name: "basket",
-    component: BasketPage,
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: LoginPage,
-    beforeEnter: () => {
-      if (localStorage.token) return false;
-    },
-  },
-  {
-    path: "/registration",
-    name: "registration",
-    component: RegistrationPage,
-    beforeEnter: () => {
-      if (localStorage.token) return false;
-    },
-  },
-  {
-    path: "/orders",
-    name: "orders",
-    component: OrdersPage,
-    beforeEnter: () => {
-      if (!localStorage.token) return { name: "login" };
-    },
-  },
+    path: "/:pathMatch(.*)*",
+    name: routeNames.notFound,
+    component: NotFoundView
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 });
 
 export default router;

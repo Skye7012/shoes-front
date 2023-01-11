@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --info: hsl(204, 86%, 53%);
+  --light: hsl(0, 0%, 86%);
+  --danger: hsl(348, 100%, 61%);
+  --white-bis: hsl(0, 0%, 98%);
+  --grey-dark: hsl(0, 0%, 29%);
+}
+
+body {
+  font-family: sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+}

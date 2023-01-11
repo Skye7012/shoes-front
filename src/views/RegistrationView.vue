@@ -1,49 +1,65 @@
 <template>
-  <div class="registration">
-    <input
+  <div class="h-full m-auto flex flex-col justify-center">
+    <InputComponent
       v-model="login"
-      class="input"
-      v-bind:class="{ req: !login }"
+      class="mb-3"
+      :class="{ 'border-danger': !login }"
       placeholder="Логин"
       type="text"
     />
-    <input
+    <InputComponent
       v-model="password"
-      class="input"
-      v-bind:class="{ req: !password }"
+      class="mb-3"
+      :class="{ 'border-danger': !password }"
       placeholder="Пароль"
       type="password"
     />
-    <input
+    <InputComponent
       v-model="confirmPassword"
-      class="input"
-      v-bind:class="{ req: !confirmPassword }"
+      class="mb-3"
+      :class="{ 'border-danger': !confirmPassword }"
       placeholder="Подтвердите пароль"
       type="password"
     />
-    <input
+    <InputComponent
       v-model="name"
-      class="input"
-      v-bind:class="{ req: !name }"
+      class="mb-3"
+      :class="{ 'border-danger': !name }"
       placeholder="Имя"
       type="text"
     />
-    <input
+    <InputComponent
       v-model="firstName"
-      class="input"
+      class="mb-3"
       placeholder="Фамилия"
       type="text"
     />
-    <input v-model="phone" class="input" placeholder="Телефон" type="text" />
-    <button @click="signUp" class="button">Зарегистрироваться</button>
+    <InputComponent
+      v-model="phone"
+      class="mb-3"
+      placeholder="Телефон"
+      type="text"
+    />
+    <ButtonComponent class="mt-5" @click="signUp"
+      >Зарегистрироваться</ButtonComponent
+    >
   </div>
 </template>
 
 <script lang="ts">
-import { useUserStore } from "@/stores/userStore";
 import { defineComponent } from "vue";
+import { useUserStore } from "@/stores/userStore";
+import InputComponent from "@/components/UI/InputComponent.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 
 export default defineComponent({
+  components: { InputComponent, ButtonComponent },
+  setup() {
+    const user = useUserStore();
+    return {
+      user
+    };
+  },
   data() {
     return {
       login: null as string | null,
@@ -51,14 +67,7 @@ export default defineComponent({
       confirmPassword: null as string | null,
       name: null as string | null,
       firstName: null as string | null,
-      phone: null as string | null,
-    };
-  },
-  setup() {
-    const user = useUserStore();
-
-    return {
-      user,
+      phone: null as string | null
     };
   },
   methods: {
@@ -75,7 +84,7 @@ export default defineComponent({
         alert("Подтвердите пароль");
         return;
       }
-      if (this.password != this.confirmPassword) {
+      if (this.password !== this.confirmPassword) {
         alert("Пароли не совпадают");
         return;
       }
@@ -83,47 +92,14 @@ export default defineComponent({
         alert("Имя обязательно");
         return;
       }
-
       this.user.signUp({
         login: this.login,
         name: this.name,
         password: this.password,
         firstName: this.firstName ?? undefined,
-        phone: this.phone ?? undefined,
+        phone: this.phone ?? undefined
       });
-    },
-  },
+    }
+  }
 });
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.registration {
-  margin: auto auto;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-  text-indent: 1rem;
-
-  margin-bottom: 10px;
-}
-
-.button {
-  margin-top: 20px;
-}
-
-.req {
-  border-color: $danger;
-}
-</style>

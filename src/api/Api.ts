@@ -353,7 +353,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
-      baseURL: axiosConfig.baseURL || "",
+      baseURL: axiosConfig.baseURL || ""
     });
     this.secure = secure;
     this.format = format;
@@ -642,9 +642,8 @@ export class Api<
         path: `/Shoes/GetXml`,
         method: "GET",
         format: "blob",
-        ...params,
-      }),
-
+        ...params
+      })
   };
   sizes = {
     /**

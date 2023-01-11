@@ -1,6 +1,6 @@
+import { defineStore } from "pinia";
 import { apiClient } from "@/api/apiClient";
 import { GetShoesResponseItem } from "@/api/Api";
-import { defineStore } from "pinia";
 
 export interface ISortOption {
   OrderBy: string;
@@ -34,7 +34,7 @@ export const useShoesStore = defineStore({
     brandFilters: [],
     destinationFilters: [],
     seasonFilters: [],
-    sizeFilters: [],
+    sizeFilters: []
   }),
 
   actions: {
@@ -55,7 +55,7 @@ export const useShoesStore = defineStore({
           OrderBy: this.sortOption.OrderBy,
           Limit: this.limit,
           Page: this.page,
-          SearchQuery: this.searchQuery ? this.searchQuery : undefined,
+          SearchQuery: this.searchQuery ? this.searchQuery : undefined
         });
 
         this.totalPages = Math.ceil(response.data.totalCount / this.limit);
@@ -69,6 +69,6 @@ export const useShoesStore = defineStore({
     async downloadXMLFile() {
       const response = await apiClient.shoes.getXmlList();
       apiClient.downloadFile(response);
-    },
-  },
+    }
+  }
 });

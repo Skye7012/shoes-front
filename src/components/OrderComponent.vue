@@ -1,5 +1,7 @@
 <template>
-  <div class="order box">
+  <BoxComponent
+    class="overflow-y-auto overflow-x-hidden h-[60vh] flex flex-col w-[400px]"
+  >
     <div class="textBlock">
       <span>Дата:</span>
       <span>{{ getDate() }}</span>
@@ -16,74 +18,55 @@
     <OrderItem
       v-for="orderItem in order.orderItems"
       :key="orderItem.id"
-      v-bind:orderItem="orderItem"
+      :order-item="orderItem"
     >
     </OrderItem>
-  </div>
+  </BoxComponent>
 </template>
 
 <script lang="ts">
+import { PropType, defineComponent } from "vue";
 import { GetOrdersResponseItem } from "@/api/Api";
 import OrderItem from "@/components/OrderItem.vue";
 import { useOrderStore } from "@/stores/orderStore";
-import { PropType, defineComponent } from "vue";
+import BoxComponent from "./UI/BoxComponent.vue";
 
 export default defineComponent({
   components: {
     OrderItem,
+    BoxComponent
   },
-  data() {
-    return {
-      orderItems: [],
-    };
+  props: {
+    order: {
+      type: Object as PropType<GetOrdersResponseItem>,
+      required: true
+    }
   },
   setup() {
     const orders = useOrderStore();
 
     return {
-      orders,
+      orders
+    };
+  },
+  data() {
+    return {
+      orderItems: []
     };
   },
   methods: {
     getDate() {
       const orderDate = new Date(Date.parse(this.order.orderDate));
-      return (
-        orderDate.getFullYear() +
-        " / " +
-        (orderDate.getMonth() + 1) +
-        " / " +
-        orderDate.getDate()
-      );
-    },
-  },
-  props: {
-    order: {
-      type: Object as PropType<GetOrdersResponseItem>,
-      required: true,
-    },
-  },
+      return `${orderDate.getFullYear()} / ${
+        orderDate.getMonth() + 1
+      } / ${orderDate.getDate()}`;
+    }
+  }
 });
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.order {
-  overflow-y: auto;
-  height: 60vh;
-  display: grid;
-  grid-auto-rows: min-content;
-  max-width: 350px;
-}
-
-.price {
-  color: $danger;
-}
-
+<style scoped>
 .textBlock {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.1rem 0.5rem;
+  @apply flex justify-between my-[0.1rem] mx-2;
 }
 </style>

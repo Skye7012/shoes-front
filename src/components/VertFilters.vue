@@ -1,7 +1,10 @@
 <template>
-  <div class="filter">
+  <div class="flex justify-between items-center">
     <div>
-      <select @change="changeFilter" class="select">
+      <select
+        class="bg-white border border-light rounded h-10 px-1"
+        @change="changeFilter"
+      >
         <option
           v-for="sortOption in sortOptions"
           :key="sortOption.value"
@@ -10,49 +13,66 @@
           {{ sortOption.title }}
         </option>
       </select>
-      <button class="button" @click="shoes.downloadXMLFile">XML</button>
+      <ButtonComponent class="element-spacing" @click="shoes.downloadXMLFile"
+        >XML</ButtonComponent
+      >
     </div>
 
-    <div class="pagination-container">
-      <button @click="decrementPage" class="button">Пред</button>
+    <div class="flex justify-end">
+      <ButtonComponent class="element-spacing" @click="decrementPage"
+        >Пред</ButtonComponent
+      >
 
-      <button
+      <ButtonComponent
+        :class="{ 'bg-info text-white': activePag === 1 }"
+        class="element-spacing"
         @click="changePage(1)"
-        :class="{ link: activePag === 1 }"
-        class="button"
       >
         1
-      </button>
+      </ButtonComponent>
 
-      <input
-        class="input"
+      <InputComponent
         v-model="nowPage"
-        :class="{ link: activePag === 2 }"
+        class="element-spacing !w-16 text-center !cursor-auto"
+        :class="{ 'bg-info text-white indent-0': activePag === 2 }"
         placeholder="num"
       />
 
-      <button
+      <ButtonComponent
+        :class="{ 'bg-info text-white': activePag === 3 }"
+        class="element-spacing"
         @click="changePage(shoes.totalPages)"
-        :class="{ link: activePag === 3 }"
-        class="button"
       >
         {{ shoes.totalPages }}
-      </button>
+      </ButtonComponent>
 
-      <button @click="incrementPage" class="button">След</button>
+      <ButtonComponent class="element-spacing" @click="incrementPage"
+        >След</ButtonComponent
+      >
 
-      <button class="button count">
+      <ButtonComponent
+        class="element-spacing !border-info !rounded-full !w-auto"
+      >
         {{ shoes.totalCount ? shoes.totalCount : 0 }}
-      </button>
+      </ButtonComponent>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useShoesStore } from "@/stores/shoesStore";
 import { defineComponent } from "vue";
+import { useShoesStore } from "@/stores/shoesStore";
+import ButtonComponent from "./UI/ButtonComponent.vue";
+import InputComponent from "./UI/InputComponent.vue";
 
 export default defineComponent({
+  components: { ButtonComponent, InputComponent },
+  setup() {
+    const shoes = useShoesStore();
+    return {
+      shoes
+    };
+  },
   data() {
     return {
       nowPage: 1,
@@ -60,16 +80,16 @@ export default defineComponent({
       sortOptions: [
         { title: "По названию", value: "Name" },
         { title: "Сначала дешевые", value: "Cheaper" },
-        { title: "Сначала дорогие", value: "Expensive" },
-      ],
+        { title: "Сначала дорогие", value: "Expensive" }
+      ]
     };
   },
-  setup() {
-    const shoes = useShoesStore();
-
-    return {
-      shoes,
-    };
+  watch: {
+    nowPage: {
+      handler() {
+        this.changePage(this.nowPage);
+      }
+    }
   },
   methods: {
     changePage(page: number) {
@@ -80,14 +100,14 @@ export default defineComponent({
       }
     },
     decrementPage() {
-      if (this.nowPage <= 1) this.nowPage == 1;
-      else this.nowPage--;
+      if (this.nowPage <= 1) this.nowPage = 1;
+      else this.nowPage += 1;
       this.activePag = 2;
     },
     incrementPage() {
-      if (this.nowPage >= this.shoes.totalPages)
+      if (this.nowPage >= this.shoes.totalPages) {
         this.nowPage = this.shoes.totalPages;
-      else this.nowPage++;
+      } else this.nowPage += 1;
       this.activePag = 2;
     },
     changeFilter(event: Event) {
@@ -101,63 +121,17 @@ export default defineComponent({
         case "Expensive":
           this.shoes.sortOption = { OrderBy: "Price", IsAscending: false };
           break;
+        default:
+          throw new Error("Не реализованная опция в switch");
       }
-
       this.shoes.fetchShoes();
-    },
-  },
-  watch: {
-    nowPage: {
-      handler() {
-        this.changePage(this.nowPage);
-      },
-    },
-  },
+    }
+  }
 });
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/vars.scss";
-@import "@/assets/my.scss";
-
-.filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.button {
-  margin-left: 10px;
-  min-width: 2.5rem;
-}
-
-.select {
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-}
-
-.pagination-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.link {
-  background-color: $info;
-  color: white;
-}
-
-.input {
-  @extend .button;
-  width: 4rem;
-  text-align: center;
-  cursor: auto;
-}
-
-.count {
-  border-color: $info;
-  border-radius: 2rem;
-  width: auto;
+<style scoped>
+.element-spacing {
+  @apply ml-2 min-w-[2.5rem];
 }
 </style>

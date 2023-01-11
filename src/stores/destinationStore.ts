@@ -1,6 +1,6 @@
+import { defineStore } from "pinia";
 import { GetDestinationsResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
-import { defineStore } from "pinia";
 
 interface DestinationType {
   destinations: GetDestinationsResponseItem[];
@@ -12,7 +12,7 @@ export const useDestinationStore = defineStore({
 
   state: (): DestinationType => ({
     destinations: [],
-    destinationsTotalCount: 0,
+    destinationsTotalCount: 0
   }),
 
   actions: {
@@ -25,6 +25,6 @@ export const useDestinationStore = defineStore({
       } catch (e) {
         alert(e);
       }
-    },
-  },
+    }
+  }
 });

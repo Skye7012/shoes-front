@@ -1,143 +1,87 @@
 <template>
-  <div class="nav">
-    <a @click="goHome" class="nav-item logo">
-      <span class="title">Shoes</span>
-    </a>
-    <div class="nav-item search">
-      <input
-        v-model="shoes.searchQuery"
-        class="input"
-        type="text"
-        placeholder="Найти"
-      />
-      <button @click="shoes.fetchShoes" class="find">Найти</button>
-    </div>
-    <div class="nav-item-end">
-      <button @click="$router.push('/profile')" class="button">
-        <span>
-          <FontAwesomeIcon icon="fa-solid fa-user" />
-        </span>
-        <span>
-          {{ user.isAuth ? "Профиль" : "Войти" }}
-        </span>
-      </button>
-      <button @click="$router.push('/basket')" class="button end">
-        <span>
-          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
-        </span>
-        <span>
-          Корзина
-          <span class="count">{{
-            basket.basketTotalCount ? `(${basket.basketTotalCount})` : ""
-          }}</span>
-        </span>
-      </button>
+  <div>
+    <div
+      class="p-[0_2vw] min-w-[700px] max-w-[1200px] my-0 mx-auto mt-5 grid grid-cols-[auto_1fr_auto]"
+    >
+      <router-link to="/" class="mt-auto mx-0 pt-0 px-2 pl-0 cursor-pointer">
+        <span class="text-5xl font-bold text-info">Shoes</span>
+      </router-link>
+      <div v-if="isWithSearch" class="mt-auto mx-0 pt-0 px-2 relative">
+        <input
+          v-model="shoes.searchQuery"
+          class="w-full border border-light rounded h-10 indent-4"
+          type="text"
+          placeholder="Найти"
+        />
+        <ButtonComponent
+          class="absolute !bg-info text-white right-0 !rounded-tl-none !rounded-bl-none !border-l-0"
+          @click="shoes.fetchShoes"
+          >Найти</ButtonComponent
+        >
+      </div>
+      <div class="mt-auto mx-0 pl-2 ml-auto">
+        <ButtonComponent @click="$router.push({ name: $routeNames.profile })">
+          <div class="text-base">
+            <span>
+              <FontAwesomeIcon class="pr-1" icon="fa-solid fa-user" />
+            </span>
+            <span>
+              {{ user.isAuth ? "Профиль" : "Войти" }}
+            </span>
+          </div>
+        </ButtonComponent>
+        <ButtonComponent
+          class="ml-2"
+          @click="$router.push({ name: $routeNames.basket })"
+        >
+          <div class="text-base">
+            <span>
+              <FontAwesomeIcon class="pr-1" icon="fa-solid fa-cart-shopping" />
+            </span>
+            <span>
+              Корзина
+              <span class="text-info">{{
+                basket.basketTotalCount ? `(${basket.basketTotalCount})` : ""
+              }}</span>
+            </span>
+          </div>
+        </ButtonComponent>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import router from "@/router";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { defineComponent } from "vue";
 import { useBasketStore } from "@/stores/basketStore";
 import { useOrderStore } from "@/stores/orderStore";
 import { useShoesStore } from "@/stores/shoesStore";
 import { useUserStore } from "@/stores/userStore";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { defineComponent } from "vue";
+import ButtonComponent from "./UI/ButtonComponent.vue";
 
 export default defineComponent({
+  components: { FontAwesomeIcon, ButtonComponent },
+  props: {
+    isWithSearch: {
+      type: Boolean,
+      default: () => false
+    }
+  },
   setup() {
     const user = useUserStore();
     const shoes = useShoesStore();
     const orders = useOrderStore();
     const basket = useBasketStore();
-    const goHome = () => router.push("/");
     return {
       user,
       shoes,
       orders,
-      basket,
-      goHome,
+      basket
     };
   },
-  components: { FontAwesomeIcon },
+  mounted() {
+    this.basket.getBasketCount();
+  }
 });
 </script>
-
-<style scoped lang="scss">
-@import "@/assets/My/button.scss";
-
-$text-size: 3em;
-$size: 3em;
-
-.nav {
-  box-sizing: border-box;
-  padding: 0 2vw;
-
-  min-width: 700px;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  &-item {
-    margin: auto 0;
-    padding: 0 10px;
-    &-end {
-      margin: auto 0;
-      padding-left: 10px;
-      margin-left: auto;
-    }
-  }
-}
-
-.search {
-  position: relative;
-}
-
-.input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid $light;
-  border-radius: 0.25rem;
-  height: 2.5rem;
-  text-indent: 1rem;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: $info;
-}
-
-.find {
-  position: absolute;
-  @extend .button;
-  background-color: $info;
-  color: white;
-  right: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-left-width: 0;
-}
-
-.end {
-  margin-left: 10px;
-}
-
-.button {
-  span {
-    font-size: 1rem;
-    padding-right: 5px;
-  }
-}
-
-.logo {
-  padding-left: 0;
-  cursor: pointer;
-}
-
-.count {
-  color: $info;
-}
-</style>
