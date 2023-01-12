@@ -46,7 +46,7 @@
     >
     <ButtonComponent
       class="mb-2 !bg-info text-white"
-      @click="$router.push({ name: $routeNames.orders })"
+      @click="$router.push({ name: $router.routeNames.orders })"
       >Заказы</ButtonComponent
     >
     <ButtonComponent class="mb-2 !bg-danger text-white" @click="delProfile"

@@ -15,7 +15,9 @@
     <ButtonComponent @click="user.signIn(password ?? undefined)">
       Войти
     </ButtonComponent>
-    <LinkComponent to="/registration" class="mt-1 text-right"
+    <LinkComponent
+      :to="{ name: $router.routeNames.registration }"
+      class="mt-1 text-right"
       >Регистрация</LinkComponent
     >
   </div>

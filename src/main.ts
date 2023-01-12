@@ -2,9 +2,9 @@ import { createApp, markRaw } from "vue";
 import { createPinia } from "pinia";
 import AppComponent from "@/App.vue";
 import router from "@/router";
+import { configureRouteExtensions } from "@/router/routerExtension";
 import { configureFontAwesome } from "./fontAwesomeConfig";
 import "./index.css";
-import { vueRouteNamesPlugin } from "./router/routeNames";
 
 const pinia = createPinia();
 const app = createApp(AppComponent);
@@ -16,9 +16,10 @@ pinia.use(({ store }) => {
 });
 
 /** Конфигурация приложения */
-app.use(router).use(pinia).use(vueRouteNamesPlugin);
+app.use(router).use(pinia);
 
 configureFontAwesome(app);
+configureRouteExtensions(router);
 
 /** Запуск приложения */
 app.mount("#app");
