@@ -3,7 +3,10 @@
     <div
       class="p-[0_2vw] min-w-[700px] max-w-[1200px] my-0 mx-auto mt-5 grid grid-cols-[auto_1fr_auto]"
     >
-      <router-link to="/" class="mt-auto mx-0 pt-0 px-2 pl-0 cursor-pointer">
+      <router-link
+        :to="{name: $router.routeNames.home}"
+        class="mt-auto mx-0 pt-0 px-2 pl-0 cursor-pointer"
+      >
         <span class="text-5xl font-bold text-info">Shoes</span>
       </router-link>
       <div v-if="isWithSearch" class="mt-auto mx-0 pt-0 px-2 relative">
@@ -20,7 +23,9 @@
         >
       </div>
       <div class="mt-auto mx-0 pl-2 ml-auto">
-        <ButtonComponent @click="$router.push({ name: $routeNames.profile })">
+        <ButtonComponent
+          @click="$router.push({ name: $router.routeNames.profile })"
+        >
           <div class="text-base">
             <span>
               <FontAwesomeIcon class="pr-1" icon="fa-solid fa-user" />
@@ -32,7 +37,7 @@
         </ButtonComponent>
         <ButtonComponent
           class="ml-2"
-          @click="$router.push({ name: $routeNames.basket })"
+          @click="$router.push({ name: $router.routeNames.basket })"
         >
           <div class="text-base">
             <span>

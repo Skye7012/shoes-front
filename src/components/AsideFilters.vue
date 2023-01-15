@@ -1,64 +1,68 @@
 <template>
-  <aside>
-    <ButtonComponent class="mt-1" @click="dropFilters"
-      >Сбросить фильтры</ButtonComponent
-    >
-
-    <div class="mt-3">
-      <span> Брэнды </span>
-      <ul class="pl-2 pt-1">
-        <li v-for="brand in brands.brands" :key="brand.id">
-          <input
-            v-model="filters.brandFilters"
-            type="checkbox"
-            :value="brand.id"
-          />
-          {{ brand.name }}
-        </li>
-      </ul>
+  <div class="grid grid-rows-[50px_auto] gap-y-2">
+    <div class="mt-auto">
+      <ButtonComponent class="mt-1" @click="dropFilters"
+        >Сбросить фильтры</ButtonComponent
+      >
     </div>
-
-    <div class="mt-3">
-      <span> Назначение </span>
-      <ul class="pl-2 pt-1">
-        <li
-          v-for="destination in destinations.destinations"
-          :key="destination.id"
-        >
-          <input
-            v-model="filters.destinationFilters"
-            type="checkbox"
-            :value="destination.id"
-          />
-          {{ destination.name }}
-        </li>
-      </ul>
-    </div>
-
-    <div class="mt-3">
-      <span> Сезон </span>
-      <ul class="pl-2 pt-1">
-        <li v-for="season in seasons.seasons" :key="season.id">
-          <input
-            v-model="filters.seasonFilters"
-            type="checkbox"
-            :value="season.id"
-          />
-          {{ season.name }}
-        </li>
-      </ul>
-    </div>
-
-    <div class="mt-3">
-      <span> Размеры </span>
-      <ul class="pl-2 pt-1">
-        <li v-for="size in sizes.sizes" :key="size">
-          <input v-model="filters.sizeFilters" type="checkbox" :value="size" />
-          {{ size }}
-        </li>
-      </ul>
-    </div>
-  </aside>
+    <aside>
+      <div class="mt-3">
+        <span> Брэнды </span>
+        <ul class="pl-2 pt-1">
+          <li v-for="brand in brands.brands" :key="brand.id">
+            <input
+              v-model="filters.brandFilters"
+              type="checkbox"
+              :value="brand.id"
+            />
+            {{ brand.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="mt-3">
+        <span> Назначение </span>
+        <ul class="pl-2 pt-1">
+          <li
+            v-for="destination in destinations.destinations"
+            :key="destination.id"
+          >
+            <input
+              v-model="filters.destinationFilters"
+              type="checkbox"
+              :value="destination.id"
+            />
+            {{ destination.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="mt-3">
+        <span> Сезон </span>
+        <ul class="pl-2 pt-1">
+          <li v-for="season in seasons.seasons" :key="season.id">
+            <input
+              v-model="filters.seasonFilters"
+              type="checkbox"
+              :value="season.id"
+            />
+            {{ season.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="mt-3">
+        <span> Размеры </span>
+        <ul class="pl-2 pt-1">
+          <li v-for="size in sizes.sizes" :key="size">
+            <input
+              v-model="filters.sizeFilters"
+              type="checkbox"
+              :value="size"
+            />
+            {{ size }}
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
 </template>
 
 <script lang="ts">

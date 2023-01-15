@@ -8,7 +8,17 @@ import OrderView from "@/views/OrderView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import HeaderLayoutWithSearch from "@/layouts/HeaderLayoutWithSearch.vue";
 import HeaderLayout from "@/layouts/HeaderLayout.vue";
-import { routeNames } from "./routeNames";
+
+/** Наименования рутов */
+export const routeNames = {
+  home: "home",
+  profile: "profile",
+  login: "login",
+  basket: "basket",
+  registration: "registration",
+  orders: "orders",
+  notFound: "notFound"
+};
 
 /** Руты */
 const routes: Array<RouteRecordRaw> = [
