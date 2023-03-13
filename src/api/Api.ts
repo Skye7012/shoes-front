@@ -255,7 +255,7 @@ export interface SignUpRequest {
   /** Name */
   name: string;
   /** First Name */
-  firstName?: string;
+  surname?: string;
   /** Phone */
   phone?: string;
 }
@@ -276,7 +276,7 @@ export interface UserGetResponse {
   /** Name */
   name: string;
   /** First name */
-  firstName?: string;
+  surname?: string;
   /** Phone */
   phone?: string;
 }
@@ -286,7 +286,7 @@ export interface UserPutRequest {
   /** Name */
   name?: string;
   /** First Name */
-  firstName?: string;
+  surname?: string;
   /** Phone */
   phone?: string;
 }

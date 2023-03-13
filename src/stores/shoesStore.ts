@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { apiClient } from "@/api/apiClient";
 import { GetShoesResponseItem } from "@/api/Api";
+import { throwError } from "@/ErrorHandling";
 
 export interface ISortOption {
   OrderBy: string;
@@ -62,7 +63,7 @@ export const useShoesStore = defineStore({
         this.totalCount = response.data.totalCount;
         this.shoes = response.data.items ?? [];
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 

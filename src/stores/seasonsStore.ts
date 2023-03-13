@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { GetSeasonsResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
+import { throwError } from "@/ErrorHandling";
 
 interface SeasonType {
   seasons: GetSeasonsResponseItem[];
@@ -23,7 +24,7 @@ export const useSeasonStore = defineStore({
         this.seasons = response.data.items ?? [];
         this.seasonsTotalCount = response.data.totalCount;
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     }
   }

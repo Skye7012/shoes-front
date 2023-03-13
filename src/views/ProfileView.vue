@@ -25,9 +25,9 @@
     </FormComponent>
     <FormComponent title="Фамилия">
       <InputComponent
-        v-model="firstName"
+        v-model="surname"
         class="mb-5 text-center !indent-0"
-        :class="{ '!border-info': firstName !== user.firstName }"
+        :class="{ '!border-info': surname !== user.surname }"
         placeholder="Фамилия"
         type="text"
       />
@@ -76,7 +76,7 @@ export default defineComponent({
   },
   data() {
     return {
-      firstName: null,
+      surname: null,
       name: null,
       phone: null
     } as Nullable<Required<UserPutRequest>>;
@@ -86,7 +86,7 @@ export default defineComponent({
     if (!this.user.login) throw new Error("FetchUser Error");
     this.login = this.user.login;
     this.name = this.user.name;
-    this.firstName = this.user.firstName;
+    this.surname = this.user.surname;
     this.phone = this.user.phone;
   },
   methods: {

@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { GetShoesResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
 import { IBasketStoreItem, getBasket, setBasket } from "@/envHelper";
+import { throwError } from "@/ErrorHandling";
 
 interface BasketType {
   basketItems: GetShoesResponseItem[];
@@ -63,7 +64,7 @@ export const useBasketStore = defineStore({
           .map((x) => x.price)
           .reduce((a, b) => a + b, 0);
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 

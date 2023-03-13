@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { GetBrandsResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
+import { throwError } from "@/ErrorHandling";
 
 interface BrandType {
   brands: GetBrandsResponseItem[];
@@ -23,7 +24,7 @@ export const useBrandStore = defineStore({
         this.brands = response.data.items ?? [];
         this.brandsTotalCount = response.data.totalCount;
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     }
   }

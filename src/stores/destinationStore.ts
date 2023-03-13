@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { GetDestinationsResponseItem } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
+import { throwError } from "@/ErrorHandling";
 
 interface DestinationType {
   destinations: GetDestinationsResponseItem[];
@@ -23,7 +24,7 @@ export const useDestinationStore = defineStore({
         this.destinations = response.data.items ?? [];
         this.destinationsTotalCount = response.data.totalCount;
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     }
   }
