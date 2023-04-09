@@ -1,6 +1,10 @@
 <template>
   <div class="flex border border-light rounded m-1 h-[140px]">
-    <ShoeImgComponent :image-path="basketItem.image" />
+    <ShoeImgComponent
+      with-border
+      is-rounded
+      :image-file-id="basketItem.imageFileId"
+    />
     <div class="flex flex-1 flex-col items-center justify-around">
       <div class="truncate w-full px-2 text-center">
         <span> {{ basketItem.name }}<br /> </span>

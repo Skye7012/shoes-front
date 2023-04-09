@@ -29,13 +29,12 @@ class Api extends GeneratedApi<unknown> {
     this.instance.defaults.paramsSerializer = (params) => qs.stringify(params);
   }
 
+  /**
+   * Скачать файл
+   */
   // eslint-disable-next-line class-methods-use-this
   downloadFile(response: AxiosResponse<Blob, unknown>) {
-    const fileName = response.headers["content-disposition"].match(
-      /filename=(?<FileName>(.+?)\.(.+?));/
-    )?.[1];
-
-    if (!fileName) throw new Error("Не удается получить наименование файла");
+    const fileName = this.getFileName(response);
 
     const url = URL.createObjectURL(response.data);
 
@@ -45,6 +44,20 @@ class Api extends GeneratedApi<unknown> {
     anchor.click();
 
     URL.revokeObjectURL(url);
+  }
+
+   /**
+   * Получить наименование файла
+   */
+  // eslint-disable-next-line class-methods-use-this
+  getFileName(response: AxiosResponse<Blob, unknown>) {
+    const fileName = response.headers["content-disposition"].match(
+      /filename=(?<FileName>(.+?)\.(.+?));/
+    )?.[1];
+
+    if (!fileName) throw new Error("Не удается получить наименование файла");
+
+    return fileName;
   }
 }
 

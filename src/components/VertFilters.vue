@@ -101,7 +101,7 @@ export default defineComponent({
     },
     decrementPage() {
       if (this.nowPage <= 1) this.nowPage = 1;
-      else this.nowPage += 1;
+      else this.nowPage -= 1;
       this.activePag = 2;
     },
     incrementPage() {

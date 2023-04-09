@@ -1,6 +1,10 @@
 <template>
   <div class="flex border border-light rounded m-1 h-20 w-full">
-    <ShoeImgComponent :image-path="orderItem.shoe.image" />
+    <ShoeImgComponent
+      with-border
+      is-rounded
+      :image-file-id="orderItem.shoe.imageFileId"
+    />
     <div
       class="flex flex-1 flex-col justify-center items-center gap-y-1 overflow-x-hidden"
     >
@@ -31,6 +35,6 @@ export default defineComponent({
       type: Object as PropType<GetOrdersResponseItemOrderItem>,
       required: true
     }
-  },
+  }
 });
 </script>

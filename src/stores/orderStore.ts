@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { GetOrdersResponseItem, PostOrderRequest } from "@/api/Api";
+import { GetOrdersResponseItem, PostOrderCommand } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
 import { throwError } from "@/ErrorHandling";
 
@@ -30,7 +30,8 @@ export const useOrderStore = defineStore({
       }
     },
 
-    async postOrder(order: PostOrderRequest) {
+     /** Сделать заказ */
+    async postOrder(order: PostOrderCommand) {
       try {
         await apiClient.orders.ordersCreate({
           ...order
