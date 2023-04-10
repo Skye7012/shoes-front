@@ -67,6 +67,7 @@ export const useShoesStore = defineStore({
       }
     },
 
+    /** Скачать XML файл */
     async downloadXMLFile() {
       const response = await apiClient.shoes.getXmlList();
       apiClient.downloadFile(response);
