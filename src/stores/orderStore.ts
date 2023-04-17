@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { GetOrdersResponseItem, PostOrderRequest } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
+import { throwError } from "@/ErrorHandling";
 
 interface OrderType {
   orders: GetOrdersResponseItem[];
@@ -25,10 +26,11 @@ export const useOrderStore = defineStore({
         this.orders = response.data.items ?? [];
         this.ordersTotalCount = response.data.totalCount;
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 
+     /** Сделать заказ */
     async postOrder(order: PostOrderRequest) {
       try {
         await apiClient.orders.ordersCreate({
@@ -36,7 +38,7 @@ export const useOrderStore = defineStore({
         });
         alert("Заказ принят");
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     }
   }

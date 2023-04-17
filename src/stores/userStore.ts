@@ -1,13 +1,14 @@
 import { defineStore } from "pinia";
-import { SignUpRequest, UserPutRequest } from "@/api/Api";
+import { SignUpUserRequest, PutUserRequest } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
 import { getToken, removeToken, setToken } from "@/envHelper";
+import { throwError } from "@/ErrorHandling";
 
 interface UserType {
   isAuth: boolean;
   login: string | null;
   name: string | null;
-  firstName: string | null;
+  surname: string | null;
   phone: string | null;
 }
 
@@ -17,7 +18,7 @@ export const useUserStore = defineStore({
   state: (): UserType => ({
     isAuth: !!getToken(),
     name: null,
-    firstName: null,
+    surname: null,
     login: null,
     phone: null
   }),
@@ -43,17 +44,17 @@ export const useUserStore = defineStore({
         this.isAuth = true;
         this.$router.push({ name: this.$router.routeNames.profile });
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 
-    async signUp(user: SignUpRequest) {
+    async signUp(user: SignUpUserRequest) {
       try {
         await apiClient.user.signUpCreate(user);
 
         this.$router.push({ name: this.$router.routeNames.login });
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 
@@ -72,11 +73,11 @@ export const useUserStore = defineStore({
           ...user
         });
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 
-    async putUser(user: UserPutRequest) {
+    async putUser(user: PutUserRequest) {
       try {
         await apiClient.user.userUpdate(user);
 
@@ -84,7 +85,7 @@ export const useUserStore = defineStore({
           ...user
         });
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     },
 
@@ -95,14 +96,14 @@ export const useUserStore = defineStore({
         this.isAuth = false;
         this.login = null;
         this.name = null;
-        this.firstName = null;
+        this.surname = null;
         this.phone = null;
         removeToken();
         localStorage.removeItem("basket");
 
         this.$router.push({ name: this.$router.routeNames.home });
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     }
   }

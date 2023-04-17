@@ -1,294 +1,382 @@
 /* eslint-disable */
 /* tslint:disable */
 
-/** Response to get brands request */
+/** Ответ на запрос получения коллекции Сезонов обуви */
 export interface GetBrandsResponse {
   /**
-   * Total count of items
+   * Количество объектов
    * @format int32
    */
   totalCount: number;
-  /** Response items */
+  /** Объекты */
   items?: GetBrandsResponseItem[];
 }
 
-/** Brand dto in ShoesApi.Contracts.Requests.BrandRequests.GetBrandsRequest.GetBrandsResponse */
+/** ДТО Брэндов обуви из ShoesApi.Contracts.Requests.Brands.GetBrands.GetBrandsResponse */
 export interface GetBrandsResponseItem {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
 }
 
-/** Response to get destinations request */
+/** Ответ на запрос получения коллекции Назначений обуви */
 export interface GetDestinationsResponse {
   /**
-   * Total count of items
+   * Количество объектов
    * @format int32
    */
   totalCount: number;
-  /** Response items */
+  /** Объекты */
   items?: GetDestinationsResponseItem[];
 }
 
-/** Destination dto in ShoesApi.Contracts.Requests.DestinationRequests.GetDestinationsRequest.GetDestinationsResponse */
+/** ДТО Назначений обуви из ShoesApi.Contracts.Requests.Destinations.GetDestinations.GetDestinationsResponse */
 export interface GetDestinationsResponseItem {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
 }
 
-/** Response to get orders request */
+/** Ответ на запрос получения коллекции заказов пользователя */
 export interface GetOrdersResponse {
   /**
-   * Total count of items
+   * Количество объектов
    * @format int32
    */
   totalCount: number;
-  /** Response items */
+  /** Объекты */
   items?: GetOrdersResponseItem[];
 }
 
-/** Order dto in ShoesApi.Contracts.Requests.OrderRequests.GetOrdersResponse.GetOrdersResponse */
+/** ДТО Заказа из ShoesApi.Contracts.Requests.Orders.GetOrders.GetOrdersResponse */
 export interface GetOrdersResponseItem {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
   /**
-   * OrderDate
+   * Дата заказа
    * @format date-time
    */
   orderDate: string;
-  /** Address */
+  /** Адрес */
   address: string;
   /**
-   * Sum
+   * Итоговая сумма заказа
    * @format int32
    */
   sum: number;
   /**
-   * Count
+   * Количество вещей в заказе
    * @format int32
    */
   count: number;
-  /** Order Items */
+  /** Заказанные кроссовки */
   orderItems?: GetOrdersResponseItemOrderItem[];
 }
 
-/** OrderItem dto in ShoesApi.Contracts.Requests.OrderRequests.GetOrdersResponse.GetOrdersResponseItem */
+/** ДТО Части заказа из ShoesApi.Contracts.Requests.Orders.GetOrders.GetOrdersResponseItem */
 export interface GetOrdersResponseItemOrderItem {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
   /**
-   * RuSize
+   * Российский размер обуви
    * @format int32
    */
   ruSize: number;
-  /** Shoe dto in ShoesApi.Contracts.Requests.OrderRequests.GetOrdersResponse.GetOrdersResponseItemOrderItem */
+  /** ДТО Обуви из ShoesApi.Contracts.Requests.Orders.GetOrders.GetOrdersResponseItemOrderItem */
   shoe: GetOrdersResponseItemOrderItemShoe;
 }
 
-/** Shoe dto in ShoesApi.Contracts.Requests.OrderRequests.GetOrdersResponse.GetOrdersResponseItemOrderItem */
+/** ДТО Обуви из ShoesApi.Contracts.Requests.Orders.GetOrders.GetOrdersResponseItemOrderItem */
 export interface GetOrdersResponseItemOrderItemShoe {
   /**
-   * ID
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
-  /** Image name (for path) */
-  image: string;
   /**
-   * Price
+   * Идентификатор файла изображения
+   * @format int32
+   */
+  imageFileId: number;
+  /**
+   * Цена
    * @format int32
    */
   price: number;
 }
 
-/** Response to get seasons request */
+/** Ответ на запрос получения коллекции Сезонов обуви */
 export interface GetSeasonsResponse {
   /**
-   * Total count of items
+   * Количество объектов
    * @format int32
    */
   totalCount: number;
-  /** Response items */
+  /** Объекты */
   items?: GetSeasonsResponseItem[];
 }
 
-/** Season dto in ShoesApi.Contracts.Requests.SeasonRequests.GetSeasonsRequest.GetSeasonsResponse */
+/** ДТО Сезона обуви из ShoesApi.Contracts.Requests.Seasons.GetSeasons.GetSeasonsResponse */
 export interface GetSeasonsResponseItem {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
 }
 
-/** Response to ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesRequest */
+/** Шаблонный ответ на получение коллекции обуви */
 export interface GetShoesResponse {
   /**
-   * Total count of items
+   * Количество объектов
    * @format int32
    */
   totalCount: number;
-  /** Response items */
+  /** Объекты */
   items?: GetShoesResponseItem[];
 }
 
-/** Shoe dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponse */
+/** ДТО Обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponse */
 export interface GetShoesResponseItem {
   /**
-   * id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
-  /** Image name (for path) */
-  image: string;
   /**
-   * Price
+   * Идентификатор файла изображения
+   * @format int32
+   */
+  imageFileId: number;
+  /**
+   * Цена
    * @format int32
    */
   price: number;
-  /** Brand dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponseItem */
+  /** ДТО Брэнда обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponseItem */
   brand: GetShoesResponseItemBrand;
-  /** Destination dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponseItem */
+  /** ДТО Назначения обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponseItem */
   destination: GetShoesResponseItemDestination;
-  /** Season dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponseItem */
+  /** ДТО Сезона обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponseItem */
   season: GetShoesResponseItemSeason;
-  /** RuSizes */
+  /** Российские Размеры обуви */
   ruSizes: number[];
 }
 
-/** Brand dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponseItem */
+/** ДТО Брэнда обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponseItem */
 export interface GetShoesResponseItemBrand {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
 }
 
-/** Destination dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponseItem */
+/** ДТО Назначения обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponseItem */
 export interface GetShoesResponseItemDestination {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
 }
 
-/** Season dto in ShoesApi.Contracts.Requests.ShoesRequests.GetShoesRequest.GetShoesResponseItem */
+/** ДТО Сезона обуви из ShoesApi.Contracts.Requests.Shoes.Common.GetShoesResponseItem */
 export interface GetShoesResponseItemSeason {
   /**
-   * Id
+   * Идентификатор
    * @format int32
    */
   id: number;
-  /** Name */
+  /** Наименование */
   name: string;
 }
 
-/** Part of order in ShoesApi.Contracts.Requests.OrderRequests.PostOrderRequest.PostOrderRequest */
-export interface OrderPostRequestOrderItem {
+/** Ответ на запрос получения данных о пользователе */
+export interface GetUserResponse {
+  /** Логин */
+  login: string;
+  /** Имя */
+  name: string;
+  /** Фамилия */
+  surname?: string;
+  /** Телефон */
+  phone?: string;
+}
+
+/** Запрос для размещения заказа пользователя */
+export interface PostOrderRequest {
+  /** Адрес */
+  address: string;
+  /** Заказанная обувь */
+  orderItems: PostOrderRequestOrderItem[];
+}
+
+/** ДТО Части заказа из ShoesApi.Contracts.Requests.Orders.PostOrder.PostOrderRequest */
+export interface PostOrderRequestOrderItem {
   /**
-   * ShoeId
+   * Идентификатор обуви
    * @format int32
    */
   shoeId: number;
   /**
-   * RuSize
+   * Выбранный Российский размер
    * @format int32
    */
   ruSize: number;
 }
 
-/** Request for post order */
-export interface PostOrderRequest {
-  /** Address */
-  address: string;
-  /** OrderItems */
-  orderItems: OrderPostRequestOrderItem[];
+/** Запрос на создание обуви */
+export interface PostShoeRequest {
+  /** Наименование */
+  name: string;
+  /**
+   * Идентификатор файла изображения
+   * @format int32
+   */
+  imageFileId: number;
+  /**
+   * Цена
+   * @format int32
+   */
+  price: number;
+  /**
+   * Идентификатор Брэнда обуви
+   * @format int32
+   */
+  brandId: number;
+  /**
+   * Идентификатор Назначения обуви
+   * @format int32
+   */
+  destinationId: number;
+  /**
+   * Идентификатор Сезона обуви
+   * @format int32
+   */
+  seasonId: number;
+  /**
+   * Идентификатор Размеров обуви
+   * @uniqueItems true
+   */
+  sizesIds: number[];
 }
 
-/** Request to signIn */
-export interface SignInRequest {
-  /** Login */
+export interface ProblemDetails {
+  type?: string;
+  title?: string;
+  /** @format int32 */
+  status?: number;
+  detail: string;
+  instance?: string;
+  [key: string]: any;
+}
+
+/** Запрос на обновление обуви */
+export interface PutShoeRequest {
+  /** Наименование */
+  name: string;
+  /**
+   * Идентификатор файла изображения
+   * @format int32
+   */
+  imageFileId: number;
+  /**
+   * Цена
+   * @format int32
+   */
+  price: number;
+  /**
+   * Идентификатор Брэнда обуви
+   * @format int32
+   */
+  brandId: number;
+  /**
+   * Идентификатор Назначения обуви
+   * @format int32
+   */
+  destinationId: number;
+  /**
+   * Идентификатор Сезона обуви
+   * @format int32
+   */
+  seasonId: number;
+  /**
+   * Идентификатор Размеров обуви
+   * @uniqueItems true
+   */
+  sizesIds: number[];
+}
+
+/** Запрос на обновление данных о пользователе */
+export interface PutUserRequest {
+  /** Имя */
+  name?: string;
+  /** Фамилия */
+  surname?: string;
+  /** Телефон */
+  phone?: string;
+}
+
+/** Запрос на авторизацию пользователя */
+export interface SignInUserRequest {
+  /** Логин */
   login: string;
-  /** Password */
+  /** Пароль */
   password: string;
 }
 
-/** Response to signIn */
-export interface SignInResponse {
-  /** Authorization token */
+/** Ответ на ShoesApi.Contracts.Requests.Users.SignInUser.SignInUserRequest */
+export interface SignInUserResponse {
+  /** Токен авторизации */
   token: string;
 }
 
-/** Request to signUp */
-export interface SignUpRequest {
-  /** Login */
+/** Запрос для регистрации пользователя */
+export interface SignUpUserRequest {
+  /** Логин */
   login: string;
-  /** Password */
+  /** Пароль */
   password: string;
-  /** Name */
+  /** Имя */
   name: string;
-  /** First Name */
-  firstName?: string;
-  /** Phone */
+  /** Фамилия */
+  surname?: string;
+  /** Телефон */
   phone?: string;
 }
 
-/** Response to signUp */
-export interface SignUpResponse {
+/** Ответ на ShoesApi.Contracts.Requests.Users.SignUpUser.SignUpUserRequest */
+export interface SignUpUserResponse {
   /**
-   * UserId
+   * Идентификатор зарегистрированного пользователя
    * @format int32
    */
   userId: number;
-}
-
-/** Response to get user credentials */
-export interface UserGetResponse {
-  /** Login */
-  login: string;
-  /** Name */
-  name: string;
-  /** First name */
-  firstName?: string;
-  /** Phone */
-  phone?: string;
-}
-
-/** Request to update User Credentials */
-export interface UserPutRequest {
-  /** Name */
-  name?: string;
-  /** First Name */
-  firstName?: string;
-  /** Phone */
-  phone?: string;
 }
 
 import axios, {
@@ -464,7 +552,7 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title ShoesApi
+ * @title ShoesApi.Api
  * @version 1.0
  */
 export class Api<
@@ -476,7 +564,7 @@ export class Api<
      *
      * @tags Brands
      * @name BrandsList
-     * @summary Get brands
+     * @summary Получить список Брэндов обуви
      * @request GET:/Brands
      */
     brandsList: (params: RequestParams = {}) =>
@@ -493,7 +581,7 @@ export class Api<
      *
      * @tags Destinations
      * @name DestinationsList
-     * @summary Get Destinations
+     * @summary Получить список Назначений обуви
      * @request GET:/Destinations
      */
     destinationsList: (params: RequestParams = {}) =>
@@ -504,13 +592,54 @@ export class Api<
         ...params
       })
   };
+  files = {
+    /**
+     * No description
+     *
+     * @tags Files
+     * @name DownloadDetail
+     * @summary Скачать файл
+     * @request GET:/Files/Download/{id}
+     */
+    downloadDetail: (id: number, params: RequestParams = {}) =>
+      this.request<Blob, ProblemDetails>({
+        path: `/Files/Download/${id}`,
+        method: "GET",
+        format: "blob",
+        ...params
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Files
+     * @name UploadCreate
+     * @summary Загрузить файл
+     * @request POST:/Files/Upload
+     */
+    uploadCreate: (
+      data: {
+        /** @format binary */
+        file?: File;
+      },
+      params: RequestParams = {}
+    ) =>
+      this.request<number, any>({
+        path: `/Files/Upload`,
+        method: "POST",
+        body: data,
+        type: ContentType.FormData,
+        format: "json",
+        ...params
+      })
+  };
   orders = {
     /**
      * No description
      *
      * @tags Orders
      * @name OrdersList
-     * @summary Get Orders
+     * @summary Получить заказы пользователя
      * @request GET:/Orders
      * @secure
      */
@@ -528,12 +657,12 @@ export class Api<
      *
      * @tags Orders
      * @name OrdersCreate
-     * @summary Post Orders
+     * @summary Создать заказ
      * @request POST:/Orders
      * @secure
      */
     ordersCreate: (data: PostOrderRequest, params: RequestParams = {}) =>
-      this.request<number, void>({
+      this.request<number, ProblemDetails | void>({
         path: `/Orders`,
         method: "POST",
         body: data,
@@ -549,7 +678,7 @@ export class Api<
      *
      * @tags Seasons
      * @name SeasonsList
-     * @summary Get Seasons
+     * @summary Получить список Сезонов обуви
      * @request GET:/Seasons
      */
     seasonsList: (params: RequestParams = {}) =>
@@ -566,34 +695,34 @@ export class Api<
      *
      * @tags Shoes
      * @name ShoesList
-     * @summary Get Shoes
+     * @summary Получить список обуви
      * @request GET:/Shoes
      */
     shoesList: (
       query?: {
-        /** Filter by search */
+        /** Фильтр поисковой строки */
         SearchQuery?: string;
-        /** Filter by brands */
+        /** Фильтр по Брэндам обуви */
         BrandFilters?: number[];
-        /** Filter by destination */
+        /** Фильтр по Назначениям обуви */
         DestinationFilters?: number[];
-        /** Filter by seasons */
+        /** Фильтр по Сезонам обуви */
         SeasonFilters?: number[];
-        /** Filter by sizes */
+        /** Фильтр по Размерам обуви */
         SizeFilters?: number[];
         /**
-         * Page
+         * Страница
          * @format int32
          */
         Page?: number;
         /**
-         * Limit on page
+         * Лимит страницы
          * @format int32
          */
         Limit?: number;
-        /** Field for orderBy */
+        /** Поле сортировки */
         OrderBy?: string;
-        /** IsAscending ordering */
+        /** Сортировка по возрастанию */
         IsAscending?: boolean;
       },
       params: RequestParams = {}
@@ -611,12 +740,12 @@ export class Api<
      *
      * @tags Shoes
      * @name GetByIdsList
-     * @summary Get Shoes by ids
+     * @summary Получить список обуви по коллекции идентификаторов
      * @request GET:/Shoes/GetByIds
      */
     getByIdsList: (
       query?: {
-        /** Ids */
+        /** Коллекция идентификаторов */
         ids?: number[];
       },
       params: RequestParams = {}
@@ -634,7 +763,7 @@ export class Api<
      *
      * @tags Shoes
      * @name GetXmlList
-     * @summary Get serialized into XML info about shoes
+     * @summary Получить коллекцию обуви в формате XML
      * @request GET:/Shoes/GetXml
      */
     getXmlList: (params: RequestParams = {}) =>
@@ -642,6 +771,64 @@ export class Api<
         path: `/Shoes/GetXml`,
         method: "GET",
         format: "blob",
+        ...params
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Shoes
+     * @name ShoesCreate
+     * @summary Создать обувь
+     * @request POST:/Shoes/{id}
+     */
+    shoesCreate: (
+      id: string,
+      data: PostShoeRequest,
+      params: RequestParams = {}
+    ) =>
+      this.request<number, ProblemDetails>({
+        path: `/Shoes/${id}`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Shoes
+     * @name ShoesUpdate
+     * @summary Обновить данные об обуви
+     * @request PUT:/Shoes/{id}
+     */
+    shoesUpdate: (
+      id: number,
+      data: PutShoeRequest,
+      params: RequestParams = {}
+    ) =>
+      this.request<void, ProblemDetails>({
+        path: `/Shoes/${id}`,
+        method: "PUT",
+        body: data,
+        type: ContentType.Json,
+        ...params
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Shoes
+     * @name ShoesDelete
+     * @summary Удалить обувь
+     * @request DELETE:/Shoes/{id}
+     */
+    shoesDelete: (id: number, params: RequestParams = {}) =>
+      this.request<void, ProblemDetails>({
+        path: `/Shoes/${id}`,
+        method: "DELETE",
         ...params
       })
   };
@@ -651,7 +838,7 @@ export class Api<
      *
      * @tags Sizes
      * @name SizesList
-     * @summary Get Sizes
+     * @summary Получить список Размеров обуви
      * @request GET:/Sizes
      */
     sizesList: (params: RequestParams = {}) =>
@@ -668,12 +855,12 @@ export class Api<
      *
      * @tags User
      * @name UserList
-     * @summary Get User Credentials
+     * @summary Получить данные о пользователе
      * @request GET:/User
      * @secure
      */
     userList: (params: RequestParams = {}) =>
-      this.request<UserGetResponse, void>({
+      this.request<GetUserResponse, void | ProblemDetails>({
         path: `/User`,
         method: "GET",
         secure: true,
@@ -686,12 +873,12 @@ export class Api<
      *
      * @tags User
      * @name UserUpdate
-     * @summary Update User Credentials
+     * @summary Обновить данные о пользователе
      * @request PUT:/User
      * @secure
      */
-    userUpdate: (data: UserPutRequest, params: RequestParams = {}) =>
-      this.request<void, void>({
+    userUpdate: (data: PutUserRequest, params: RequestParams = {}) =>
+      this.request<void, void | ProblemDetails>({
         path: `/User`,
         method: "PUT",
         body: data,
@@ -705,12 +892,12 @@ export class Api<
      *
      * @tags User
      * @name UserDelete
-     * @summary Delete User
+     * @summary Удалить пользователя
      * @request DELETE:/User
      * @secure
      */
     userDelete: (params: RequestParams = {}) =>
-      this.request<void, void>({
+      this.request<void, void | ProblemDetails>({
         path: `/User`,
         method: "DELETE",
         secure: true,
@@ -722,11 +909,11 @@ export class Api<
      *
      * @tags User
      * @name SignUpCreate
-     * @summary SignUp
+     * @summary Зарегистрироваться
      * @request POST:/User/SignUp
      */
-    signUpCreate: (data: SignUpRequest, params: RequestParams = {}) =>
-      this.request<SignUpResponse, any>({
+    signUpCreate: (data: SignUpUserRequest, params: RequestParams = {}) =>
+      this.request<SignUpUserResponse, ProblemDetails>({
         path: `/User/SignUp`,
         method: "POST",
         body: data,
@@ -740,11 +927,11 @@ export class Api<
      *
      * @tags User
      * @name SignInCreate
-     * @summary SignIn
+     * @summary Авторизоваться
      * @request POST:/User/SignIn
      */
-    signInCreate: (data: SignInRequest, params: RequestParams = {}) =>
-      this.request<SignInResponse, any>({
+    signInCreate: (data: SignInUserRequest, params: RequestParams = {}) =>
+      this.request<SignInUserResponse, ProblemDetails>({
         path: `/User/SignIn`,
         method: "POST",
         body: data,

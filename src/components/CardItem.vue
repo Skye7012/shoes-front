@@ -1,11 +1,6 @@
 <template>
   <BoxComponent class="flex flex-col rounded m-1 p-0">
-    <div
-      class="bg-center bg-cover h-full aspect-[5/3]"
-      :style="{
-        'background-image': `url('${require(`@/assets/img/shoes/${shoe.image}`)}')`
-      }"
-    ></div>
+    <ShoeImgComponent :image-file-id="shoe.imageFileId" />
     <div class="flex flex-1 flex-col items-center">
       <div class="truncate w-full px-2 text-center" :title="shoe.name">
         {{ shoe.name }}
@@ -47,12 +42,18 @@ import { PropType, defineComponent } from "vue";
 import { GetShoesResponseItem } from "@/api/Api";
 import { useBasketStore } from "@/stores/basketStore";
 import { useShoesStore } from "@/stores/shoesStore";
+import ShoeImgComponent from "./UI/ShoeImgComponent.vue";
 import BoxComponent from "./UI/BoxComponent.vue";
 import ButtonComponent from "./UI/ButtonComponent.vue";
 import CartItemRadioInputComponent from "./CartItemRadioInputComponent.vue";
 
 export default defineComponent({
-  components: { BoxComponent, ButtonComponent, CartItemRadioInputComponent },
+  components: {
+    BoxComponent,
+    ButtonComponent,
+    CartItemRadioInputComponent,
+    ShoeImgComponent
+  },
   props: {
     shoe: {
       type: Object as PropType<GetShoesResponseItem>,

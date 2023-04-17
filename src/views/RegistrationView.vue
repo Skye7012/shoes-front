@@ -96,7 +96,7 @@ export default defineComponent({
         login: this.login,
         name: this.name,
         password: this.password,
-        firstName: this.firstName ?? undefined,
+        surname: this.firstName ?? undefined,
         phone: this.phone ?? undefined
       });
     }

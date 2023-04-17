@@ -25,9 +25,9 @@
     </FormComponent>
     <FormComponent title="Фамилия">
       <InputComponent
-        v-model="firstName"
+        v-model="surname"
         class="mb-5 text-center !indent-0"
-        :class="{ '!border-info': firstName !== user.firstName }"
+        :class="{ '!border-info': surname !== user.surname }"
         placeholder="Фамилия"
         type="text"
       />
@@ -58,7 +58,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { UserPutRequest } from "@/api/Api";
+import { PutUserRequest } from "@/api/Api";
 import { useUserStore } from "@/stores/userStore";
 import FormComponent from "@/components/UI/FormComponent.vue";
 import InputComponent from "@/components/UI/InputComponent.vue";
@@ -76,17 +76,17 @@ export default defineComponent({
   },
   data() {
     return {
-      firstName: null,
+      surname: null,
       name: null,
       phone: null
-    } as Nullable<Required<UserPutRequest>>;
+    } as Nullable<Required<PutUserRequest>>;
   },
   async mounted() {
     await this.user.fetchUser();
     if (!this.user.login) throw new Error("FetchUser Error");
     this.login = this.user.login;
     this.name = this.user.name;
-    this.firstName = this.user.firstName;
+    this.surname = this.user.surname;
     this.phone = this.user.phone;
   },
   methods: {
@@ -96,7 +96,7 @@ export default defineComponent({
         return;
       }
       this.user.putUser({
-        ...(this.$data as Partial<UserPutRequest>)
+        ...(this.$data as Partial<PutUserRequest>)
       });
     },
     delProfile() {

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { apiClient } from "@/api/apiClient";
+import { throwError } from "@/ErrorHandling";
 
 interface SizeType {
   sizes: number[];
@@ -22,7 +23,7 @@ export const useSizesStore = defineStore({
         this.sizes = response.data;
         this.sizesTotalCount = response.data.length;
       } catch (e) {
-        alert(e);
+        throwError(e);
       }
     }
   }
