@@ -46,7 +46,7 @@ class Api extends GeneratedApi<unknown> {
     URL.revokeObjectURL(url);
   }
 
-   /**
+  /**
    * Получить наименование файла
    */
   // eslint-disable-next-line class-methods-use-this

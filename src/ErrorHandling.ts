@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { isProblemDetails } from "./api/Api";
+import { isProblemDetails } from "./api/apiHelper";
 
 /** Выбросить ошибку */
 export function throwError(error: unknown | AxiosError) {

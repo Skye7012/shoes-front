@@ -58,7 +58,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { PutUserCommand } from "@/api/Api";
+import { PutUserRequest } from "@/api/Api";
 import { useUserStore } from "@/stores/userStore";
 import FormComponent from "@/components/UI/FormComponent.vue";
 import InputComponent from "@/components/UI/InputComponent.vue";
@@ -79,7 +79,7 @@ export default defineComponent({
       surname: null,
       name: null,
       phone: null
-    } as Nullable<Required<PutUserCommand>>;
+    } as Nullable<Required<PutUserRequest>>;
   },
   async mounted() {
     await this.user.fetchUser();
@@ -96,7 +96,7 @@ export default defineComponent({
         return;
       }
       this.user.putUser({
-        ...(this.$data as Partial<PutUserCommand>)
+        ...(this.$data as Partial<PutUserRequest>)
       });
     },
     delProfile() {
