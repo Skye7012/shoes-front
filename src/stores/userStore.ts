@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { SignUpUserCommand, PutUserCommand } from "@/api/Api";
+import { SignUpUserRequest, PutUserRequest } from "@/api/Api";
 import { apiClient } from "@/api/apiClient";
 import { getToken, removeToken, setToken } from "@/envHelper";
 import { throwError } from "@/ErrorHandling";
@@ -48,7 +48,7 @@ export const useUserStore = defineStore({
       }
     },
 
-    async signUp(user: SignUpUserCommand) {
+    async signUp(user: SignUpUserRequest) {
       try {
         await apiClient.user.signUpCreate(user);
 
@@ -77,7 +77,7 @@ export const useUserStore = defineStore({
       }
     },
 
-    async putUser(user: PutUserCommand) {
+    async putUser(user: PutUserRequest) {
       try {
         await apiClient.user.userUpdate(user);
 
