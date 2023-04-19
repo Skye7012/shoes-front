@@ -27,7 +27,7 @@
   <a href="https://github.com/users/Skye7012/projects/3">
       <img src="https://img.shields.io/badge/ShoesProject-gray?logo=github" alt="ShoesProject"/>
   </a>
-  <a href="https://hub.docker.com/repository/docker/skye7012/shoes-front/general">
+  <a href="https://hub.docker.com/r/skye7012/shoes-front">
       <img src="https://img.shields.io/static/v1?label=&message=skye7012&#47;shoes-front&color=gray&logo=docker" alt="DockerHub"/>
   </a>
 </div>
